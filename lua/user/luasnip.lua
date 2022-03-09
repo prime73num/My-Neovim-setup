@@ -1,5 +1,5 @@
-
 require("luasnip.loaders.from_vscode").load()
+
 local ls = require "luasnip"
 local types = require "luasnip.util.types"
 

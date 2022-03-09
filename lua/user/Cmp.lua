@@ -53,26 +53,26 @@ cmp.setup({
         fallback()
       end
     end,
-	["<c-k>"] = function()
-		if ls.expand_or_jumpable() then
-			ls.expand_or_jump()
+	["<c-k>"] = cmp.mapping(function()
+		if ls.jumpable(1) then
+			ls.jump(1)
 		end
-	end,
-	["<c-j>"] = function()
+	end,{'i','s'}),
+	["<c-j>"] = cmp.mapping(function()
 		if ls.jumpable(-1) then
 			ls.jump(-1)
 		end
-	end,
-	["<c-l>"] = function()
+	end,{'i','s'}),
+	["<c-l>"] = cmp.mapping(function()
 		if ls.choice_active() then
 			ls.change_choice(1)
 		end
-	end,
+	end,{'i','s'}),
   },
   sources = {
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
     { name = "luasnip" },
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 4 },
   },

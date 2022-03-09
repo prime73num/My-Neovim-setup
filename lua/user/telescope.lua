@@ -13,6 +13,22 @@ telescope.setup {
     selection_caret = "  ",
     initial_mode = "normal",
 	scroll_strategy = "limit",
+	sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
+    layout_config = {
+     horizontal = {
+        prompt_position = "top",
+        preview_width = 0.6,
+        results_width = 0.5,
+        mirror = true,
+     },
+     vertical = {
+        mirror = false,
+     },
+     width = 0.87,
+     height = 0.80,
+     preview_cutoff = 120,
+    },
 
     mappings = {
       i = {
@@ -233,9 +249,7 @@ local oldf = function()
 	require("telescope.builtin").oldfiles{}
 end
 local live_grep = function()
-    require('telescope.builtin').live_grep(require('telescope.themes').get_dropdown{
-    previewer = false
-	})
+    require('telescope.builtin').live_grep()
 end
 local HexoCG = function()
 	vim.cmd("FloatermNew! --title='~Clean&Get~' cd ~/WorkSpace/Blog && hexo clean && hexo g")

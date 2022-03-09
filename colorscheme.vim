@@ -24,9 +24,13 @@ hi CmpItemKind ctermfg=110 guifg=#98BEDE
 hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
 
-hi TelescopeNormal ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
+hi TelescopePromptNormal ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#555555
+hi TelescopePromptBorder ctermfg=247 ctermbg=239 guifg=#555555 guibg=#555555
 hi TelescopePromptCounter ctermfg=246 guifg=#eeeeee
-
+hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE
+hi TelescopePromptTitle ctermbg=108 guibg=#98BC99
+hi TelescopeNormal guibg=#444444
+hi TelescopeBorder guifg=#444444 guibg=#444444
 
 "hi TagbarScope cterm=bold ctermfg=84 gui=bold guifg=#5af78e
 "hi TagbarKind cterm=bold ctermfg=84 gui=bold guifg=#7fffd4
