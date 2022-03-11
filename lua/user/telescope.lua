@@ -10,7 +10,7 @@ telescope.setup {
   defaults = {
 
 	prompt_prefix="  ",
-    selection_caret = "  ",
+    selection_caret = " ",
     initial_mode = "normal",
 	scroll_strategy = "limit",
 	sorting_strategy = "ascending",

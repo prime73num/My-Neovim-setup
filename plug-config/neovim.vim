@@ -8,8 +8,6 @@
 "                                    
 
 
-
-
 let mapleader=" "
 set nocompatible
 filetype on
@@ -24,6 +22,7 @@ set cmdheight=1
 set ignorecase
 set sw=4
 set ts=4
+set expandtab
 set smartindent
 set guicursor=n-v:block-Mycursor,i:ver90-Cursor
 set path=.,/usr/include,/usr/include/c++/5
@@ -121,7 +120,10 @@ nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap w e
+
 nnoremap [[ %
+vnoremap [[ %
+nnoremap c ci
 
 inoremap ( ()<esc>i
 inoremap { {}<esc>i

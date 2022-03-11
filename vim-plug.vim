@@ -50,7 +50,7 @@ Plug 'preservim/tagbar'
 Plug 'lvht/tagbar-markdown'
 Plug 'lazytanuki/nvim-mapper'
 
-Plug 'nora75/markdowntable'
+Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
