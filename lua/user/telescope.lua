@@ -3,8 +3,11 @@ if not status_ok then
   return
 end
 
+
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
+local fb_actions = require "telescope".extensions.file_browser.actions
+local action_state = require "telescope.actions.state"
 
 telescope.setup {
   defaults = {
@@ -59,6 +62,7 @@ telescope.setup {
 
       n = {
         ["<esc>"] = actions.close,
+        ["q"] = actions.close,
         ["<CR>"] = actions.select_default,
         ["o"] = actions.select_default,
        ["<C-x>"] = actions.select_horizontal,
@@ -85,28 +89,6 @@ telescope.setup {
 	  previewer = false,
 	  mappings = {
         n = {
-          ["H"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-			require("telescope.builtin").find_files{
-				cwd = dir,
-				prompt_title = "~Find_Hidden_File: "..dir,
-				hidden = true,
-			}
-          end,
-          ["F"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-            vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
-          end,
-          ["cd"] = function(prompt_bufnr)
-            require("telescope.actions").select_default(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            vim.cmd(string.format("cd %s", dir))
-          end,
           ["D"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p")
@@ -128,24 +110,12 @@ telescope.setup {
 	  previewer = false,
 	  mappings = {
         n = {
-          ["H"] = function(prompt_bufnr)
+          ["cd"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
 			local filename = selection.filename
             local dir = vim.fn.fnamemodify(filename, ":p:h")
             require("telescope.actions").close(prompt_bufnr)
-			require("telescope.builtin").find_files{
-				cwd = dir,
-				prompt_title = "~Find_Hidden_File: "..dir,
-				hidden = true,
-				no_ignore = true,
-			}
-		  end,
-          ["cd"] = function(prompt_bufnr)
-            require("telescope.actions").select_default(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-			local filename = selection.filename
-            local dir = vim.fn.fnamemodify(filename, ":p:h")
-            vim.cmd(string.format("cd %s", dir))
+            require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
           end,
           ["F"] = function(prompt_bufnr)
             require("telescope.actions").close(prompt_bufnr)
@@ -166,17 +136,6 @@ telescope.setup {
 	  previewer = false,
 	  mappings = {
         n = {
-          ["H"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-			require("telescope.builtin").find_files{
-				cwd = dir,
-				prompt_title = "~Find_Hidden_File: "..dir,
-				hidden = true,
-				no_ignore = true,
-			}
-          end,
           ["F"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
@@ -186,16 +145,56 @@ telescope.setup {
           ["cd"] = function(prompt_bufnr)
             local selection = require("telescope.actions.state").get_selected_entry()
             local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").select_default(prompt_bufnr)
-            vim.cmd(string.format("cd %s", dir))
+            require("telescope.actions").close(prompt_bufnr)
+            require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
           end,
         }
       },
     },
-  },
-  extensions = {
-  },
+   },
+
+   extensions = {
+     file_browser = {
+       theme = "dropdown",
+       previewer = false,
+       mappings = {
+         ["i"] = {
+           -- your custom insert mode mappings
+         },
+         ["n"] = {
+             ["."] = function(prompt_bufnr)
+               local current_picker = action_state.get_current_picker(prompt_bufnr)
+               local finder = current_picker.finder
+               local dir = finder.path
+               require("telescope.actions").close(prompt_bufnr)
+               vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s",dir))
+             end,
+             ["F"] = function(prompt_bufnr)
+               local selection = require("telescope.actions.state").get_selected_entry()
+               local dir = vim.fn.fnamemodify(selection.value, ":p:h")
+               print("Open shell at: "..dir)
+               require("telescope.actions").close(prompt_bufnr)
+               vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
+             end,
+             ["D"] = function(prompt_bufnr)
+               local selection = require("telescope.actions.state").get_selected_entry()
+               local dir = vim.fn.fnamemodify(selection.value, ":p")
+               require("telescope.actions").close(prompt_bufnr)
+               vim.cmd(string.format("!cp %s .", dir))
+             end,
+             ["U"] = function(prompt_bufnr)
+               local selection = require("telescope.actions.state").get_selected_entry()
+               local dir = vim.fn.fnamemodify(selection.value, ":p")
+               require("telescope.actions").close(prompt_bufnr)
+               vim.cmd(string.format("!cp %s ~/TMD", dir))
+             end
+         },
+       },
+     },
+   }
 } 
+require("telescope").load_extension "file_browser"
+
 
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -213,37 +212,30 @@ local M = {}
 local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
 local conf = require("telescope.config").values
-local action_state = require "telescope.actions.state"
 local make_entry = require "telescope.make_entry"
+local fb_picker = require "telescope._extensions.file_browser.picker"
 
 local fd_Myvim = function()
-	require("telescope.builtin").find_files{
+    require 'telescope'.extensions.file_browser.file_browser({
 		cwd = "~/.config/nvim",
 		prompt_title = "~MyNeovim~",
-	}
+    })
 end
 local fd_Repo = function()
-	require("telescope.builtin").find_files{
+    require 'telescope'.extensions.file_browser.file_browser{
 		cwd = "~/TMD",
 		prompt_title = "~MyRepo~",
 	}
 end
 
 local fd_MyBlog = function()
-	require("telescope.builtin").find_files{
-		cwd = "~/WorkSpace/Blog",
+    require 'telescope'.extensions.file_browser.file_browser{
+		cwd = "~/WorkSpace/Blog/source/_posts",
 		prompt_title = "~MyBlogm~",
 	}
 end
 local fd_cwd = function()
-	require("telescope.builtin").find_files{}
-end
-local fd_MyBlog = function()
-	require("telescope.builtin").find_files{
-		cwd = "~",
-        hidden = true,
-		prompt_title = "~HOME~",
-	}
+    require 'telescope'.extensions.file_browser.file_browser{}
 end
 local buf = function()
 	require("telescope.builtin").buffers{}
@@ -387,10 +379,10 @@ M.MyPicker = function(opts)
     prompt_title = " MyPicker ",
     finder = finders.new_table {
       results = {
+        { "華CWD", fd_cwd },
         { "勇MyNeovim", fd_Myvim },
         { " MyBlog", fd_MyBlog },
         { " MyRepo", fd_Repo },
-        { "華CWD", fd_cwd },
         { " Live_Grep", live_grep },
         { " BuiltIn", built },
         { "B Buffers", buf },

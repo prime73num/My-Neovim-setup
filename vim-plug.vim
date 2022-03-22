@@ -25,6 +25,7 @@ Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 Plug 'onsails/lspkind-nvim'
 Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
