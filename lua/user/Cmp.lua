@@ -54,13 +54,13 @@ cmp.setup({
       end
     end,
 	["<c-k>"] = cmp.mapping(function()
-		if ls.jumpable(1) then
-			ls.jump(1)
+		if ls.jumpable(-1) then
+			ls.jump(-1)
 		end
 	end,{'i','s'}),
 	["<c-j>"] = cmp.mapping(function()
-		if ls.jumpable(-1) then
-			ls.jump(-1)
+		if ls.jumpable(1) then
+			ls.jump(1)
 		end
 	end,{'i','s'}),
 	["<c-l>"] = cmp.mapping(function()

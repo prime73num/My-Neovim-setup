@@ -93,7 +93,6 @@ telescope.setup {
 				cwd = dir,
 				prompt_title = "~Find_Hidden_File: "..dir,
 				hidden = true,
-				no_ignore = true,
 			}
           end,
           ["F"] = function(prompt_bufnr)
@@ -238,6 +237,13 @@ local fd_MyBlog = function()
 end
 local fd_cwd = function()
 	require("telescope.builtin").find_files{}
+end
+local fd_MyBlog = function()
+	require("telescope.builtin").find_files{
+		cwd = "~",
+        hidden = true,
+		prompt_title = "~HOME~",
+	}
 end
 local buf = function()
 	require("telescope.builtin").buffers{}

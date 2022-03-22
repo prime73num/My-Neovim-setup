@@ -1,19 +1,5 @@
 
 
-"find bold strike italic inliceCode CodeBlock 
-inoremap ;f <Esc>/<++><CR>:nohlsearch<CR>c4l
-inoremap ;b ****<++><Esc>F*hi
-inoremap ;s ~~~~<++><Esc>F~hi
-inoremap ;i **<++><Esc>F*i
-inoremap ;d ``<++><Esc>F`i
-inoremap ;c ``````<++><Esc>6hi
-" picture link Head 1234  Line
-inoremap ;p ![][<++>]<Esc>6hi
-inoremap ;a [][<++>]<Esc>6hi
-inoremap ;1 #<Space>
-inoremap ;2 ##<Space>
-inoremap ;3 ###<Space>
-inoremap ;l -----------------------------------------------------------<Enter>
 nnoremap <silent>mt :call Toggle()<cr>
 
 function Toggle()
