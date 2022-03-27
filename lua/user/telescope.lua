@@ -8,6 +8,7 @@ local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
 local fb_actions = require "telescope".extensions.file_browser.actions
 local action_state = require "telescope.actions.state"
+local fb_utils = require "telescope._extensions.file_browser.utils"
 
 telescope.setup {
   defaults = {
@@ -162,12 +163,23 @@ telescope.setup {
            -- your custom insert mode mappings
          },
          ["n"] = {
-             ["."] = function(prompt_bufnr)
-               local current_picker = action_state.get_current_picker(prompt_bufnr)
-               local finder = current_picker.finder
-               local dir = finder.path
+             ["S"] = function(prompt_bufnr)
+              local current_picker = action_state.get_current_picker(prompt_bufnr)
+              local finder = current_picker.finder
+              local dir = finder.path
                require("telescope.actions").close(prompt_bufnr)
-               vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s",dir))
+              require('telescope.builtin').live_grep({
+                cwd = dir,
+              })
+             end,
+             ["."] = function(prompt_bufnr)
+              local current_picker = action_state.get_current_picker(prompt_bufnr)
+              local finder = current_picker.finder
+              finder.cwd = finder.path
+              vim.cmd("cd " .. finder.path)
+
+              fb_utils.redraw_border_title(current_picker)
+              current_picker:refresh(finder, { reset_prompt = true, multi = current_picker._multi })
              end,
              ["F"] = function(prompt_bufnr)
                local selection = require("telescope.actions.state").get_selected_entry()
@@ -176,18 +188,6 @@ telescope.setup {
                require("telescope.actions").close(prompt_bufnr)
                vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
              end,
-             ["D"] = function(prompt_bufnr)
-               local selection = require("telescope.actions.state").get_selected_entry()
-               local dir = vim.fn.fnamemodify(selection.value, ":p")
-               require("telescope.actions").close(prompt_bufnr)
-               vim.cmd(string.format("!cp %s .", dir))
-             end,
-             ["U"] = function(prompt_bufnr)
-               local selection = require("telescope.actions.state").get_selected_entry()
-               local dir = vim.fn.fnamemodify(selection.value, ":p")
-               require("telescope.actions").close(prompt_bufnr)
-               vim.cmd(string.format("!cp %s ~/TMD", dir))
-             end
          },
        },
      },

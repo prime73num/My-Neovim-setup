@@ -53,5 +53,6 @@ Plug 'lazytanuki/nvim-mapper'
 
 Plug 'Yggdroot/indentLine'
 
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 

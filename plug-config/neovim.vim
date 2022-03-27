@@ -119,17 +119,11 @@ nnoremap K 2<c-u>
 nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap w e
+nnoremap I eli
+
 
 nnoremap [[ %
 vnoremap [[ %
 nnoremap c ci
 
-inoremap ( ()<esc>i
-inoremap { {}<esc>i
-inoremap [ []<esc>i
-inoremap ' ''<esc>i
-inoremap " ""<esc>i
-autocmd FileType tes inoremap $ $$<esc>i
-inoremap ww <esc>:call search('[)}\]">$]','e')<cr>a
-
+inoremap ww <esc>/['"})\]]<cr>:nohlsearch<cr>a
