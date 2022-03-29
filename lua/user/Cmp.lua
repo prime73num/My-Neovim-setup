@@ -121,7 +121,7 @@ cmp.setup.cmdline(':', {
 })
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
-    { name = "latex_symbols" },
+    { name = "luasnip" },
     {
       name = "dictionary",
       keyword_length = 4,
@@ -133,12 +133,12 @@ cmp.setup.filetype('tex', {
 })
 cmp.setup.filetype('markdown', {
   sources = cmp.config.sources({
+    { name = "luasnip" },
     {
       name = "dictionary",
       keyword_length = 4,
 	  max_item_count = 20,
     },
-    { name = "luasnip" },
     { name = 'buffer' },
     { name = 'path' },
     { name = 'calc' },

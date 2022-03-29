@@ -13,7 +13,7 @@ endif
 hi Mycursor guifg=#00FFFF guibg=#00FFFF guisp=#00FFFF
 hi MatchParen guibg=#565656 guifg=#ffffff
 
-hi Pmenu ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
+hi Pmenu ctermfg=181 guifg=#dddddd guibg=#616161
 hi PmenuSel ctermbg=23 guibg=#007173
 hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 

@@ -1,0 +1,6 @@
+require 'user.Devicon'
+require 'user.renamer'
+require 'user.telescope'
+require 'user.Cmp'
+require 'user.lspconfig'
+require 'user.snip.init'

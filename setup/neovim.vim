@@ -107,7 +107,7 @@ nnoremap <leader>q <C-w>c
 nnoremap <leader>h :-tabnext<cr>
 nnoremap <leader>l :+tabnext<cr>
 nnoremap <leader>t :NERDTreeCWD<cr>
-nnoremap <leader><leader>s :w<cr>:so %<cr>
+nnoremap <leader><leader>s :w<cr>:source $HOME/.config/nvim/plug-config/init.vim<cr>:lua require 'user.init'<cr>
 nnoremap a $a
 cnoremap <c-n> <down> 
 cnoremap <c-p> <up>

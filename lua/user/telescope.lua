@@ -163,6 +163,25 @@ telescope.setup {
            -- your custom insert mode mappings
          },
          ["n"] = {
+             ["I"] = function(prompt_bufnr)
+                  local current_picker = action_state.get_current_picker(prompt_bufnr)
+                  local finder = current_picker.finder
+
+                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                  if vim.tbl_isempty(selections) then
+                    print "[telescope] Nothing currently selected to be moved"
+                    return
+                  end
+                  require("telescope.actions").close(prompt_bufnr)
+
+                  for _, selection in ipairs(selections) do
+                    local dir = vim.fn.fnamemodify(selection.filename, ":p:t")
+                    local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..dir
+                    print("Import link -- "..back)
+                    vim.call('cursor',8,1)
+                    vim.call('append',8,back)
+                  end
+                end,
              ["S"] = function(prompt_bufnr)
               local current_picker = action_state.get_current_picker(prompt_bufnr)
               local finder = current_picker.finder
@@ -253,125 +272,6 @@ local HexoCG = function()
 	vim.cmd("FloatermNew! --title='~Clean&Get~' cd ~/WorkSpace/Blog && hexo clean && hexo g")
 end
 
-local Import_Source = function()
-  opts = require('telescope.themes').get_dropdown{
-    previewer = false
-  }
-  opts.cwd = "~/WorkSpace/Blog/source"
-  opts.search_dirs = {}
-  opts.search_dirs[0] = "~/WorkSpace/Blog/source/images"
-  opts.search_dirs[1] = "~/WorkSpace/Blog/source/pdf"
-  local find_command = (function()
-    if opts.find_command then
-      return opts.find_command
-    elseif 1 == vim.fn.executable "fd" then
-      return { "fd", "--type", "f" }
-    elseif 1 == vim.fn.executable "fdfind" then
-      return { "fdfind", "--type", "f" }
-    elseif 1 == vim.fn.executable "rg" then
-      return { "rg", "--files" }
-    elseif 1 == vim.fn.executable "find" and vim.fn.has "win32" == 0 then
-      return { "find", ".", "-type", "f" }
-    elseif 1 == vim.fn.executable "where" then
-      return { "where", "/r", ".", "*" }
-    end
-  end)()
-
-  if not find_command then
-    print(
-      "You need to install either find, fd, or rg. "
-        .. "You can also submit a PR to add support for another file finder :)"
-    )
-    return
-  end
-
-  local command = find_command[1]
-  local hidden = opts.hidden
-  local no_ignore = opts.no_ignore
-  local follow = opts.follow
-  local search_dirs = opts.search_dirs
-
-  if search_dirs then
-    for k, v in pairs(search_dirs) do
-      search_dirs[k] = vim.fn.expand(v)
-    end
-  end
-
-  if command == "fd" or command == "fdfind" or command == "rg" then
-    if hidden then
-      table.insert(find_command, "--hidden")
-    end
-    if no_ignore then
-      table.insert(find_command, "--no-ignore")
-    end
-    if follow then
-      table.insert(find_command, "-L")
-    end
-    if search_dirs then
-      if command ~= "rg" then
-        table.insert(find_command, ".")
-      end
-      for _, v in pairs(search_dirs) do
-        table.insert(find_command, v)
-      end
-    end
-  elseif command == "find" then
-    if not hidden then
-      table.insert(find_command, { "-not", "-path", "*/.*" })
-      find_command = flatten(find_command)
-    end
-    if no_ignore ~= nil then
-      log.warn "The `no_ignore` key is not available for the `find` command in `find_files`."
-    end
-    if follow then
-      table.insert(find_command, "-L")
-    end
-    if search_dirs then
-      table.remove(find_command, 2)
-      for _, v in pairs(search_dirs) do
-        table.insert(find_command, 2, v)
-      end
-    end
-  elseif command == "where" then
-    if hidden ~= nil then
-      log.warn "The `hidden` key is not available for the Windows `where` command in `find_files`."
-    end
-    if no_ignore ~= nil then
-      log.warn "The `no_ignore` key is not available for the Windows `where` command in `find_files`."
-    end
-    if follow ~= nil then
-      log.warn "The `follow` key is not available for the Windows `where` command in `find_files`."
-    end
-    if search_dirs ~= nil then
-      log.warn "The `search_dirs` key is not available for the Windows `where` command in `find_files`."
-    end
-  end
-
-
-  opts.entry_maker = opts.entry_maker or make_entry.gen_from_file(opts)
-  pickers.new(opts, {
-    prompt_title = "~Import_Source~",
-    finder = finders.new_oneshot_job(find_command, opts),
-    previewer = conf.file_previewer(opts),
-    sorter = conf.file_sorter(opts),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-		local selection = require("telescope.actions.state").get_selected_entry()
-		local dir = vim.fn.fnamemodify(selection.path, ":p")
-		local temp = string.sub(dir,33)
-		local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..temp
-		print("Import link -- "..back)
-		vim.call('cursor',8,1)
-		vim.call('append',8,back)
-      end)
-      return true
-    end,
-  }):find()
-end
-
-
-
 -- our picker function: colors
 M.MyPicker = function(opts)
   opts = opts or {}
@@ -385,10 +285,7 @@ M.MyPicker = function(opts)
         { " MyRepo", fd_Repo },
         { " Live_Grep", live_grep },
         { " BuiltIn", built },
-        { "B Buffers", buf },
-        { " OldFiles", oldf },
         { " Hexo_C&G", HexoCG },
-        { " Import_Source_link", Import_Source },
       },
       entry_maker = function(entry)
         return {
