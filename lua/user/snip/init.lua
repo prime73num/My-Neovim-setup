@@ -1,4 +1,5 @@
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/user/snip/ft"})
+require("luasnip.loaders.from_vscode").load({paths = "~/.config/nvim/lua/user/snip/vsSnip"})
 
 local ls = require "luasnip"
 local types = require "luasnip.util.types"

@@ -50,5 +50,9 @@ Plug 'lvht/tagbar-markdown'
 Plug 'Yggdroot/indentLine'
 
 Plug 'jiangmiao/auto-pairs'
+
+Plug 'numToStr/Comment.nvim'
+Plug 'tpope/vim-surround'
+
 call plug#end()
 

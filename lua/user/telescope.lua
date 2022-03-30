@@ -175,7 +175,9 @@ telescope.setup {
                   require("telescope.actions").close(prompt_bufnr)
 
                   for _, selection in ipairs(selections) do
-                    local dir = vim.fn.fnamemodify(selection.filename, ":p:t")
+                    local filename = selection.filename
+                    print(filename)
+                    local dir = string.sub(filename,33)
                     local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..dir
                     print("Import link -- "..back)
                     vim.call('cursor',8,1)
@@ -199,10 +201,12 @@ telescope.setup {
 
               fb_utils.redraw_border_title(current_picker)
               current_picker:refresh(finder, { reset_prompt = true, multi = current_picker._multi })
+              print("Change CWD to "..finder.path)
              end,
              ["F"] = function(prompt_bufnr)
-               local selection = require("telescope.actions.state").get_selected_entry()
-               local dir = vim.fn.fnamemodify(selection.value, ":p:h")
+              local current_picker = action_state.get_current_picker(prompt_bufnr)
+              local finder = current_picker.finder
+              local dir = finder.path
                print("Open shell at: "..dir)
                require("telescope.actions").close(prompt_bufnr)
                vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))

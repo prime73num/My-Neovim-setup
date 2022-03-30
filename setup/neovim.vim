@@ -107,7 +107,6 @@ nnoremap <leader>q <C-w>c
 nnoremap <leader>h :-tabnext<cr>
 nnoremap <leader>l :+tabnext<cr>
 nnoremap <leader>t :NERDTreeCWD<cr>
-nnoremap <leader><leader>s :w<cr>:source $HOME/.config/nvim/plug-config/init.vim<cr>:lua require 'user.init'<cr>
 nnoremap a $a
 cnoremap <c-n> <down> 
 cnoremap <c-p> <up>
@@ -120,10 +119,9 @@ nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap I eli
-
+nnoremap <silent><leader><leader>s :w \| so % \| source $HOME/.config/nvim/setup/vim-plug.vim \| source $HOME/.config/nvim/setup/neovim.vim \| source $HOME/.config/nvim/plug-config/init.vim \| lua require "user.init"<cr>
 
 nnoremap [[ %
 vnoremap [[ %
-nnoremap c ci
 
 inoremap ww <esc>/['"})\]]<cr>:nohlsearch<cr>a
