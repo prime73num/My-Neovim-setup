@@ -11,9 +11,6 @@ Plug 'itchyny/lightline.vim'			"statusline
 Plug 'kshenoy/vim-signature' 
 Plug 'lervag/vimtex'
 
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 
@@ -53,6 +50,9 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-surround'
+
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
 
 call plug#end()
 

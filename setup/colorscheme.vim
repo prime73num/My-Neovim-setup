@@ -4,13 +4,22 @@ let g:seoul256_background = 235
 colorscheme seoul256 " Or whatever colorscheme you make
 let g:seoul256_srgb = 1
 
+
+
 " checks if your terminal has 24-bit color support
 if (has("termguicolors"))
     set termguicolors
     hi LineNr ctermbg=NONE guibg=NONE
 endif
 
-hi Mycursor guifg=#00FFFF guibg=#00FFFF guisp=#00FFFF
+hi NeoTreeCursorLine ctermbg=23 guibg=#007173
+hi NeoTreeFloatTitle ctermbg=108 guibg=#98BC99 guifg=#333333
+hi NeoTreeFloatBorder ctermfg=252 ctermbg=235 guifg=#666666 guibg=#444444
+hi NeoTreeNormal  ctermfg=252 ctermbg=235 guifg=#D9D9D9 guibg=#444444
+hi NeoTreeDirectoryIcon ctermfg=108 gui=bold guifg=#98BC99
+
+hi myPopup ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
+hi myPopupborder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
 hi MatchParen guibg=#565656 guifg=#ffffff
 
 hi Pmenu ctermfg=181 guifg=#dddddd guibg=#616161
