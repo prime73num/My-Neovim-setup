@@ -12,9 +12,7 @@ require("cmp_dictionary").setup({
     debug = false,
 })
 
-
-
-
+require("user.cmd")
 local ls = require "luasnip"
 -- Setup nvim-cmp.
 local lspkind = require "lspkind"
@@ -70,6 +68,7 @@ cmp.setup({
 	end,{'i','s'}),
   },
   sources = {
+    { name = "cmd" },
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
@@ -90,14 +89,17 @@ cmp.setup({
 		calc = "[Calc]",
 		dictionary = "[Dic]",
 		latex_symbols = "[LaTex]",
+		cmd = "[Cmd]",
       },
     },
   },
 
   experimental = {
-    native_menu = false,
     ghost_text = false,
   },
+   view = {           
+      entries = "custom" -- can be "custom", "wildmenu" or "native"
+    },
 })
 
 cmp.setup.cmdline('/', {

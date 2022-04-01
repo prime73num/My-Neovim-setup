@@ -14,7 +14,7 @@ local popup = Popup({
     },
     style = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     text = {
-      top = " ~Output~ ",
+      top = " ~OUTPUT~ ",
       top_align = "left",
       bottom = "I am bottom title",
       bottom_align = "left",

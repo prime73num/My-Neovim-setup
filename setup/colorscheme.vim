@@ -12,6 +12,11 @@ if (has("termguicolors"))
     hi LineNr ctermbg=NONE guibg=NONE
 endif
 
+hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
+hi Floaterm ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
+
+hi Normal guibg=NONE ctermbg=NONE
+
 hi NeoTreeCursorLine ctermbg=23 guibg=#007173
 hi NeoTreeFloatTitle ctermbg=108 guibg=#98BC99 guifg=#333333
 hi NeoTreeFloatBorder ctermfg=252 ctermbg=235 guifg=#666666 guibg=#444444
@@ -20,15 +25,13 @@ hi NeoTreeDirectoryIcon ctermfg=108 gui=bold guifg=#98BC99
 
 hi myPopup ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
 hi myPopupborder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
+
 hi MatchParen guibg=#565656 guifg=#ffffff
 
-hi Pmenu ctermfg=181 guifg=#dddddd guibg=#616161
+hi Pmenu ctermfg=181 guifg=#dddddd guibg=NONE ctermbg=NONE
 hi PmenuSel ctermbg=23 guibg=#007173
 hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 
-hi CmpItemAbbrDeprecated ctermfg=168 guifg=#E17899
-hi CmpItemAbbrMatchFuzzy ctermfg=168 guifg=#E17899
-hi CmpItemKind ctermfg=110 guifg=#98BEDE
 
 hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
@@ -108,10 +111,20 @@ highlight TSURI guifg=#FF99CC
 highlight TSTag guifg=#569CD6
 highlight TSTagDelimiter guifg=#5C6370
 
+" gray
+hi CmpItemAbbrDeprecated ctermfg=168 guifg=#E17899
+hi CmpItemAbbrMatchFuzzy ctermfg=168 guifg=#E17899
+hi CmpItemKind ctermfg=110 guifg=#98BEDE
+" gray
+highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+highlight CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+highlight CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+highlight CmpItemKindInterface guibg=NONE guifg=#9CDCFE
+highlight CmpItemKindText guibg=NONE guifg=#9CDCFE
+highlight CmpItemKindFunction guibg=NONE guifg=#C586C0
+highlight CmpItemKindMethod guibg=NONE guifg=#C586C0
+highlight CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+highlight CmpItemKindProperty guibg=NONE guifg=#D4D4D4
+highlight CmpItemKindUnit guibg=NONE guifg=#D4D4D4
 
-"hi TagbarScope cterm=bold ctermfg=84 gui=bold guifg=#5af78e
-"hi TagbarKind cterm=bold ctermfg=84 gui=bold guifg=#7fffd4
-
-"Conditional    xxx ctermfg=110 guifg=#98BEDE
-"Repeat         xxx ctermfg=68 guifg=#719CDF
-"Label          xxx links to Statement

@@ -67,13 +67,16 @@ cnoremap <c-p> <up>
 nnoremap <leader>r :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><cl>
 nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
-                nnoremap J 4<c-d>
+nnoremap J 4<c-d>
 nnoremap K 4<c-u>
 nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
+
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
 
 nnoremap [[ %
 vnoremap [[ %

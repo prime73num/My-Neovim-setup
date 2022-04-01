@@ -135,6 +135,7 @@ telescope.setup {
     oldfiles = {
       theme = "dropdown",
 	  previewer = false,
+      initial_mode = "insert",
 	  mappings = {
         n = {
           ["F"] = function(prompt_bufnr)
