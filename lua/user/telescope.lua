@@ -132,6 +132,21 @@ telescope.setup {
       theme = "dropdown",
 	  previewer = false,
     },
+    live_grep = {
+      initial_mode = "insert",
+      mappings = {
+          n = {
+              ["p"] = function(prompt_bufnr)
+                local word = vim.fn.expand('<cword>')
+                vim.cmd([[
+                let str = @0
+                let str = "  "..str
+                call setline( line("."), str )
+                ]])
+              end,
+          }
+      },
+    },
     oldfiles = {
       theme = "dropdown",
 	  previewer = false,

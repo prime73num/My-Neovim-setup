@@ -68,12 +68,12 @@ cmp.setup({
 	end,{'i','s'}),
   },
   sources = {
-    { name = "cmd" },
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 4 },
+    { name = "cmd" },
   },
 
   formatting = {
