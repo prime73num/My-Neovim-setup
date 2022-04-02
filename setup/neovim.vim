@@ -67,8 +67,8 @@ cnoremap <c-p> <up>
 nnoremap <leader>r :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><cl>
 nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
-nnoremap J 4<c-d>
-nnoremap K 4<c-u>
+nnoremap J 3j
+nnoremap K 3k
 nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz

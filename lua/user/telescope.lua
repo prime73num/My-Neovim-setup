@@ -132,21 +132,6 @@ telescope.setup {
       theme = "dropdown",
 	  previewer = false,
     },
-    live_grep = {
-      initial_mode = "insert",
-      mappings = {
-          n = {
-              ["p"] = function(prompt_bufnr)
-                local word = vim.fn.expand('<cword>')
-                vim.cmd([[
-                let str = @0
-                let str = "  "..str
-                call setline( line("."), str )
-                ]])
-              end,
-          }
-      },
-    },
     oldfiles = {
       theme = "dropdown",
 	  previewer = false,
@@ -205,7 +190,7 @@ telescope.setup {
               local finder = current_picker.finder
               local dir = finder.path
                require("telescope.actions").close(prompt_bufnr)
-              require('telescope.builtin').live_grep({
+              require('telescope.builtin').grep_string({
                 cwd = dir,
               })
              end,
@@ -286,7 +271,10 @@ local oldf = function()
 	require("telescope.builtin").oldfiles{}
 end
 local live_grep = function()
-    require('telescope.builtin').live_grep()
+    require('telescope.builtin').grep_string({
+        search = "",
+        initial_mode = "insert",
+    })
 end
 local HexoCG = function()
 	vim.cmd("FloatermNew! --title='~Clean&Get~' cd ~/WorkSpace/Blog && hexo clean && hexo g")
@@ -303,7 +291,7 @@ M.MyPicker = function(opts)
         { "勇MyNeovim", fd_Myvim },
         { " MyBlog", fd_MyBlog },
         { " MyRepo", fd_Repo },
-        { " Live_Grep", live_grep },
+        { " GrepString", live_grep },
         { " BuiltIn", built },
         { " Hexo_C&G", HexoCG },
       },
