@@ -32,6 +32,7 @@ local rustItem = {
             value = "# Run\nCargo run!",
         },
         _funref = function()
+            vim.cmd("w")
             vim.cmd("FloatermNew! cargo run")
         end,
     },
@@ -58,6 +59,17 @@ local allItem = {
             require('telescope.builtin').grep_string({
                 search = word,
             })
+        end,
+    },
+    {
+        label = "HunkBack",
+        documentation = {
+            kind = "markdown",
+            value = "# Git hubk\nGrep Reset hunk!",
+        },
+        _funref = function()
+            local word = vim.fn.expand('<cword>')
+            vim.cmd("Gitsigns reset_hunk")
         end,
     },
 }

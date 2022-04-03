@@ -12,6 +12,9 @@ if (has("termguicolors"))
     hi LineNr ctermbg=NONE guibg=NONE
 endif
 
+
+hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
+
 hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
 hi Floaterm ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
 
@@ -42,7 +45,7 @@ hi TelescopePromptCounter ctermfg=246 guifg=#eeeeee
 hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
 hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333
 hi TelescopeNormal guibg=#444444
-hi TelescopeBorder guifg=#444444 guibg=#444444
+hi TelescopeBorder guifg=#666666 guibg=#444444
 
 " Misc
 highlight TSError guifg=#F44747

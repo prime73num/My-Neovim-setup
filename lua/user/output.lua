@@ -42,10 +42,10 @@ local popup = Popup({
 
 
 M.output = function()
-    popup:mount()
     popup:on(event.BufLeave, function()
       popup:unmount()
     end)
+    popup:mount()
     vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, { "Hello World" })
 end
 

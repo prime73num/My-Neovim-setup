@@ -26,8 +26,6 @@ require('renamer').setup {
     with_popup = true,
     -- The keymaps available while in the `renamer` buffer. The example below
     -- overrides the default values, but you can add others as well.
-    mappings = {
-    },
     -- Custom handler to be run after successfully renaming the word. Receives
     -- the LSP 'textDocument/rename' raw response as its parameter.
     handler = nil,

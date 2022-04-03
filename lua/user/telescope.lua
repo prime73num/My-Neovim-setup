@@ -1,225 +1,204 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
-
+local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
 local fb_actions = require "telescope".extensions.file_browser.actions
 local action_state = require "telescope.actions.state"
 local fb_utils = require "telescope._extensions.file_browser.utils"
 
+local Floaterm = function(prompt_bufnr)
+    local selection = require("telescope.actions.state").get_selected_entry()
+    local dir = vim.fn.fnamemodify(selection.filename, ":p:h")
+    require("telescope.actions").close(prompt_bufnr)
+    vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
+end
+
+local ChangeDir = function(prompt_bufnr)
+    local selection = require("telescope.actions.state").get_selected_entry()
+    local filename = selection.filename
+    local dir = vim.fn.fnamemodify(filename, ":p:h")
+    require("telescope.actions").close(prompt_bufnr)
+    require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
+end
+
 telescope.setup {
-  defaults = {
+    defaults = {
+        prompt_prefix="  ",
+        selection_caret = " ",
+        initial_mode = "normal",
+        scroll_strategy = "limit",
+        layout_strategy = "vertical",
+        layout_config = {
+            vertical = {
+                mirror = false,
+                preview_height = 30,
+            },
+            width = 0.6,
+            height = 0.9,
+            preview_cutoff = 10,
+        },
 
-	prompt_prefix="  ",
-    selection_caret = " ",
-    initial_mode = "normal",
-	scroll_strategy = "limit",
-	sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
-    layout_config = {
-     horizontal = {
-        prompt_position = "top",
-        preview_width = 0.6,
-        results_width = 0.5,
-        mirror = true,
-     },
-     vertical = {
-        mirror = false,
-     },
-     width = 0.87,
-     height = 0.80,
-     preview_cutoff = 120,
+        mappings = {
+            i = {
+                ["<C-n>"] = actions.cycle_history_next,
+                ["<C-p>"] = actions.cycle_history_prev,
+                ["<esc>"] = actions.close,
+                ["<Down>"] = actions.move_selection_next,
+                ["<Up>"] = actions.move_selection_previous,
+                ["<CR>"] = actions.select_default,
+                ["<PageUp>"] = actions.results_scrolling_up,
+                ["<PageDown>"] = actions.results_scrolling_down,
+                ["<Tab>"] = actions.move_selection_next,
+                ["<S-Tab>"] = actions.move_selection_previous,
+                ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<C-l>"] = actions.complete_tag,
+                ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
+            },
+            n = {
+                ["<esc>"] = actions.close,
+                ["q"] = actions.close,
+                ["<CR>"] = actions.select_default,
+                ["o"] = actions.select_default,
+                ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
+                ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
+                ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+                ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+                ["<Down>"] = actions.move_selection_next,
+                ["<Up>"] = actions.move_selection_previous,
+                ["P"] = action_layout.toggle_preview,
+            },
+        },
+    },
+    pickers = {
+        buffers = {
+            sort_mru = true,
+            theme = "dropdown",
+            previewer = false,
+            layout_config = {
+                width = 0.4,
+                height = 0.3,
+            },
+            mappings = {
+                n = {
+                    ["F"] = Floaterm,
+                    ["cd"] = ChangeDir,
+                }
+            },
+        },
+        builtin = {
+            theme = "dropdown",
+            previewer = false,
+        },
+        grep_string = {
+            layout_config = {
+                vertical = {
+                    mirror = false,
+                    preview_height = 30,
+                },
+                width = 0.6,
+                height = 0.9,
+                preview_cutoff = 10,
+            },
+            layout_strategy = "vertical",
+            sorting_strategy = "descending",
+        },
+        git_status = {
+            layout_config = {
+                vertical = {
+                    mirror = false,
+                    preview_height = 30,
+                },
+                width = 0.6,
+                height = 0.9,
+                preview_cutoff = 10,
+            },
+            layout_strategy = "vertical",
+            sorting_strategy = "descending",
+        },
+        oldfiles = {
+            theme = "dropdown",
+            previewer = false,
+            initial_mode = "insert",
+            layout_config = {
+                width = 0.4,
+                height = 0.6,
+                preview_cutoff = 120,
+            },
+            mappings = {
+                n = {
+                    ["F"] = Floaterm,
+                    ["cd"] = ChangeDir,
+                }
+            },
+        },
     },
 
-    mappings = {
-      i = {
-        ["<C-n>"] = actions.cycle_history_next,
-        ["<C-p>"] = actions.cycle_history_prev,
+    extensions = {
+        file_browser = {
+            layout_config = {
+                width = 0.4,
+                height = 0.6,
+                preview_cutoff = 120,
+            },
+            theme = "dropdown",
+            previewer = false,
+            mappings = {
+                ["n"] = {
+                    ["I"] = function(prompt_bufnr)
+                        local current_picker = action_state.get_current_picker(prompt_bufnr)
+                        local finder = current_picker.finder
 
-        ["<esc>"] = actions.close,
+                        local selections = fb_utils.get_selected_files(prompt_bufnr, false)
+                        if vim.tbl_isempty(selections) then
+                            print "[telescope] Nothing currently selected to be moved"
+                            return
+                        end
+                        require("telescope.actions").close(prompt_bufnr)
 
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
+                        for _, selection in ipairs(selections) do
+                            local filename = selection.filename
+                            print(filename)
+                            local dir = string.sub(filename,33)
+                            local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..dir
+                            print("Import link -- "..back)
+                            vim.call('cursor',8,1)
+                            vim.call('append',8,back)
+                        end
+                    end,
+                    ["S"] = function(prompt_bufnr)
+                        local current_picker = action_state.get_current_picker(prompt_bufnr)
+                        local finder = current_picker.finder
+                        local dir = finder.path
+                        require("telescope.actions").close(prompt_bufnr)
+                        require('telescope.builtin').grep_string({
+                            cwd = dir,
+                        })
+                    end,
+                    ["."] = function(prompt_bufnr)
+                        local current_picker = action_state.get_current_picker(prompt_bufnr)
+                        local finder = current_picker.finder
+                        finder.cwd = finder.path
+                        vim.cmd("cd " .. finder.path)
 
-        ["<CR>"] = actions.select_default,
-        ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<PageUp>"] = actions.results_scrolling_up,
-        ["<PageDown>"] = actions.results_scrolling_down,
-
-        ["<Tab>"] = actions.move_selection_next,
-        ["<S-Tab>"] = actions.move_selection_previous,
-
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-        ["<C-l>"] = actions.complete_tag,
-        ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
-      },
-
-      n = {
-        ["<esc>"] = actions.close,
-        ["q"] = actions.close,
-        ["<CR>"] = actions.select_default,
-        ["o"] = actions.select_default,
-       ["<C-x>"] = actions.select_horizontal,
-        ["<C-v>"] = actions.select_vertical,
-        ["<C-t>"] = actions.select_tab,
-
-        ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
-        ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-
-        ["<Down>"] = actions.move_selection_next,
-        ["<Up>"] = actions.move_selection_previous,
-
-		["P"] = action_layout.toggle_preview,
-
-      },
+                        fb_utils.redraw_border_title(current_picker)
+                        current_picker:refresh(finder, { reset_prompt = true, multi = current_picker._multi })
+                        print("Change CWD to "..finder.path)
+                    end,
+                    ["F"] = function(prompt_bufnr)
+                        local current_picker = action_state.get_current_picker(prompt_bufnr)
+                        local finder = current_picker.finder
+                        local dir = finder.path
+                        print("Open shell at: "..dir)
+                        require("telescope.actions").close(prompt_bufnr)
+                        vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
+                    end,
+                },
+            },
+        },
     },
-  },
-  pickers = {
-    find_files = {
-      theme = "dropdown",
-	  no_ignore = false,
-	  previewer = false,
-	  mappings = {
-        n = {
-          ["D"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p")
-            require("telescope.actions").close(prompt_bufnr)
-            vim.cmd(string.format("!cp %s .", dir))
-          end,
-          ["U"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p")
-            require("telescope.actions").close(prompt_bufnr)
-            vim.cmd(string.format("!cp %s ~/TMD", dir))
-          end
-        }
-      },
-    },
-    buffers = {
-	  sort_mru = true,
-      theme = "dropdown",
-	  previewer = false,
-	  mappings = {
-        n = {
-          ["cd"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-			local filename = selection.filename
-            local dir = vim.fn.fnamemodify(filename, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-            require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
-          end,
-          ["F"] = function(prompt_bufnr)
-            require("telescope.actions").close(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-			local filename = selection.filename
-            local dir = vim.fn.fnamemodify(filename, ":p:h")
-            vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
-          end,
-        }
-      },
-    },
-    builtin = {
-      theme = "dropdown",
-	  previewer = false,
-    },
-    oldfiles = {
-      theme = "dropdown",
-	  previewer = false,
-      initial_mode = "insert",
-	  mappings = {
-        n = {
-          ["F"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-            vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
-          end,
-          ["cd"] = function(prompt_bufnr)
-            local selection = require("telescope.actions.state").get_selected_entry()
-            local dir = vim.fn.fnamemodify(selection.path, ":p:h")
-            require("telescope.actions").close(prompt_bufnr)
-            require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
-          end,
-        }
-      },
-    },
-   },
+}
 
-   extensions = {
-     file_browser = {
-       theme = "dropdown",
-       previewer = false,
-       mappings = {
-         ["i"] = {
-           -- your custom insert mode mappings
-         },
-         ["n"] = {
-             ["I"] = function(prompt_bufnr)
-                  local current_picker = action_state.get_current_picker(prompt_bufnr)
-                  local finder = current_picker.finder
-
-                  local selections = fb_utils.get_selected_files(prompt_bufnr, false)
-                  if vim.tbl_isempty(selections) then
-                    print "[telescope] Nothing currently selected to be moved"
-                    return
-                  end
-                  require("telescope.actions").close(prompt_bufnr)
-
-                  for _, selection in ipairs(selections) do
-                    local filename = selection.filename
-                    print(filename)
-                    local dir = string.sub(filename,33)
-                    local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..dir
-                    print("Import link -- "..back)
-                    vim.call('cursor',8,1)
-                    vim.call('append',8,back)
-                  end
-                end,
-             ["S"] = function(prompt_bufnr)
-              local current_picker = action_state.get_current_picker(prompt_bufnr)
-              local finder = current_picker.finder
-              local dir = finder.path
-               require("telescope.actions").close(prompt_bufnr)
-              require('telescope.builtin').grep_string({
-                cwd = dir,
-              })
-             end,
-             ["."] = function(prompt_bufnr)
-              local current_picker = action_state.get_current_picker(prompt_bufnr)
-              local finder = current_picker.finder
-              finder.cwd = finder.path
-              vim.cmd("cd " .. finder.path)
-
-              fb_utils.redraw_border_title(current_picker)
-              current_picker:refresh(finder, { reset_prompt = true, multi = current_picker._multi })
-              print("Change CWD to "..finder.path)
-             end,
-             ["F"] = function(prompt_bufnr)
-              local current_picker = action_state.get_current_picker(prompt_bufnr)
-              local finder = current_picker.finder
-              local dir = finder.path
-               print("Open shell at: "..dir)
-               require("telescope.actions").close(prompt_bufnr)
-               vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
-             end,
-         },
-       },
-     },
-   }
-} 
 require("telescope").load_extension "file_browser"
-
-
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
@@ -270,19 +249,23 @@ end
 local oldf = function()
 	require("telescope.builtin").oldfiles{}
 end
+local git_status = function()
+	require("telescope.builtin").git_status{}
+end
 local live_grep = function()
     require('telescope.builtin').grep_string({
         search = "",
         initial_mode = "insert",
     })
 end
-local HexoCG = function()
-	vim.cmd("FloatermNew! --title='~Clean&Get~' cd ~/WorkSpace/Blog && hexo clean && hexo g")
-end
 
 -- our picker function: colors
 M.MyPicker = function(opts)
   opts = opts or {}
+  opts.layout_config = {
+     width = 0.3,
+     height = 0.3,
+  }
   pickers.new(opts, {
     prompt_title = " MyPicker ",
     finder = finders.new_table {
@@ -292,8 +275,8 @@ M.MyPicker = function(opts)
         { " MyBlog", fd_MyBlog },
         { " MyRepo", fd_Repo },
         { " GrepString", live_grep },
+        { " Git_status", git_status },
         { " BuiltIn", built },
-        { " Hexo_C&G", HexoCG },
       },
       entry_maker = function(entry)
         return {

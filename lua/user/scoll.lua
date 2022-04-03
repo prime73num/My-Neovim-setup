@@ -12,8 +12,8 @@ require('neoscroll').setup({
 }) 
 local t = {}
 -- Syntax: t[keys] = {function, {function arguments}}
-t['<c-j>'] = {'scroll', {'vim.wo.scroll', 'true', '275',[['sine']]}}
-t['<c-k>'] = {'scroll', {'-vim.wo.scroll', 'true', '275',[['sine']]}}
+t['<c-j>'] = {'scroll', {'vim.wo.scroll', 'true', '500',[['sine']]}}
+t['<c-k>'] = {'scroll', {'-vim.wo.scroll', 'true', '500',[['sine']]}}
 t['zt']    = {'zt', {'250'}}
 t['zz']    = {'zz', {'250'}}
 t['zb']    = {'zb', {'250'}}

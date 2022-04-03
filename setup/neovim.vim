@@ -26,26 +26,32 @@ set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor
 set path=.,/usr/include,/usr/include/c++/5
-set scrolloff=6
+set scrolloff=20
 set backspace=indent,eol,start
 set splitright
 set splitbelow
 set hidden
 set scl=yes
-"lightline
+set laststatus=3
+set foldlevel=0
+set foldclose=all 
+set foldcolumn=1 
+set foldenable 
+
 let g:lightline = {				
       \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified', 'absolutepath', 'percent' ] ]
+      \             [ 'filetype', 'filename', 'modified', 'absolutepath', 'percent' ] ]
       \ },
       \ }
-"lightline
 
 autocmd BufReadPost * 
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
 	\ exe "normal! g`\"zz0" |
 	\ endif
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 " SIGNNATURE
 let g:SignatureMarkOrder="\m"
@@ -74,6 +80,7 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
+nnoremap <leader>z :call Myfold()<cr>
 
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
@@ -83,3 +90,13 @@ vnoremap [[ %
 
 inoremap ww <esc>/['"})\]]<cr>:nohlsearch<cr>a
 nnoremap <silent><leader><leader>s :w \| so % \| source $HOME/.config/nvim/setup/vim-plug.vim \| source $HOME/.config/nvim/setup/neovim.vim \| source $HOME/.config/nvim/plug-config/init.vim \| lua require "user.init"<cr>
+
+
+function Myfold()
+    if foldlevel(line("."))==0
+        exec "normal! zfi}"
+    else
+        exec "normal! zd"
+    endif
+endfunction
+
