@@ -13,6 +13,10 @@ if (has("termguicolors"))
 endif
 
 
+hi StartifyHeader ctermfg=116 guifg=#97DDDF
+hi StartifyBracket ctermfg=116 guifg=#97DDDF
+hi StartifyPath ctermfg=116 guifg=#97DDDF
+
 hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
 
 hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36

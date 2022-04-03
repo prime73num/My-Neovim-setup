@@ -62,7 +62,7 @@ local allItem = {
         end,
     },
     {
-        label = "HunkBack",
+        label = "ResetHunk",
         documentation = {
             kind = "markdown",
             value = "# Git hubk\nGrep Reset hunk!",
