@@ -11,26 +11,28 @@ Plug 'itchyny/lightline.vim'			"statusline
 Plug 'kshenoy/vim-signature' 
 Plug 'lervag/vimtex'
 
+" Icons
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 
+" Sytex themes startup
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
 Plug 'junegunn/seoul256.vim'
 Plug 'mhinz/vim-startify'
 
+" Telescope and plugin
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'fcying/telescope-ctags-outline.nvim'
 
 Plug 'onsails/lspkind-nvim'
 Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
-Plug 'L3MON4D3/LuaSnip'
-
-
+" Completion
 Plug 'neovim/nvim-lspconfig'
-
+Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
@@ -44,16 +46,13 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'preservim/tagbar'
 Plug 'lvht/tagbar-markdown'
 
+" Useful Plugin
 Plug 'Yggdroot/indentLine'
-
 Plug 'jiangmiao/auto-pairs'
-
 Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-surround'
-
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
-
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'karb94/neoscroll.nvim'
 

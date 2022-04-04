@@ -12,7 +12,6 @@ require("cmp_dictionary").setup({
     debug = false,
 })
 
-require("user.cmd")
 local ls = require "luasnip"
 -- Setup nvim-cmp.
 local lspkind = require "lspkind"
@@ -73,7 +72,6 @@ cmp.setup({
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 4 },
-    { name = "cmd" },
   },
 
   formatting = {

@@ -195,9 +195,48 @@ telescope.setup {
                 },
             },
         },
+        ctags_outline = {
+            layout_config = {
+                vertical = {
+                    mirror = false,
+                    preview_height = 28,
+                },
+                width = 0.6,
+                height = 0.9,
+                preview_cutoff = 10,
+            },
+            ctags = {'ctags'},
+            ft_opt = {
+                aspvbs = '--asp-kinds=f',
+                awk = '--awk-kinds=f',
+                c = '--c-kinds=fp',
+                cpp = '--c++-kinds=fp --language-force=C++',
+                cs = '--c#-kinds=m',
+                erlang = '--erlang-kinds=f',
+                fortran = '--fortran-kinds=f',
+                java = '--java-kinds=m',
+                javascript = '--javascript-kinds=f',
+                lisp = '--lisp-kinds=f',
+                lua = '--lua-kinds=f',
+                matla = '--matlab-kinds=f',
+                pascal = '--pascal-kinds=f',
+                php = '--php-kinds=f',
+                python = '--python-kinds=fm --language-force=Python',
+                ruby = '--ruby-kinds=fF',
+                scheme = '--scheme-kinds=f',
+                sh = '--sh-kinds=f',
+                sql = '--sql-kinds=f',
+                tcl = '--tcl-kinds=m',
+                verilog = '--verilog-kinds=f',
+                vim = '--vim-kinds=f',
+                go = '--go-kinds=f',
+                rust = '--rust-kinds=fPM',
+                ocaml = '--ocaml-kinds=mf',
+            },
+        },
     },
 }
-
+require('telescope').load_extension('ctags_outline')
 require("telescope").load_extension "file_browser"
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -258,45 +297,49 @@ local live_grep = function()
         initial_mode = "insert",
     })
 end
+local outline = function()
+    require('telescope').extensions.ctags_outline.outline()
+end
 
 -- our picker function: colors
 M.MyPicker = function(opts)
-  opts = opts or {}
-  opts.layout_config = {
-     width = 0.3,
-     height = 0.3,
-  }
-  pickers.new(opts, {
-    prompt_title = " MyPicker ",
-    finder = finders.new_table {
-      results = {
-        { "華CWD", fd_cwd },
-        { "勇MyNeovim", fd_Myvim },
-        { " MyBlog", fd_MyBlog },
-        { " MyRepo", fd_Repo },
-        { " GrepString", live_grep },
-        { " Git_status", git_status },
-        { " BuiltIn", built },
-      },
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry[1],
-		  ordinal = entry[1],
-		  MyFunc = entry[2],
-        }
-      end
-    },
-    sorter = conf.generic_sorter(opts),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-		selection.MyFunc()
-      end)
-      return true
-    end,
-  }):find()
+    opts = opts or {}
+    opts.layout_config = {
+        width = 0.3,
+        height = 0.3,
+    }
+    pickers.new(opts, {
+        prompt_title = " MyPicker ",
+        finder = finders.new_table {
+            results = {
+                { "華CWD", fd_cwd },
+                { "勇MyNeovim", fd_Myvim },
+                { " MyBlog", fd_MyBlog },
+                { " MyRepo", fd_Repo },
+                { " GrepString", live_grep },
+                { " Outline", outline },
+                { " Git_status", git_status },
+                { " BuiltIn", built },
+            },
+            entry_maker = function(entry)
+                return {
+                    value = entry,
+                    display = entry[1],
+                    ordinal = entry[1],
+                    MyFunc = entry[2],
+                }
+            end
+        },
+        sorter = conf.generic_sorter(opts),
+        attach_mappings = function(prompt_bufnr, map)
+            actions.select_default:replace(function()
+                actions.close(prompt_bufnr)
+                local selection = action_state.get_selected_entry()
+                selection.MyFunc()
+            end)
+            return true
+        end,
+    }):find()
 end
 
 return M
