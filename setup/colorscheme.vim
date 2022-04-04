@@ -14,8 +14,6 @@ endif
 
 
 hi StartifyHeader ctermfg=116 guifg=#97DDDF
-hi StartifyBracket ctermfg=116 guifg=#97DDDF
-hi StartifyPath ctermfg=116 guifg=#97DDDF
 
 hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
 
@@ -43,13 +41,16 @@ hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
 
-hi TelescopePromptNormal ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#555555
-hi TelescopePromptBorder ctermfg=247 ctermbg=239 guifg=#555555 guibg=#555555
-hi TelescopePromptCounter ctermfg=246 guifg=#eeeeee
+" hi TelescopePromptNormal ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#555555
+" hi TelescopePromptBorder ctermfg=247 ctermbg=239 guifg=#555555 guibg=#555555
+" hi TelescopePromptCounter ctermfg=246 guifg=#eeeeee
 hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
 hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333
-hi TelescopeNormal guibg=#444444
-hi TelescopeBorder guifg=#666666 guibg=#444444
+hi TelescopeNormal guibg=#282A36
+hi TelescopeBorder guifg=#777777 guibg=#282A36
+hi TelescopeMatching guibg=NONE guifg=#569CD6
+hi TelescopePromptPrefix guifg=#98BC99 
+hi TelescopeSelectionCaret guifg=#98BEDE guibg=#007173
 
 " Misc
 highlight TSError guifg=#F44747
