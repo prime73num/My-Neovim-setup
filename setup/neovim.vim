@@ -37,6 +37,7 @@ set foldlevel=0
 set foldclose=all 
 set foldcolumn=1 
 set foldenable 
+set viewoptions-=curdir
 
 let g:lightline = {				
       \ 'colorscheme': 'seoul256',

@@ -249,6 +249,7 @@ end
 map("n", "<Leader>bb", ":Telescope buffers<CR>")
 map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
 map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
+map("n", "<Leader>f", ':lua require "telescope".extensions.file_browser.file_browser{ mycount = 1, initial_mode = "insert"}<cr>')
 
 local M = {}
 local pickers = require "telescope.pickers"
@@ -277,7 +278,10 @@ local fd_MyBlog = function()
 	}
 end
 local fd_cwd = function()
-    require 'telescope'.extensions.file_browser.file_browser{}
+    require 'telescope'.extensions.file_browser.file_browser{
+        mycount = 1,
+        initial_mode = "insert",
+    }
 end
 local buf = function()
 	require("telescope.builtin").buffers{}
@@ -312,7 +316,7 @@ M.MyPicker = function(opts)
         prompt_title = " MyPicker ",
         finder = finders.new_table {
             results = {
-                { "華CWD", fd_cwd },
+                { "華Find_files", fd_cwd },
                 { "勇MyNeovim", fd_Myvim },
                 { " MyBlog", fd_MyBlog },
                 { " MyRepo", fd_Repo },

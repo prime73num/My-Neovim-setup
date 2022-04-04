@@ -16,14 +16,19 @@ endfunction
 let g:startify_custom_indices = ['i','a', 'd', 'f', 'g', 'h']
 let g:startify_enable_special = 0
 let g:startify_change_to_dir = 0
-let g:startify_bookmarks = [ '.','~/.config/nvim' ]
-" let g:startify_custom_header =
-" 		\ startify#pad(split(system('figlet -f larry3d "Hello(^-^) PG12138"'), '\n'))
+
+function s:foobar()
+    return [
+            \ { 'line': 'Neotree CWD', 'cmd': 'Neotree' },
+            \ { 'line': 'Telescope CWD', 'cmd': 'lua require "telescope".extensions.file_browser.file_browser{ mycount = 1, initial_mode = "insert",}' },
+            \ ]
+endfunction
+
 let g:startify_lists = [
-	  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-	  \ { 'type': 'files',     'header': ['   MRU']            },
-	  \ { 'type': 'commands',  'header': ['   Commands']       },
-	  \ ]
+      \ { 'type': function('s:foobar'), 'header': ['   Commands'] },
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+      \ { 'type': 'files',     'header': ['   MRU']            },
+      \ ]
 
 let g:startify_custom_header = [
       \ "                                                                                                                             ",
