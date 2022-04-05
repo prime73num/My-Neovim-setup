@@ -279,8 +279,8 @@ local fd_MyBlog = function()
 end
 local fd_cwd = function()
     require 'telescope'.extensions.file_browser.file_browser{
-        mycount = 1,
-        initial_mode = "insert",
+        mycount = 2,
+		cwd = "~/WorkSpace",
     }
 end
 local buf = function()
@@ -316,7 +316,7 @@ M.MyPicker = function(opts)
         prompt_title = " MyPicker ",
         finder = finders.new_table {
             results = {
-                { "華Find_files", fd_cwd },
+                { "華Project", fd_cwd },
                 { "勇MyNeovim", fd_Myvim },
                 { " MyBlog", fd_MyBlog },
                 { " MyRepo", fd_Repo },

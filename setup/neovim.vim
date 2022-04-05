@@ -89,7 +89,7 @@ vnoremap K :m '<-2<cr>gv=gv
 nnoremap [[ %
 vnoremap [[ %
 
-inoremap ww <esc>/['"})\]]<cr>:nohlsearch<cr>a
+inoremap ww <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 nnoremap <silent><leader><leader>s :w \| so % \| source $HOME/.config/nvim/setup/vim-plug.vim \| source $HOME/.config/nvim/setup/neovim.vim \| source $HOME/.config/nvim/plug-config/init.vim \| lua require "user.init"<cr>
 
 

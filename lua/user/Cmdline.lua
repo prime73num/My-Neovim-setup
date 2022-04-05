@@ -38,7 +38,8 @@ local allItem = {
         label = "Cargo Run         -- Cargo run.",
         _funref = function()
             vim.cmd("w")
-            vim.cmd("FloatermNew! cargo run")
+            local root = require("user.root").getroot(vim.fn.expand("%:p:h"),vim.fn.getcwd(), {'Cargo.toml'} )
+            vim.cmd(string.format("FloatermNew!  cd %s && cargo run", root))
         end,
     },
 }
