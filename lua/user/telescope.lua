@@ -281,6 +281,7 @@ local fd_cwd = function()
     require 'telescope'.extensions.file_browser.file_browser{
         mycount = 2,
 		cwd = "~/WorkSpace",
+        initial_mode = "insert",
     }
 end
 local buf = function()
