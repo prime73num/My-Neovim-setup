@@ -26,6 +26,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'fcying/telescope-ctags-outline.nvim'
+Plug 'jvgrootveld/telescope-zoxide'
+
 
 Plug 'onsails/lspkind-nvim'
 Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }

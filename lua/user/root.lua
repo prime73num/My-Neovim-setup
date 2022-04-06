@@ -27,7 +27,7 @@ function M.getroot(prefix, cwd, pattern)
             if file_exists(prefix .. '/' .. dir) then
                 found = true
                 possible_root_dir = prefix
-                if not true then
+                if not false then
                     return possible_root_dir
                 end
                 break

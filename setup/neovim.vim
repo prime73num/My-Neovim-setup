@@ -83,8 +83,8 @@ nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
 
-vnoremap J :m '>+1<cr>gv=gv
-vnoremap K :m '<-2<cr>gv=gv
+vnoremap J 4j
+vnoremap K 4k
 
 nnoremap [[ %
 vnoremap [[ %

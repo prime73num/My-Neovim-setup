@@ -116,14 +116,14 @@ telescope.setup {
             sorting_strategy = "descending",
         },
         oldfiles = {
-            theme = "dropdown",
+            -- theme = "dropdown",
             previewer = false,
             initial_mode = "insert",
-            layout_config = {
-                width = 0.4,
-                height = 0.6,
-                preview_cutoff = 120,
-            },
+            -- layout_config = {
+            --     width = 0.4,
+            --     height = 0.6,
+            --     preview_cutoff = 120,
+            -- },
             mappings = {
                 n = {
                     ["F"] = Floaterm,
@@ -236,8 +236,24 @@ telescope.setup {
         },
     },
 }
+local z_utils = require("telescope._extensions.zoxide.utils")
+
+require("telescope._extensions.zoxide.config").setup({
+  prompt_title = "[ Walking on the shoulders of TJ ]",
+  mappings = {
+    ["o"] = {
+      action = function(selection)
+          require 'telescope'.extensions.file_browser.file_browser({
+              cwd = selection.path,
+          })
+      end
+    },
+  }
+})
+
 require('telescope').load_extension('ctags_outline')
 require("telescope").load_extension "file_browser"
+require'telescope'.load_extension('zoxide')
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
@@ -278,11 +294,7 @@ local fd_MyBlog = function()
 	}
 end
 local fd_cwd = function()
-    require 'telescope'.extensions.file_browser.file_browser{
-        mycount = 2,
-		cwd = "~/WorkSpace",
-        initial_mode = "insert",
-    }
+    require'telescope'.extensions.zoxide.list{}
 end
 local buf = function()
 	require("telescope.builtin").buffers{}
