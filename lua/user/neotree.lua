@@ -14,6 +14,7 @@ require("neo-tree").setup({
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
+
   default_component_configs = {
     indent = {
       indent_size = 2,
@@ -94,7 +95,7 @@ require("neo-tree").setup({
   nesting_rules = {},
   filesystem = {
     filtered_items = {
-      visible = false, -- when true, they will just be displayed differently than normal items
+      visible = false, 
       hide_dotfiles = true,
       hide_gitignored = true,
       hide_by_name = {
@@ -108,6 +109,7 @@ require("neo-tree").setup({
       },
     },
     follow_current_file = true, -- This will find and focus the file in the active buffer every
+    bind_to_cwd = false, 
                                  -- time the current file is changed while the tree is open.
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
                                             -- in whatever position is specified in window.position
@@ -140,4 +142,4 @@ require("neo-tree").setup({
     }
   }
 })
-vim.cmd([[nnoremap <leader>t :Neotree reveal=true<cr>]])
+vim.cmd([[nnoremap <leader>t :Neotree reveal=true reveal_force_cwd<cr>]])

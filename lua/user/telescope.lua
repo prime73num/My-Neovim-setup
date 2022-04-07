@@ -170,7 +170,7 @@ telescope.setup {
                         local finder = current_picker.finder
                         local dir = finder.path
                         require("telescope.actions").close(prompt_bufnr)
-                        require('telescope.builtin').grep_string({
+                        require('telescope.builtin').live_grep({
                             cwd = dir,
                         })
                     end,
