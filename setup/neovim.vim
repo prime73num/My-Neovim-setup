@@ -38,6 +38,7 @@ set foldclose=all
 set foldcolumn=1 
 set foldenable 
 set viewoptions-=curdir
+set mouse=a
 
 let g:lightline = {				
       \ 'colorscheme': 'seoul256',
@@ -82,6 +83,7 @@ nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
+tnoremap <Esc> <C-\><C-n>
 
 vnoremap J 4j
 vnoremap K 4k

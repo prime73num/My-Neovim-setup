@@ -265,7 +265,7 @@ end
 map("n", "<Leader>bb", ":Telescope buffers<CR>")
 map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
 map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
-map("n", "<Leader>f", ':lua require "telescope".extensions.file_browser.file_browser{ mycount = 1, initial_mode = "insert"}<cr>')
+map("n", "<Leader>f", ':lua require("user.telescope").find_files()<cr>')
 
 local M = {}
 local pickers = require "telescope.pickers"
@@ -274,6 +274,25 @@ local conf = require("telescope.config").values
 local make_entry = require "telescope.make_entry"
 local fb_picker = require "telescope._extensions.file_browser.picker"
 
+M.find_files = function()
+    require 'telescope'.extensions.file_browser.file_browser({
+        prompt_title = "~CWD~",
+        initial_mode = "insert",
+        layout_strategy = "vertical",
+        sorting_strategy = "descending",
+        previewer = false,
+        layout_config = {
+            vertical = {
+                mirror = false,
+                preview_height = 30,
+            },
+            width = 0.6,
+            height = 0.9,
+            preview_cutoff = 10,
+        },
+        mycount = 1,
+    })
+end
 local fd_Myvim = function()
     require 'telescope'.extensions.file_browser.file_browser({
 		cwd = "~/.config/nvim",
