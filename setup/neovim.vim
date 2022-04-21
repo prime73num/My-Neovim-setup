@@ -83,6 +83,8 @@ nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
+nnoremap o o<esc>
+
 tnoremap <Esc> <C-\><C-n>
 
 vnoremap J 4j

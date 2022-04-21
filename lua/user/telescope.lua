@@ -241,7 +241,7 @@ local z_utils = require("telescope._extensions.zoxide.utils")
 require("telescope._extensions.zoxide.config").setup({
   prompt_title = "[ Walking on the shoulders of TJ ]",
   mappings = {
-    ["o"] = {
+    default = {
       action = function(selection)
           require 'telescope'.extensions.file_browser.file_browser({
               cwd = selection.path,
