@@ -336,6 +336,24 @@ end
 local outline = function()
     require('telescope').extensions.ctags_outline.outline()
 end
+local hexo = function()
+    vim.cmd("FloatermNew! cd ~/WorkSpace/Blog && hexo clean && hexo g")
+end
+local ReloadVim = function()
+    vim.cmd("w")
+    vim.cmd("so %")
+    vim.cmd("source ~/.config/nvim/setup/vim-plug.vim")
+    vim.cmd("source ~/.config/nvim/setup/neovim.vim")
+    vim.cmd("source ~/.config/nvim/plug-config/init.vim")
+    require "user.init"
+    print("Reload Vim!")
+end
+local loadsnip = function()
+    vim.cmd("w")
+    require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/user/snip/ft"})
+    require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/lua/user/snip/vsSnip"})
+    print("Reload Snip!")
+end
 
 -- our picker function: colors
 M.MyPicker = function(opts)
@@ -356,6 +374,9 @@ M.MyPicker = function(opts)
                 { " Outline", outline },
                 { " Git_status", git_status },
                 { " BuiltIn", built },
+                { " Reload Vim", ReloadVim },
+                { " Reload Snip", loadsnip },
+                { " Hexo", hexo },
             },
             entry_maker = function(entry)
                 return {

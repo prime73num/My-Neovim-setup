@@ -1,39 +1,4 @@
 {
-  "allow": {
-    "prefix": "allow",
-    "body": ["#![allow(${1})]"],
-    "description": "#![allow(…)]"
-  },
-  "deny": {
-    "prefix": "deny",
-    "body": ["#![deny(${1})]"],
-    "description": "#![deny(…)]"
-  },
-  "warn": {
-    "prefix": "warn",
-    "body": ["#![warn(${1})]"],
-    "description": "#![warn(…)]"
-  },
-  "no_std": {
-    "prefix": "no_std",
-    "body": ["#![no_std]"],
-    "description": "#![no_std]"
-  },
-  "no_core": {
-    "prefix": "no_core",
-    "body": ["#![no_core]"],
-    "description": "#![no_core]"
-  },
-  "feature": {
-    "prefix": "feature",
-    "body": ["#![feature(${1})]"],
-    "description": "#![feature(…)]"
-  },
-  "macro_use": {
-    "prefix": "macro_use",
-    "body": ["#[macro_use(${1})]"],
-    "description": "#[macro_use(…)]"
-  },
   "repr": {
     "prefix": "repr",
     "body": ["#[repr(${1})]"],
@@ -264,15 +229,6 @@
     "body": ["extern \"C\" {", "    ${2:// add code here}", "}"],
     "description": "extern \"C\" { … }"
   },
-  "fn": {
-    "prefix": "fn",
-    "body": [
-      "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
-      "    ${5:unimplemented!();}",
-      "}"
-    ],
-    "description": "fn …(…) { … }"
-  },
   "for": {
     "prefix": "for",
     "body": ["for ${1:pat} in ${2:expr} {", "    ${3:unimplemented!();}", "}"],
@@ -291,20 +247,6 @@
     "prefix": "if",
     "body": ["if ${1:condition} {", "    ${2:unimplemented!();}", "}"],
     "description": "if … { … }"
-  },
-  "impl-trait": {
-    "prefix": "impl-trait",
-    "body": [
-      "impl ${1:Trait} for ${2:Type} {",
-      "    ${3:// add code here}",
-      "}"
-    ],
-    "description": "impl … for … { … }"
-  },
-  "impl": {
-    "prefix": "impl",
-    "body": ["impl ${1:Type} {", "    ${2:// add code here}", "}"],
-    "description": "impl … { … }"
   },
   "inline-fn": {
     "prefix": "inline-fn",
@@ -370,16 +312,6 @@
     "prefix": "struct-unit",
     "body": ["struct ${1:Name};"],
     "description": "struct …;"
-  },
-  "struct": {
-    "prefix": "struct",
-    "body": [
-      "#[derive(Debug)]",
-      "struct ${1:Name} {",
-      "    ${2:field}: ${3:Type}",
-      "}"
-    ],
-    "description": "struct … { … }"
   },
   "test": {
     "prefix": "test",

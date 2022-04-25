@@ -58,7 +58,7 @@ require("neo-tree").setup({
   },
   popup_border_style = "rounded",
   window = {
-    position = "float",
+    -- position = "float",
     popup = {
         position = {
             row = "20%",

@@ -7,7 +7,6 @@
 "        |___/_____|                
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'itchyny/lightline.vim'			"statusline 
 Plug 'kshenoy/vim-signature' 
 Plug 'lervag/vimtex'
 
@@ -19,6 +18,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
 Plug 'junegunn/seoul256.vim'
 Plug 'mhinz/vim-startify'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Telescope and plugin
 Plug 'voldikss/vim-floaterm'

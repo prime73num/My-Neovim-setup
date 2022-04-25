@@ -38,15 +38,7 @@ set foldclose=all
 set foldcolumn=1 
 set foldenable 
 set viewoptions-=curdir
-set mouse=a
 
-let g:lightline = {				
-      \ 'colorscheme': 'seoul256',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'filetype', 'filename', 'modified', 'absolutepath', 'percent' ] ]
-      \ },
-      \ }
 
 autocmd BufReadPost * 
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
@@ -83,7 +75,6 @@ nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
-nnoremap o o<esc>
 
 tnoremap <Esc> <C-\><C-n>
 
@@ -94,7 +85,6 @@ nnoremap [[ %
 vnoremap [[ %
 
 inoremap ww <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
-nnoremap <silent><leader><leader>s :w \| so % \| source $HOME/.config/nvim/setup/vim-plug.vim \| source $HOME/.config/nvim/setup/neovim.vim \| source $HOME/.config/nvim/plug-config/init.vim \| lua require "user.init"<cr>
 
 
 function Myfold()

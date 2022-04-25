@@ -20,13 +20,9 @@ hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
 hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
 hi Floaterm ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
 
-hi Normal guibg=NONE ctermbg=NONE
 
-hi NeoTreeCursorLine ctermbg=23 guibg=#007173
 hi NeoTreeFloatTitle ctermbg=108 guibg=#98BC99 guifg=#333333
-hi NeoTreeFloatBorder ctermfg=252 ctermbg=235 guifg=#666666 guibg=#444444
-hi NeoTreeNormal  ctermfg=252 ctermbg=235 guifg=#D9D9D9 guibg=#444444
-hi NeoTreeDirectoryIcon ctermfg=108 gui=bold guifg=#98BC99
+hi NeoTreeDirectoryIcon ctermfg=108 gui=bold guifg=#719CDF
 
 hi myPopup ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
 hi myPopupborder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
@@ -78,7 +74,7 @@ highlight TSNamespace guifg=#FF99CC
 " Functions
 " highlight TSFuncBuiltin guifg=#4EC9B0
 highlight TSFuncBuiltin guifg=#DCDCAA
-highlight TSFunction guifg=#DCDCAA
+highlight TSFunction guifg=#DCDCAA gui=italic
 highlight TSFuncMacro guifg=#DCDCAA
 highlight TSParameter guifg=#9CDCFE
 highlight TSParameterReference guifg=#9CDCFE
@@ -97,8 +93,8 @@ highlight TSKeywordFunction guifg=#FF99CC
 highlight TSKeywordOperator guifg=#569CD6
 highlight TSOperator guifg=#ABB2BF
 highlight TSException guifg=#C586C0
-highlight TSType guifg=#4EC9B0
-highlight TSTypeBuiltin guifg=#FF99CC
+highlight TSType guifg=#4EC9B0 gui=italic
+highlight TSTypeBuiltin guifg=#FF99CC gui=italic
 highlight TSStructure guifg=#FF99CC
 highlight TSInclude guifg=#C586C0
 

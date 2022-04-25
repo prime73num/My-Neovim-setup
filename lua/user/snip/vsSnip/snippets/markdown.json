@@ -81,7 +81,7 @@
   },
   "Insert unordered list": {
     "prefix": "unordered list",
-    "body": ["- ${1:first}", "- ${2:second}", "- ${3:third}", "$0"],
+    "body": ["- ${1:first}" ],
     "description": "Insert unordered list"
   },
   "Insert ordered list": {
