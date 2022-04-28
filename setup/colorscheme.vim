@@ -51,7 +51,7 @@ hi TelescopeSelectionCaret guifg=#98BEDE guibg=#007173
 " Misc
 highlight TSError guifg=#F44747
 highlight TSPunctDelimiter guifg=#ABB2BF
-highlight TSPunctBracket guifg=#ABB2BF
+highlight TSPunctBracket guifg=#ABB2BF gui=italic
 highlight TSPunctSpecial guifg=#ABB2BF
 
 " Constants
