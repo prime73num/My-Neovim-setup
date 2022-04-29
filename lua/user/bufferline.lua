@@ -81,5 +81,4 @@ vim.cmd([[
 nnoremap <c-l> :BufferLineCycleNext<CR>
 nnoremap <c-h> :BufferLineCyclePrev<CR>
 hi BufferLineFill guifg=#719872 guibg=#444444
-hi BufferLineBufferSelected gui=bold,italic guifg=#000000 guibg=#777777
 ]])

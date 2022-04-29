@@ -42,9 +42,19 @@ local allItem = {
             vim.cmd(string.format("FloatermNew!  cd %s && cargo run", root))
         end,
     },
+    {
+        label = "Split args         -- Cargo run.",
+        _funref = function()
+          vim.cmd([[
+          substitute@,\s*@,\r@ge
+          normal v``="
+          nohlsearch
+          ]])
+        end,
+    },
 }
 local getres = function()
-    return allItem
+  return allItem
 end
 
 
