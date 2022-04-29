@@ -342,10 +342,7 @@ end
 local ReloadVim = function()
     vim.cmd("w")
     vim.cmd("so %")
-    vim.cmd("source ~/.config/nvim/setup/vim-plug.vim")
-    vim.cmd("source ~/.config/nvim/setup/neovim.vim")
-    vim.cmd("source ~/.config/nvim/plug-config/init.vim")
-    require "user.init"
+    vim.cmd("source ~/.config/nvim/init.vim")
     print("Reload Vim!")
 end
 local loadsnip = function()
@@ -399,4 +396,13 @@ M.MyPicker = function(opts)
     }):find()
 end
 
+vim.cmd([[
+hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
+hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333
+hi TelescopeNormal guibg=#282A36
+hi TelescopeBorder guifg=#777777 guibg=#282A36
+hi TelescopeMatching guibg=NONE guifg=#569CD6
+hi TelescopePromptPrefix guifg=#98BC99 
+hi TelescopeSelectionCaret guifg=#98BEDE guibg=#007173
+]])
 return M

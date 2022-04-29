@@ -7,6 +7,15 @@
 "|_| \_|\___|\___/ \_/  |_|_| |_| |_|
 "                                    
 
+if !exists("g:mycount")
+  let g:mycount = 1
+  syntax on
+  set background=dark
+  let g:seoul256_background = 235
+  colorscheme seoul256
+  let g:seoul256_srgb = 1
+endif
+
 
 let mapleader=" "
 set nocompatible
@@ -20,8 +29,8 @@ set nuw=3
 set showmode
 set cmdheight=1
 set ignorecase
-set sw=4
-set ts=4
+set sw=2
+set ts=2
 set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor
@@ -59,8 +68,6 @@ nnoremap <leader>i ciw
 nnoremap <leader>; :
 nnoremap <leader>w <C-w>
 nnoremap <leader>q <C-w>c
-nnoremap <leader>h :-tabnext<cr>
-nnoremap <leader>l :+tabnext<cr>
 nnoremap a $a
 cnoremap <c-n> <down> 
 cnoremap <c-p> <up>
