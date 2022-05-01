@@ -23,3 +23,6 @@ hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
 
+hi NeotreeTitle ctermfg=68 guifg=#719CDF guibg=#444444
+hi NormalFloat guibg=#444444
+hi FloatBorder guifg=#777777

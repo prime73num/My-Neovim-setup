@@ -58,7 +58,7 @@ require('bufferline').setup {
                 text = function()
                     return vim.fn.getcwd()
                 end,
-                highlight = "Directory",
+                highlight = "NeotreeTitle",
                 text_align = "left"
             }
         },
@@ -78,7 +78,7 @@ require('bufferline').setup {
     },
 }
 vim.cmd([[
-nnoremap <c-l> :BufferLineCycleNext<CR>
-nnoremap <c-h> :BufferLineCyclePrev<CR>
+nnoremap L :BufferLineCycleNext<CR>
+nnoremap H :BufferLineCyclePrev<CR>
 hi BufferLineFill guifg=#719872 guibg=#444444
 ]])

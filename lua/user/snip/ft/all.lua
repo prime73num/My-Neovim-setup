@@ -16,6 +16,3 @@ local ai = require("luasnip.nodes.absolute_indexer")
 
 return {
 }
-
-
-

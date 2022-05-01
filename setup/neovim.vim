@@ -91,7 +91,7 @@ vnoremap K 4k
 nnoremap [[ %
 vnoremap [[ %
 
-inoremap ww <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
+inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 
 
 function Myfold()

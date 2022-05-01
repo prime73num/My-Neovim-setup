@@ -355,9 +355,13 @@ end
 -- our picker function: colors
 M.MyPicker = function(opts)
     opts = opts or {}
+    -- opts = {
+    --   initial_mode = "insert",
+    -- }
+    opts.initial_mode = "insert"
     opts.layout_config = {
-        width = 0.3,
-        height = 0.3,
+      width = 0.3,
+      height = 0.3,
     }
     pickers.new(opts, {
         prompt_title = " MyPicker ",
