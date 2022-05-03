@@ -34,7 +34,6 @@ telescope.setup {
             },
             width = 0.6,
             height = 0.9,
-            preview_cutoff = 10,
         },
 
         mappings = {
@@ -135,13 +134,13 @@ telescope.setup {
 
     extensions = {
         file_browser = {
-            layout_config = {
-                width = 0.4,
-                height = 0.6,
-                preview_cutoff = 120,
-            },
-            theme = "dropdown",
-            previewer = false,
+          layout_strategy = "vertical",
+          sorting_strategy = "ascending",
+          layout_config = {
+            prompt_position = "top",
+            width = 0.4,
+            height = 0.6,
+          },
             mappings = {
                 ["n"] = {
                     ["I"] = function(prompt_bufnr)
@@ -263,22 +262,27 @@ M.find_files = function()
     require 'telescope'.extensions.file_browser.file_browser({
         prompt_title = "~Find file in CWD~",
         initial_mode = "insert",
-        previewer = false,
+        layout_strategy = "horizontal",
         layout_config = {
-            width = 0.6,
-            height = 0.9,
+            width = 0.69,
+            height = 0.5,
+            horizontal = {
+               preview_width=0.6
+            }
         },
         mycount = 1,
     })
 end
 local fd_Myvim = function()
     require 'telescope'.extensions.file_browser.file_browser({
+    previewer = false,
 		cwd = "~/.config/nvim",
 		prompt_title = "~MyNeovim~",
     })
 end
 local fd_Repo = function()
     require 'telescope'.extensions.file_browser.file_browser{
+    previewer = false,
 		cwd = "~/TMD",
 		prompt_title = "~MyRepo~",
 	}
@@ -286,12 +290,14 @@ end
 
 local fd_MyBlog = function()
     require 'telescope'.extensions.file_browser.file_browser{
+    previewer = false,
 		cwd = "~/WorkSpace/Blog/source/_posts",
 		prompt_title = "~MyBlogm~",
 	}
 end
 local fd_cwd = function()
     require 'telescope'.extensions.file_browser.file_browser({
+    previewer = false,
 		cwd = ".",
 		prompt_title = "~ CWD ~",
     })

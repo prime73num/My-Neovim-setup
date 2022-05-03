@@ -54,7 +54,7 @@ local allItem = {
         end,
     },
     {
-        label = "Split args         -- Cargo run.",
+        label = "Split args         -- Split args.",
         _funref = function()
           vim.cmd([[
           substitute@(\(.*\))@(\r\1\r)@ge
@@ -72,6 +72,13 @@ local allItem = {
           vim.cmd("b #")
           vim.cmd("bd #")
           print("Delete this buffer!")
+        end,
+    },
+    {
+        label = "Gitsign quickfix list -- Git fix list.",
+        _funref = function()
+          vim.cmd("Gitsigns setqflist")
+          print("Git quickfix list")
         end,
     },
 }

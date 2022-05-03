@@ -52,8 +52,8 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
 	\ exe "normal! g`\"zz0" |
 	\ endif
-autocmd BufWinLeave !*.txt *.* mkview
-autocmd BufWinEnter !*.txt *.* silent loadview
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 
 " SIGNNATURE
 let g:SignatureMarkOrder="\m"
@@ -82,6 +82,8 @@ nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
 nnoremap U %
+nnoremap <leader>j :cnext<cr>
+nnoremap <leader>k :cNext<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
