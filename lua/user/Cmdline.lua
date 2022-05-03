@@ -39,7 +39,7 @@ local allItem = {
         label = "Cargo Run         -- Cargo run.",
         _funref = function()
             vim.cmd("w")
-            local root = require("user.root").getroot(vim.fn.expand("%:p:h"),vim.fn.getcwd(), {'Cargo.toml'} )
+            local root = require'lspconfig'.util.root_pattern('Cargo.toml')() or vim.fn.getcwd()
             vim.cmd(string.format("FloatermNew!  cd %s && cargo run", root))
         end,
     },

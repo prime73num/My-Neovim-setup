@@ -34,7 +34,6 @@ set ts=2
 set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor
-set path=.,/usr/include,/usr/include/c++/5
 set scrolloff=20
 set backspace=indent,eol,start
 set splitright
@@ -53,8 +52,8 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
 	\ exe "normal! g`\"zz0" |
 	\ endif
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+autocmd BufWinLeave !*.txt *.* mkview
+autocmd BufWinEnter !*.txt *.* silent loadview
 
 " SIGNNATURE
 let g:SignatureMarkOrder="\m"
@@ -82,6 +81,7 @@ nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
 nnoremap <leader>z :call Myfold()<cr>
+nnoremap U %
 
 tnoremap <Esc> <C-\><C-n>
 
