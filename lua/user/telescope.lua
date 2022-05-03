@@ -236,24 +236,9 @@ telescope.setup {
         },
     },
 }
-local z_utils = require("telescope._extensions.zoxide.utils")
-
-require("telescope._extensions.zoxide.config").setup({
-  prompt_title = "[ Walking on the shoulders of TJ ]",
-  mappings = {
-    default = {
-      action = function(selection)
-          require 'telescope'.extensions.file_browser.file_browser({
-              cwd = selection.path,
-          })
-      end
-    },
-  }
-})
 
 require('telescope').load_extension('ctags_outline')
 require("telescope").load_extension "file_browser"
-require'telescope'.load_extension('zoxide')
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
     if opts then
@@ -276,19 +261,12 @@ local fb_picker = require "telescope._extensions.file_browser.picker"
 
 M.find_files = function()
     require 'telescope'.extensions.file_browser.file_browser({
-        prompt_title = "~CWD~",
+        prompt_title = "~Find file in CWD~",
         initial_mode = "insert",
-        layout_strategy = "vertical",
-        sorting_strategy = "descending",
         previewer = false,
         layout_config = {
-            vertical = {
-                mirror = false,
-                preview_height = 30,
-            },
             width = 0.6,
             height = 0.9,
-            preview_cutoff = 10,
         },
         mycount = 1,
     })
@@ -313,7 +291,10 @@ local fd_MyBlog = function()
 	}
 end
 local fd_cwd = function()
-    require'telescope'.extensions.zoxide.list{}
+    require 'telescope'.extensions.file_browser.file_browser({
+		cwd = ".",
+		prompt_title = "~ CWD ~",
+    })
 end
 local buf = function()
 	require("telescope.builtin").buffers{}
@@ -367,7 +348,7 @@ M.MyPicker = function(opts)
         prompt_title = " MyPicker ",
         finder = finders.new_table {
             results = {
-                { "華Project", fd_cwd },
+                { "華CWD", fd_cwd },
                 { "勇MyNeovim", fd_Myvim },
                 { " MyBlog", fd_MyBlog },
                 { " MyRepo", fd_Repo },

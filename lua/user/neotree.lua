@@ -10,7 +10,7 @@ vim.fn.sign_define("DiagnosticSignHint",
   {text = "", texthl = "DiagnosticSignHint"})
 
 require("neo-tree").setup({
-  close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+  close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
   popup_border_style = "rounded",
   enable_git_status = true,
   enable_diagnostics = true,
@@ -58,7 +58,6 @@ require("neo-tree").setup({
   },
   popup_border_style = "rounded",
   window = {
-    -- position = "float",
     popup = {
         position = {
             row = "20%",
@@ -70,8 +69,8 @@ require("neo-tree").setup({
     mappings = {
       ["<cr>"] = "open",
       ["o"] = "open",
-      ["S"] = "open_split",
-      ["s"] = "open_vsplit",
+      -- ["S"] = "open_split",
+      -- ["s"] = "open_vsplit",
       ["C"] = "close_node",
       ["u"] = "navigate_up",
       ["."] = "set_root",
@@ -101,23 +100,14 @@ require("neo-tree").setup({
       hide_by_name = {
         ".DS_Store",
         "thumbs.db"
-        --"node_modules"
       },
       never_show = { -- remains hidden even if visible is toggled to true
-        --".DS_Store",
-        --"thumbs.db"
       },
     },
     follow_current_file = true, -- This will find and focus the file in the active buffer every
     bind_to_cwd = false, 
-                                 -- time the current file is changed while the tree is open.
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                            -- in whatever position is specified in window.position
-                          -- "open_current",  -- netrw disabled, opening a directory opens within the
-                                            -- window like netrw would, regardless of window.position
-                          -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
     use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-                                    -- instead of relying on nvim autocmd events.
   },
   buffers = {
     show_unloaded = true,

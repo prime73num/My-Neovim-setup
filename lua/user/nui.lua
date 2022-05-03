@@ -1,5 +1,7 @@
 local Popup = require("nui.popup")
 local event = require("nui.utils.autocmd").event
+local Input = require("nui.input")
+
 
 local M = {}
 
@@ -40,6 +42,39 @@ local popup = Popup({
   },
 })
 
+
+M.input = function(funcref)
+  local input = Input({
+    position = "20%",
+    size = {
+      width = 35,
+      height = 3,
+    },
+    relative = "editor",
+    border = {
+      style = "single",
+      text = {
+        top = "Type the commond!",
+        top_align = "center",
+      },
+    },
+    win_options = {
+      winblend = 10,
+      winhighlight = "Normal:Normal",
+    },
+  }, {
+    prompt = "> ",
+    default_value = "",
+    on_close = function()
+      print("Input closed!")
+    end,
+    on_submit = funcref,
+  })
+  input:mount()
+  input:on(event.BufLeave, function()
+    input:unmount()
+  end)
+end
 
 M.output = function()
     popup:on(event.BufLeave, function()

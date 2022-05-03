@@ -10,7 +10,8 @@ local allItem = {
     {
         label = "Open Shell        -- Open shell.",
         _funref = function()
-            vim.cmd("FloatermNew!")
+          local cmd = vim.g.mycmd or ""
+          vim.cmd(string.format("FloatermNew! %s", cmd))
         end,
     },
     {
@@ -43,13 +44,34 @@ local allItem = {
         end,
     },
     {
+        label = "Set Cmd        -- Type a commond",
+        _funref = function()
+          local myfunc = function(value)
+            vim.g.mycmd = value
+            print("Set commond to "..value)
+          end
+          require("user.nui").input(myfunc)
+        end,
+    },
+    {
         label = "Split args         -- Cargo run.",
         _funref = function()
           vim.cmd([[
+          substitute@(\(.*\))@(\r\1\r)@ge
+          normal k
           substitute@,\s*@,\r@ge
+          normal j
           normal v``="
           nohlsearch
           ]])
+        end,
+    },
+    {
+        label = "Delete buffer      -- Delete this buffer.",
+        _funref = function()
+          vim.cmd("b #")
+          vim.cmd("bd #")
+          print("Delete this buffer!")
         end,
     },
 }

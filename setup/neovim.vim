@@ -85,11 +85,10 @@ nnoremap <leader>z :call Myfold()<cr>
 
 tnoremap <Esc> <C-\><C-n>
 
-vnoremap J 4j
-vnoremap K 4k
-
-nnoremap [[ %
+vnoremap J 3j
+vnoremap K 3k
 vnoremap [[ %
+vnoremap <leader>j J
 
 inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 
