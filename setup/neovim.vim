@@ -16,6 +16,9 @@ if !exists("g:mycount")
   let g:seoul256_srgb = 1
 endif
 
+" SIGNNATURE
+let g:SignatureMarkOrder="\m"
+let g:SignatureMarkTextHL="TagbarKind"
 
 let mapleader=" "
 set nocompatible
@@ -46,23 +49,12 @@ set foldclose=all
 set foldcolumn=1 
 set foldenable 
 set viewoptions-=curdir
-
-
-autocmd BufReadPost * 
-	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
-	\ exe "normal! g`\"zz0" |
-	\ endif
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
-" SIGNNATURE
-let g:SignatureMarkOrder="\m"
-let g:SignatureMarkTextHL="TagbarKind"
-" SIGNNATURE
-
+set cursorline
 
 "  Neovim Keymap
 inoremap jj <esc>
+inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
+
 nnoremap <leader>i ciw
 nnoremap <leader>; :
 nnoremap <leader>w <C-w>
@@ -85,15 +77,24 @@ nnoremap U %
 nnoremap <leader>j :cnext<cr>
 nnoremap <leader>k :cNext<cr>
 
-tnoremap <Esc> <C-\><C-n>
-
 vnoremap J 3j
 vnoremap K 3k
 vnoremap [[ %
 vnoremap <leader>j J
 
-inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 
+
+autocmd BufReadPost * 
+	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
+	\ exe "normal! g`\"zz0" |
+	\ endif
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
+" augroup Terminal
+"   autocmd TermOpen * setlocal statusline=%{b:term_title}
+"   autocmd TermOpen * setlocal nonu nornu scl=no
+" augroup END
 
 function Myfold()
     if foldlevel(line("."))==0

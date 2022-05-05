@@ -3,8 +3,8 @@ hi StartifyHeader ctermfg=116 guifg=#97DDDF
 
 hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
 
-hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
-hi Floaterm ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
+" hi FloatermBorder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
+" hi Floaterm ctermfg=253 ctermbg=236 guifg=#F8F8F2 guibg=#282A36
 
 
 hi NeoTreeFloatTitle ctermbg=108 guibg=#98BC99 guifg=#333333
@@ -26,3 +26,6 @@ hi DiagnosticSignError ctermfg=168 guifg=#E17899
 hi NeotreeTitle ctermfg=68 guifg=#719CDF guibg=#444444
 hi NormalFloat guibg=#444444
 hi FloatBorder guifg=#777777
+
+hi CursorLine guibg=#444444 guifg=NONE
+hi CursorLineNr ctermfg=131 ctermbg=234 gui=bold guifg=#719CDF guibg=#252525

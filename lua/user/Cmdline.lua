@@ -8,35 +8,37 @@ local action_state = require "telescope.actions.state"
 
 local allItem = {
     {
-        label = "Open Shell        -- Open shell.",
+        label = "Open Terminal",
         _funref = function()
-          local cmd = vim.g.mycmd or ""
-          vim.cmd(string.format("FloatermNew! %s", cmd))
+          vim.cmd(string.format("FloatermToggle First"))
         end,
     },
     {
-        label = "String Grep       -- Grep String under cursor.",
+        label = "String Grep",
         _funref = function()
             local word = vim.fn.expand('<cword>')
+            local root = require'lspconfig'.util.root_pattern('.git')() or vim.fn.expand("%:p:h")
+            print(root)
             require('telescope.builtin').grep_string({
                 search = word,
+                cwd = root
             })
         end,
     },
     {
-        label = "Git Reset hunk    -- Reset hunk",
+        label = "Git Reset hunk",
         _funref = function()
             vim.cmd("Gitsigns reset_hunk")
         end,
     },
     {
-        label = "Git preview hunk    -- Reset hunk",
+        label = "Git preview hunk",
         _funref = function()
             vim.cmd("Gitsigns preview_hunk")
         end,
     },
     {
-        label = "Cargo Run         -- Cargo run.",
+        label = "Cargo Run",
         _funref = function()
             vim.cmd("w")
             local root = require'lspconfig'.util.root_pattern('Cargo.toml')() or vim.fn.getcwd()
@@ -44,17 +46,7 @@ local allItem = {
         end,
     },
     {
-        label = "Set Cmd        -- Type a commond",
-        _funref = function()
-          local myfunc = function(value)
-            vim.g.mycmd = value
-            print("Set commond to "..value)
-          end
-          require("user.nui").input(myfunc)
-        end,
-    },
-    {
-        label = "Split args         -- Split args.",
+        label = "Split args",
         _funref = function()
           vim.cmd([[
           substitute@(\(.*\))@(\r\1\r)@ge
@@ -67,7 +59,7 @@ local allItem = {
         end,
     },
     {
-        label = "Delete buffer      -- Delete this buffer.",
+        label = "Delete buffer.",
         _funref = function()
           vim.cmd("b #")
           vim.cmd("bd #")
@@ -75,7 +67,7 @@ local allItem = {
         end,
     },
     {
-        label = "Gitsign quickfix list -- Git fix list.",
+        label = "Gitsign quickfix list",
         _funref = function()
           vim.cmd("Gitsigns setqflist")
           print("Git quickfix list")

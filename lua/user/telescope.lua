@@ -17,7 +17,10 @@ local ChangeDir = function(prompt_bufnr)
     local filename = selection.filename
     local dir = vim.fn.fnamemodify(filename, ":p:h")
     require("telescope.actions").close(prompt_bufnr)
-    require 'telescope'.extensions.file_browser.file_browser{ cwd = dir }
+    require 'telescope'.extensions.file_browser.file_browser{ 
+      cwd = dir,
+      previewer = false
+    }
 end
 
 telescope.setup {
