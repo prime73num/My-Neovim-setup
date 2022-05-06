@@ -33,7 +33,7 @@ telescope.setup {
         layout_config = {
             vertical = {
                 mirror = false,
-                preview_height = 30,
+                -- preview_height = 30,
             },
             width = 0.6,
             height = 0.9,
