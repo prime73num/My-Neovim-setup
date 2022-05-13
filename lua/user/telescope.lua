@@ -35,8 +35,8 @@ telescope.setup {
                 mirror = false,
                 -- preview_height = 30,
             },
-            width = 0.6,
-            height = 0.9,
+            width = 0.55,
+            height = 0.8,
         },
 
         mappings = {

@@ -28,4 +28,4 @@ hi NormalFloat guibg=#444444
 hi FloatBorder guifg=#777777
 
 hi CursorLine guibg=#444444 guifg=NONE
-hi CursorLineNr ctermfg=131 ctermbg=234 gui=bold guifg=#719CDF guibg=#252525
+" hi CursorLineNr ctermfg=131 ctermbg=234 gui=bold guifg=#719CDF guibg=#252525

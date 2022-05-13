@@ -14,7 +14,7 @@ function! StartifyEntryFormat()
 endfunction
 
 let g:startify_custom_indices = ['i','a', 'd', 'f', 'g', 'h']
-let g:startify_enable_special = 0
+let g:startify_enable_special = 1
 let g:startify_change_to_dir = 0
 
 function s:foobar()

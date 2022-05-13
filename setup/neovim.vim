@@ -32,8 +32,8 @@ set nuw=3
 set showmode
 set cmdheight=1
 set ignorecase
-set sw=2
-set ts=2
+set sw=4
+set ts=4
 set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor
@@ -50,6 +50,7 @@ set foldcolumn=1
 set foldenable 
 set viewoptions-=curdir
 set cursorline
+set nowrap
 
 "  Neovim Keymap
 inoremap jj <esc>
@@ -72,10 +73,10 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap I ea
 nnoremap <cr> ^
-nnoremap <leader>z :call Myfold()<cr>
+nnoremap <leader>z :call <SID>Myfold()<cr>
 nnoremap U %
-nnoremap <leader>j :cnext<cr>
-nnoremap <leader>k :cNext<cr>
+nnoremap } :cnext<cr>
+nnoremap { :cNext<cr>
 
 vnoremap J 3j
 vnoremap K 3k
@@ -96,7 +97,7 @@ autocmd BufWinEnter *.* silent loadview
 "   autocmd TermOpen * setlocal nonu nornu scl=no
 " augroup END
 
-function Myfold()
+function s:Myfold()
     if foldlevel(line("."))==0
         exec "normal! zfi}"
     else

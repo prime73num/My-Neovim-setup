@@ -61,7 +61,7 @@ local allItem = {
     {
         label = "Delete buffer.",
         _funref = function()
-          vim.cmd("b #")
+          vim.cmd("BufferLineCyclePrev")
           vim.cmd("bd #")
           print("Delete this buffer!")
         end,
@@ -71,6 +71,13 @@ local allItem = {
         _funref = function()
           vim.cmd("Gitsigns setqflist")
           print("Git quickfix list")
+        end,
+    },
+    {
+        label = "Tagbar",
+        _funref = function()
+          vim.cmd("TagbarToggle")
+          print("Tagbar")
         end,
     },
 }
@@ -128,6 +135,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<leader>l", ":lua require('user.Cmdline').Cmdline()<cr>")
+map("n", "<leader>'", ":lua require('user.Cmdline').Cmdline()<cr>")
 
 return M

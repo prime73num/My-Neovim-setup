@@ -26,6 +26,21 @@ local getT = function(args)
 end
 
 return {
+    s("testmod", fmt(
+    [[
+    #[cfg(test)]
+    mod {} {{
+        use super::*;
+        {}
+    }}{}
+    ]],
+    {
+        i(1, "name"),
+        i(2),
+        i(0)
+    }
+    )),
+
     s("fn", fmt(
     [[
     fn {}({}) {{
