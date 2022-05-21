@@ -14,7 +14,7 @@ ls.config.set_config {
   ext_opts = {
     [types.choiceNode] = {
       active = {
-        virt_text = { { "<-", "Error" } },
+        virt_text = { { "● Choice Node here", "CursorLineNr" } },
       },
     },
   },

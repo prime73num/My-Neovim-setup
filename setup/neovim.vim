@@ -46,7 +46,7 @@ set scl=yes
 set laststatus=3
 set foldlevel=0
 set foldclose=all 
-set foldcolumn=1 
+" set foldcolumn=1 
 set foldenable 
 set viewoptions-=curdir
 set cursorline
@@ -71,18 +71,22 @@ nnoremap K 3k
 nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap I ea
+nnoremap I hea
 nnoremap <cr> ^
 nnoremap <leader>z :call <SID>Myfold()<cr>
-nnoremap U %
+nnoremap u %
+nnoremap U u
 nnoremap } :cnext<cr>
 nnoremap { :cNext<cr>
+nnoremap '' m'<c-o>
+nnoremap p p=`]
 
 vnoremap J 3j
 vnoremap K 3k
 vnoremap [[ %
 vnoremap <leader>j J
 
+cnoremap jj <esc>q:
 
 
 autocmd BufReadPost * 

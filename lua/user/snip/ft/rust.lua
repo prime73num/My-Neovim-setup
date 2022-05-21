@@ -26,7 +26,27 @@ local getT = function(args)
 end
 
 return {
-    s("testmod", fmt(
+
+    s("mma", c(1, {
+        fmt(
+        [[{} => {}]],
+        { i(1), i(2) }
+        ),
+        fmt(
+        [[Some({}) => {}]],
+        { i(1,"x"), i(2) }
+        ),
+        fmt(
+        [[None => {}]],
+        { i(1) }
+        ),
+        fmt(
+        [[_ => {}]],
+        { i(1) }
+        )
+    })),
+
+    s("modtest", fmt(
     [[
     #[cfg(test)]
     mod {} {{
@@ -34,11 +54,7 @@ return {
         {}
     }}{}
     ]],
-    {
-        i(1, "name"),
-        i(2),
-        i(0)
-    }
+    { i(1, "name"), i(2), i(0) }
     )),
 
     s("fn", fmt(
@@ -47,12 +63,7 @@ return {
         {}
     }}{}
     ]],
-    {
-        i(1, "name"),
-        i(2),
-        i(3),
-        i(0)
-    }
+    { i(1, "name"), i(2), i(3), i(0) }
     )),
 
     s("struct", fmt(

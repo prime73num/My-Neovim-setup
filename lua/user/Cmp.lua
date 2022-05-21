@@ -33,9 +33,7 @@ cmp.setup({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
-	['<CR>'] = cmp.mapping.confirm {
-	  select = true,
-	},
+    ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
 	["<Tab>"] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -66,6 +64,7 @@ cmp.setup({
 		end
 	end,{'i','s'}),
   },
+  preselect = cmp.PreselectMode.None,
   sources = {
     { name = "luasnip" },
     { name = "nvim_lsp" },
@@ -93,11 +92,11 @@ cmp.setup({
   },
 
   experimental = {
-    ghost_text = false,
+      ghost_text = false,
   },
-   view = {           
+  view = {           
       entries = "custom" -- can be "custom", "wildmenu" or "native"
-    },
+  },
 })
 
 cmp.setup.cmdline('/', {
