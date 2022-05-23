@@ -1,5 +1,5 @@
 
-hi StartifyHeader ctermfg=116 guifg=#97DDDF
+" hi StartifyHeader ctermfg=116 guifg=#97DDDF
 
 hi WinSeparator ctermfg=253 ctermbg=NONE guifg=#666666 guibg=NONE
 
