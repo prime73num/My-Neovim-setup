@@ -16,7 +16,7 @@ hi myPopupborder ctermfg=253 ctermbg=236 guifg=#666666 guibg=#282A36
 hi MatchParen guibg=#565656 guifg=#ffffff
 
 hi Pmenu ctermfg=181 guifg=#dddddd guibg=#333333 ctermbg=NONE
-hi PmenuSel ctermbg=23 guibg=#007173
+" hi PmenuSel ctermbg=23 guibg=#007173
 hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 
 

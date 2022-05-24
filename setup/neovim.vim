@@ -93,8 +93,8 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
 	\ exe "normal! g`\"zz0" |
 	\ endif
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 
 " augroup Terminal
 "   autocmd TermOpen * setlocal statusline=%{b:term_title}

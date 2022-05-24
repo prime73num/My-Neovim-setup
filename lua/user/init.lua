@@ -13,3 +13,5 @@ require 'user.Cmdline'
 require 'user.autopairs'
 require 'user.lualine'
 require 'user.bufferline'
+require "user.color"
+require "user.startup"

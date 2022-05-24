@@ -17,9 +17,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Sytex themes startup
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
 Plug 'junegunn/seoul256.vim'
-Plug 'mhinz/vim-startify'
+Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Telescope and plugin
 Plug 'voldikss/vim-floaterm'

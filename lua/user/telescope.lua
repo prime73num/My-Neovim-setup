@@ -286,7 +286,7 @@ end
 local fd_Repo = function()
     require 'telescope'.extensions.file_browser.file_browser{
     previewer = false,
-		cwd = "~/TMD",
+		cwd = "~/Downloads",
 		prompt_title = "~MyRepo~",
 	}
 end
@@ -359,7 +359,6 @@ M.MyPicker = function(opts)
             results = {
                 { "華CWD", fd_cwd },
                 { "勇MyNeovim", fd_Myvim },
-                { " MyBlog", fd_MyBlog },
                 { " MyRepo", fd_Repo },
                 { " GrepString", live_grep },
                 { " Outline", outline },
@@ -367,7 +366,6 @@ M.MyPicker = function(opts)
                 { " BuiltIn", built },
                 { " Reload Vim", ReloadVim },
                 { " Reload Snip", loadsnip },
-                { " Hexo", hexo },
             },
             entry_maker = function(entry)
                 return {

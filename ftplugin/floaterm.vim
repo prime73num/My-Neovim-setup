@@ -1,6 +1,6 @@
 setlocal nonu
 setlocal nornu
-setlocal scl=no
+setlocal scl=yes
 " setlocal statusline=%{b:floaterm_name}
 
 nnoremap <buffer>H :FloatermPrev<cr>

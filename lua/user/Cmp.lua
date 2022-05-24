@@ -113,10 +113,9 @@ cmp.setup.cmdline(':', {
      autocomplete = false,
   },
   sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
+    { name = 'path' },
     { name = 'cmdline' }
-  })
+    })
 })
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
