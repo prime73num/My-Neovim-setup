@@ -98,14 +98,14 @@ local settings = {
 
     options = {
         after = function()
-            require("startup.utils").oldfiles_mappings()
+            -- require("startup.utils").oldfiles_mappings()
             vim.cmd("set nohlsearch")
         end,
         -- mapping_keys = true,
         cursor_column = 0.2,
         empty_lines_between_mappings = false,
         disable_statuslines = true,
-        paddings = { 4, 1, 1, 2, 2, 2, 2 },
+        paddings = { 12, 1, 1, 2, 2, 2, 2 },
     },
     colors = {
         background = "#1f2227",

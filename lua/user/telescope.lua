@@ -9,7 +9,7 @@ local Floaterm = function(prompt_bufnr)
     local selection = require("telescope.actions.state").get_selected_entry()
     local dir = vim.fn.fnamemodify(selection.filename, ":p:h")
     require("telescope.actions").close(prompt_bufnr)
-    vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
+    vim.cmd(string.format("FloatermNew! cd %s", dir))
 end
 
 local ChangeDir = function(prompt_bufnr)
@@ -120,7 +120,7 @@ telescope.setup {
         oldfiles = {
             -- theme = "dropdown",
             previewer = false,
-            initial_mode = "insert",
+            initial_mode = "normal",
             -- layout_config = {
             --     width = 0.4,
             --     height = 0.6,
@@ -192,7 +192,7 @@ telescope.setup {
                         local dir = finder.path
                         print("Open shell at: "..dir)
                         require("telescope.actions").close(prompt_bufnr)
-                        vim.cmd(string.format("FloatermNew! --title='~Choose_Dir~' cd %s", dir))
+                        vim.cmd(string.format("FloatermNew! cd %s", dir))
                     end,
                 },
             },
@@ -345,10 +345,7 @@ end
 -- our picker function: colors
 M.MyPicker = function(opts)
     opts = opts or {}
-    -- opts = {
-    --   initial_mode = "insert",
-    -- }
-    opts.initial_mode = "insert"
+    opts.initial_mode = "normal"
     opts.layout_config = {
       width = 0.3,
       height = 0.3,
