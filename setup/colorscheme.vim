@@ -24,7 +24,7 @@ hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
 
 " hi NeotreeTitle ctermfg=68 guifg=#719CDF guibg=#444444
-hi NormalFloat guibg=#444444
+hi NormalFloat guibg=#282A36
 hi Normal guibg=NONE
 hi FloatBorder guifg=#777777
 

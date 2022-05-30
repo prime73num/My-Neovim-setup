@@ -14,17 +14,6 @@ local ai = require("luasnip.nodes.absolute_indexer")
 local fmt = require("luasnip.extras.fmt").fmt
 
 
-local getT = function(args)
-  local text = args[1][1] or ""
-  local split = vim.split(text, "<", { plain = true })
-  local tail = split[2] or ""
-  local split = vim.split(tail, ">", { plain = true })
-  if split[1] == "" then
-    return ""
-  end
-  return "<"..split[1]..">"
-end
-
 return {
 
     s("mma", c(1, {
@@ -45,6 +34,11 @@ return {
         { i(1) }
         )
     })),
+
+    s("debug", fmt(
+    [[println!("{{}}", {});]],
+    { i(1, "target") }
+    )),
 
     s("modtest", fmt(
     [[
@@ -81,12 +75,11 @@ return {
 
     s("impl", fmt(
     [[
-    impl{} {} {{
+    impl {} {{
         {}
     }}{}
     ]],
     {
-      f(getT,{1}),
       i(1, "name"),
       i(2),
       i(0)

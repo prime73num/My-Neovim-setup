@@ -8,6 +8,7 @@
 "                                    
 
 if !exists("g:mycount")
+  let g:mycmd = "FloatermToggle First"
   let g:mycount = 1
   syntax on
   set background=dark
@@ -80,6 +81,7 @@ nnoremap } :cnext<cr>
 nnoremap { :cNext<cr>
 nnoremap '' m'<c-o>
 nnoremap p p=`]
+nnoremap . :exec g:mycmd<cr>
 
 vnoremap J 3j
 vnoremap K 3k

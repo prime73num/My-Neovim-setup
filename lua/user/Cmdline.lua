@@ -80,6 +80,13 @@ local allItem = {
           print("Tagbar")
         end,
     },
+    {
+        label = "Set Most Use Command",
+        _funref = function()
+            local cmd = vim.fn.input("Input the commond you want :")
+            vim.g.mycmd = cmd
+        end,
+    },
 }
 local getres = function()
   return allItem
