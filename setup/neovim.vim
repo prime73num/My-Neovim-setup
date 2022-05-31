@@ -54,7 +54,7 @@ set cursorline
 set nowrap
 
 set pumheight=20
-set pumblend=30
+set pumblend=16
 
 "  Neovim Keymap
 inoremap jj <esc>

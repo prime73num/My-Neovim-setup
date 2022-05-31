@@ -46,16 +46,15 @@ end
 
 cmp.setup({
   window = {
-    completion = {
-        winhighlight = 'Normal:cmpnormal,FloatBorder:CompleBorder,CursorLine:Visual,Search:None',
-    },
     documentation = {
-        winhighlight = 'Normal:cmpnormal,FloatBorder:CompleBorder,CursorLine:Visual,Search:None',
+        winhighlight = 'Normal:Pmenu',
     }
+  },
+  completion = {
+      completeopt = 'menu,menuone,noinsert',
   },
   matching = {
       disallow_prefix_unmatching = true,
-      disallow_partial_matching = true,
   },
   preselect = cmp.PreselectMode.None,
   sorting = {
@@ -112,14 +111,14 @@ cmp.setup({
     ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
 	["<Tab>"] = function(fallback)
       if cmp.visible() then
-        cmp.select_next_item()
+        cmp.select_next_item({behavior = "select"})
       else
         fallback()
       end
     end,
     ["<S-Tab>"] = function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item()
+        cmp.select_prev_item({behavior = "select"})
       else
         fallback()
       end
@@ -232,14 +231,12 @@ cmp.setup.filetype('text', {
 })
 
 vim.cmd([[
-hi cmpnormal guibg=#282A36
-hi CompleBorder guifg=#777777 guibg=#282A36
 hi CmpItemAbbrDeprecated ctermfg=168 guifg=#E17899
 hi CmpItemAbbrMatchFuzzy ctermfg=168 guifg=#E17899
 hi CmpItemKind ctermfg=110 guifg=#98BEDE
 highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-highlight CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
+highlight CmpItemAbbrMatch guibg=NONE guifg=#fabd2f
+highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#fabd2f
 highlight CmpItemKindVariable guibg=NONE guifg=#9CDCFE
 highlight CmpItemKindInterface guibg=NONE guifg=#9CDCFE
 highlight CmpItemKindText guibg=NONE guifg=#9CDCFE

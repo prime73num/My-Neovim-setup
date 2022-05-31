@@ -388,9 +388,9 @@ end
 vim.cmd([[
 hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
 hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333
-hi TelescopeNormal guibg=#282A36
-hi TelescopeBorder guifg=#777777 guibg=#282A36
-hi TelescopeMatching guibg=NONE guifg=#569CD6
+hi TelescopeNormal guibg=#3c3836
+hi TelescopeBorder guifg=#777777 guibg=#3c3836
+hi TelescopeMatching guibg=NONE guifg=#fabd2f
 hi TelescopePromptPrefix guifg=#98BC99 
 hi TelescopeSelectionCaret guifg=#98BEDE guibg=#007173
 ]])
