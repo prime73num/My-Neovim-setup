@@ -17,7 +17,7 @@ hi MatchParen guibg=#565656 guifg=#ffffff
 
 hi Pmenu ctermfg=181 guifg=#dddddd guibg=#333333 ctermbg=NONE
 " hi PmenuSel ctermbg=23 guibg=#007173
-hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
+" hi PmenuSbar ctermfg=247 ctermbg=239 guifg=#dddddd guibg=#616161
 
 
 hi DiagnosticError ctermfg=168 guifg=#E17899

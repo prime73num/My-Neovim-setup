@@ -286,7 +286,7 @@ end
 local fd_Repo = function()
     require 'telescope'.extensions.file_browser.file_browser{
     previewer = false,
-		cwd = "~/Downloads",
+		cwd = "~/TMD",
 		prompt_title = "~MyRepo~",
 	}
 end

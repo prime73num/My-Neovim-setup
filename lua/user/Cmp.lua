@@ -18,7 +18,83 @@ local lspkind = require "lspkind"
 lspkind.init()
 local cmp = require'cmp'
 
+local lspkind_comparator = function(conf)
+    local lsp_types = require('cmp.types').lsp
+    return function(entry1, entry2)
+        if entry1.source.name ~= 'nvim_lsp' then
+            if entry2.source.name == 'nvim_lsp' then
+                return false
+            else
+                return nil
+            end
+        end
+        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+        local priority1 = conf.kind_priority[kind1] or 0
+        local priority2 = conf.kind_priority[kind2] or 0
+        if priority1 == priority2 then
+            return nil
+        end
+        return priority2 < priority1
+    end
+end
+
+local label_comparator = function(entry1, entry2)
+    return entry1.completion_item.label < entry2.completion_item.label
+end
+
 cmp.setup({
+  window = {
+    completion = {
+        winhighlight = 'Normal:cmpnormal,FloatBorder:CompleBorder,CursorLine:Visual,Search:None',
+    },
+    documentation = {
+        winhighlight = 'Normal:cmpnormal,FloatBorder:CompleBorder,CursorLine:Visual,Search:None',
+    }
+  },
+  matching = {
+      disallow_prefix_unmatching = true,
+      disallow_partial_matching = true,
+  },
+  preselect = cmp.PreselectMode.None,
+  sorting = {
+      comparators = {
+        lspkind_comparator({
+          kind_priority = {
+            Variable = 11,
+            Field = 11,
+            Property = 11,
+            Struct = 11,
+
+            Enum = 10,
+            Function = 10,
+            Method = 10,
+            Reference = 10,
+            EnumMember = 10,
+            Event = 10,
+            Operator = 10,
+            Constant = 10,
+
+            Keyword = 7,
+            Snippet = 7,
+
+            File = 8,
+            Folder = 8,
+            Class = 5,
+            Color = 5,
+            Module = 5,
+            Constructor = 1,
+            Interface = 1,
+            Text = 1,
+            TypeParameter = 1,
+            Unit = 1,
+            Value = 1,
+          },
+        }),
+        label_comparator,
+      },
+  },
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
@@ -64,13 +140,12 @@ cmp.setup({
 		end
 	end,{'i','s'}),
   },
-  preselect = cmp.PreselectMode.None,
   sources = {
     { name = "luasnip" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "path" },
-    { name = "buffer", keyword_length = 4 },
+    { name = "buffer", keyword_length = 3 }
   },
 
   formatting = {
@@ -93,6 +168,7 @@ cmp.setup({
 
   experimental = {
       ghost_text = false,
+      native_menu = false
   },
   view = {           
       entries = "custom" -- can be "custom", "wildmenu" or "native"
@@ -156,6 +232,8 @@ cmp.setup.filetype('text', {
 })
 
 vim.cmd([[
+hi cmpnormal guibg=#282A36
+hi CompleBorder guifg=#777777 guibg=#282A36
 hi CmpItemAbbrDeprecated ctermfg=168 guifg=#E17899
 hi CmpItemAbbrMatchFuzzy ctermfg=168 guifg=#E17899
 hi CmpItemKind ctermfg=110 guifg=#98BEDE

@@ -31,7 +31,7 @@ local settings = {
         title = "Basic Commands",
         margin = 5,
         content = {
-            { " File Browser", "Neotree reveal=true reveal_force_cwd", "i" },
+            { " File Browser", "Neotree", "i" },
             { " Find File", "lua require('user.telescope').find_files()", "a" },
             { " Quit", "q", "q" },
             -- { " New File", "lua require'startup'.new_file()", "e" },

@@ -8,7 +8,7 @@
 "                                    
 
 if !exists("g:mycount")
-  let g:mycmd = "FloatermToggle First"
+  let g:mycmd = "FloatermToggle"
   let g:mycount = 1
   syntax on
   set background=dark
@@ -52,6 +52,9 @@ set foldenable
 set viewoptions-=curdir
 set cursorline
 set nowrap
+
+set pumheight=20
+set pumblend=30
 
 "  Neovim Keymap
 inoremap jj <esc>
