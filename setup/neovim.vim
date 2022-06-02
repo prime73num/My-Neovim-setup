@@ -76,7 +76,8 @@ nnoremap ee :b #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap I hea
-nnoremap <cr> ^
+nnoremap 0 ^
+nnoremap <cr> $
 nnoremap <leader>z :call <SID>Myfold()<cr>
 nnoremap u %
 nnoremap U u

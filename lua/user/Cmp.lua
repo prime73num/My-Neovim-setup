@@ -17,54 +17,17 @@ local ls = require "luasnip"
 local lspkind = require "lspkind"
 lspkind.init()
 local cmp = require'cmp'
-
-local lspkind_comparator = function(conf)
-    local lsp_types = require('cmp.types').lsp
-    return function(entry1, entry2)
-        if entry1.source.name ~= 'nvim_lsp' then
-            if entry2.source.name == 'nvim_lsp' then
-                return false
-            else
-                return nil
-            end
-        end
-        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
-        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
-
-        local priority1 = conf.kind_priority[kind1] or 0
-        local priority2 = conf.kind_priority[kind2] or 0
-        if priority1 == priority2 then
-            return nil
-        end
-        return priority2 < priority1
-    end
-end
+local compare = require('cmp.config.compare')
 
 local label_comparator = function(entry1, entry2)
-    return entry1.completion_item.label < entry2.completion_item.label
+    return entry1.completion_item.label > entry2.completion_item.label
 end
-
-cmp.setup({
-  window = {
-    documentation = {
-        winhighlight = 'Normal:Pmenu',
-    }
-  },
-  completion = {
-      completeopt = 'menu,menuone,noinsert',
-  },
-  matching = {
-      disallow_prefix_unmatching = true,
-  },
-  preselect = cmp.PreselectMode.None,
-  sorting = {
-      comparators = {
-        lspkind_comparator({
-          kind_priority = {
-            Variable = 11,
-            Field = 11,
-            Property = 11,
-            Struct = 11,
+local lspkind_comparator = function(entry1, entry2)
+    local conf = {
+        kind_priority = {
+            Variable = 14,
+            Field = 12,
+            -- Property = 11,
 
             Enum = 10,
             Function = 10,
@@ -74,9 +37,10 @@ cmp.setup({
             Event = 10,
             Operator = 10,
             Constant = 10,
+            Struct = 8,
 
             Keyword = 7,
-            Snippet = 7,
+            -- Snippet = 7,
 
             File = 8,
             Folder = 8,
@@ -89,9 +53,47 @@ cmp.setup({
             TypeParameter = 1,
             Unit = 1,
             Value = 1,
-          },
-        }),
-        label_comparator,
+        }
+    }
+    local lsp_types = require('cmp.types').lsp
+        if entry1.source.name ~= 'nvim_lsp' or entry2.source.name ~= "nvim_lsp" then
+            return nil
+        end
+        local kind1 = lsp_types.CompletionItemKind[entry1:get_kind()]
+        local kind2 = lsp_types.CompletionItemKind[entry2:get_kind()]
+
+        local priority1 = conf.kind_priority[kind1] or 0
+        local priority2 = conf.kind_priority[kind2] or 0
+        if priority1 == priority2 then
+            return nil
+        end
+        return priority2 < priority1
+end
+
+
+cmp.setup({
+  window = {
+    documentation = {
+        winhighlight = 'Normal:Pmenu',
+    }
+  },
+  matching = {
+      disallow_prefix_unmatching = true,
+  },
+  preselect = cmp.PreselectMode.None,
+  sorting = {
+      comparators = {
+        lspkind_comparator,
+        compare.offset,
+        compare.exact,
+        -- compare.scopes,
+        compare.score,
+        compare.recently_used,
+        compare.locality,
+        compare.kind,
+        compare.sort_text,
+        compare.length,
+        compare.order,
       },
   },
   snippet = {
@@ -109,20 +111,20 @@ cmp.setup({
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
-	["<Tab>"] = function(fallback)
+	["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item({behavior = "select"})
       else
         fallback()
       end
-    end,
-    ["<S-Tab>"] = function(fallback)
+    end,{'i'}),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item({behavior = "select"})
       else
         fallback()
       end
-    end,
+    end,{'i'}),
 	["<c-k>"] = cmp.mapping(function()
 		if ls.jumpable(-1) then
 			ls.jump(-1)
@@ -140,8 +142,8 @@ cmp.setup({
 	end,{'i','s'}),
   },
   sources = {
-    { name = "luasnip" },
-    { name = "nvim_lsp" },
+    { name = "luasnip" , priority = 8},
+    { name = "nvim_lsp" , priority = 5},
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 3 }
@@ -187,10 +189,10 @@ cmp.setup.cmdline(':', {
   completion = {
      autocomplete = false,
   },
-  sources = cmp.config.sources({
+  sources = {
     { name = 'path' },
     { name = 'cmdline' }
-    })
+  }
 })
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
@@ -235,8 +237,8 @@ hi CmpItemAbbrDeprecated ctermfg=168 guifg=#E17899
 hi CmpItemAbbrMatchFuzzy ctermfg=168 guifg=#E17899
 hi CmpItemKind ctermfg=110 guifg=#98BEDE
 highlight CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-highlight CmpItemAbbrMatch guibg=NONE guifg=#fabd2f
-highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#fabd2f
+highlight CmpItemAbbrMatch guibg=NONE guifg=#4EC9B0
+highlight CmpItemAbbrMatchFuzzy guibg=NONE guifg=#4EC9B0
 highlight CmpItemKindVariable guibg=NONE guifg=#9CDCFE
 highlight CmpItemKindInterface guibg=NONE guifg=#9CDCFE
 highlight CmpItemKindText guibg=NONE guifg=#9CDCFE
