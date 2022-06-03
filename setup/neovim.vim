@@ -81,8 +81,8 @@ nnoremap <cr> $
 nnoremap <leader>z :call <SID>Myfold()<cr>
 nnoremap u %
 nnoremap U u
-nnoremap } :cnext<cr>
-nnoremap { :cNext<cr>
+nnoremap <leader>j :cnext!<cr>
+nnoremap <leader>k :cNext!<cr>
 nnoremap '' m'<c-o>
 nnoremap p p=`]
 nnoremap . :exec g:mycmd<cr>

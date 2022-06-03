@@ -36,7 +36,7 @@ local lspkind_comparator = function(entry1, entry2)
             EnumMember = 10,
             Event = 10,
             Operator = 10,
-            Constant = 10,
+            Module = 10,
             Struct = 8,
 
             Keyword = 7,
@@ -46,7 +46,7 @@ local lspkind_comparator = function(entry1, entry2)
             Folder = 8,
             Class = 5,
             Color = 5,
-            Module = 5,
+            Constant = 1,
             Constructor = 1,
             Interface = 1,
             Text = 1,

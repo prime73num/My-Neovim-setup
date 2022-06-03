@@ -68,6 +68,7 @@ require('lualine').setup {
   },
   tabline = {},
   extensions = {
-    floaterm 
+    floaterm ,
+    'quickfix'
   }
 }
