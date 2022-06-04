@@ -72,7 +72,7 @@ nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
 nnoremap J 3j
 nnoremap K 3k
-nnoremap ee :b #<cr>
+nnoremap ee :e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap I hea

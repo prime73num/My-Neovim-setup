@@ -39,6 +39,10 @@ return {
     [[println!("{{}}", {});]],
     { i(1, "target") }
     )),
+    s("message", fmt(
+    [[println!("{}");]],
+    { i(1, "message") }
+    )),
 
     s("modtest", fmt(
     [[

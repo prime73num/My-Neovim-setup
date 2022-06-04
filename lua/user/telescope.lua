@@ -358,7 +358,7 @@ M.MyPicker = function(opts)
                 { "華CWD", fd_cwd },
                 { "勇MyNeovim", fd_Myvim },
                 { " MyRepo", fd_Repo },
-                { " GrepString", live_grep },
+                { " Grep String in CWD", live_grep },
                 { " Outline", outline },
                 { " Git_status", git_status },
                 { " BuiltIn", built },

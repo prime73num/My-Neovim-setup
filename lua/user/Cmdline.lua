@@ -14,7 +14,7 @@ local allItem = {
         end,
     },
     {
-        label = "String Grep",
+        label = "String Grep Under Cursor in file root",
         _funref = function()
             local word = vim.fn.expand('<cword>')
             local root = require'lspconfig'.util.root_pattern('.git')() or vim.fn.expand("%:p:h")
@@ -62,7 +62,7 @@ local allItem = {
         label = "Delete buffer.",
         _funref = function()
           vim.cmd("BufferLineCyclePrev")
-          vim.cmd("bd #")
+          vim.cmd("bdelete #")
           print("Delete this buffer!")
         end,
     },

@@ -133,4 +133,4 @@ require("neo-tree").setup({
   }
 })
 vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
-vim.cmd([[hi NeotreeTitle ctermfg=68 guifg=#719CDF guibg=#444444]])
+vim.cmd([[hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
