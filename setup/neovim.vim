@@ -55,12 +55,14 @@ set nowrap
 
 set pumheight=20
 set pumblend=16
+set nohlsearch
 
 "  Neovim Keymap
 inoremap jj <esc>
 inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 
 nnoremap <leader>i ciw
+nnoremap cia ?[(,]<cr>lc/[,)]<cr> 
 nnoremap <leader>; :
 nnoremap <leader>w <C-w>
 nnoremap <leader>q <C-w>c
@@ -75,7 +77,7 @@ nnoremap K 3k
 nnoremap ee :e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap I hea
+" nnoremap I hea
 nnoremap 0 ^
 nnoremap <cr> $
 nnoremap <leader>z :call <SID>Myfold()<cr>

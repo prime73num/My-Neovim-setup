@@ -99,7 +99,6 @@ local settings = {
     options = {
         after = function()
             -- require("startup.utils").oldfiles_mappings()
-            vim.cmd("nohlsearch")
         end,
         -- mapping_keys = true,
         cursor_column = 0.2,

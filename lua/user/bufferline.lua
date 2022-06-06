@@ -54,7 +54,7 @@ require('bufferline').setup {
                     -- icon = "", -- Optional
                     matcher = function(buf) -- Mandatory
                         local cwd = vim.fn.getcwd()
-                        local name = buf.path
+                        local name = vim.fn.expand("#"..buf.id..":p")
                         local start = string.sub(name, 1, #cwd)
                         return start==cwd
                     end,
@@ -64,7 +64,10 @@ require('bufferline').setup {
                     highlight = {gui = "undercurl", guisp = "green"},
                     auto_close = false,  -- whether or not close this group if it doesn't contain the current buffer
                     matcher = function(buf)
-                        return true
+                        local cwd = vim.fn.getcwd()
+                        local name = buf.path
+                        local start = string.sub(name, 1, #cwd)
+                        return start~=cwd
                     end,
                 },
             }
