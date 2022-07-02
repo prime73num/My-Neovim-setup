@@ -47,10 +47,10 @@ highlight TSConstant guifg=#DCDCAA
 highlight TSConstBuiltin guifg=#569CD6
 " Not sure about this guy
 highlight TSConstMacro guifg=#4EC9B0
-highlight TSString guifg=#CE9178
-highlight TSStringRegex guifg=#CE9178
+" highlight TSString guifg=#CE9178
+" highlight TSStringRegex guifg=#CE9178
 highlight TSStringEscape guifg=#D7BA7D
-highlight TSCharacter guifg=#CE9178
+" highlight TSCharacter guifg=#CE9178
 highlight TSNumber guifg=#B5CEA8
 highlight TSBoolean guifg=#569CD6
 highlight TSFloat guifg=#B5CEA8
@@ -76,9 +76,9 @@ highlight TSConditional guifg=#C586C0
 highlight TSRepeat guifg=#C586C0
 highlight TSLabel guifg=#FF99CC
 " Does not work for yield and return they should be diff then class and def
-highlight TSKeyword guifg=#569CD6
+" highlight TSKeyword guifg=#569CD6
 highlight TSKeywordFunction guifg=#FF99CC
-highlight TSKeywordOperator guifg=#569CD6
+" highlight TSKeywordOperator guifg=#569CD6
 highlight TSOperator guifg=#ABB2BF
 highlight TSException guifg=#C586C0
 highlight TSType guifg=#4EC9B0 gui=italic
