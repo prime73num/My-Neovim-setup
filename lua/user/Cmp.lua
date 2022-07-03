@@ -163,6 +163,7 @@ cmp.setup({
 		dictionary = "[Dic]",
 		latex_symbols = "[LaTex]",
 		cmd = "[Cmd]",
+        omni = '[Omni]'
       },
     },
   },
@@ -197,13 +198,15 @@ cmp.setup.cmdline(':', {
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
     { name = "luasnip" },
+    { 
+        name = 'omni',
+    },
     {
       name = "dictionary",
-      keyword_length = 4,
+      keyword_length = 5,
 	  max_item_count = 20,
     },
     { name = 'buffer' },
-    { name = 'calc' },
   })
 })
 cmp.setup.filetype('markdown', {

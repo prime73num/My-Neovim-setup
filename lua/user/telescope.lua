@@ -386,13 +386,14 @@ M.MyPicker = function(opts)
     }):find()
 end
 
+-- hi TelescopeNormal guibg=#3c3836
+-- hi TelescopeBorder guifg=#777777 guibg=#3c3836
 vim.cmd([[
 hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
 hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333
-hi TelescopeNormal guibg=#3c3836
-hi TelescopeBorder guifg=#777777 guibg=#3c3836
 hi TelescopeMatching guibg=NONE guifg=#4EC9B0
 hi TelescopePromptPrefix guifg=#98BC99 
 hi TelescopeSelectionCaret guifg=#98BEDE guibg=#007173
+hi TelescopeSelection guifg=#DFBC72 guibg=NONE
 ]])
 return M

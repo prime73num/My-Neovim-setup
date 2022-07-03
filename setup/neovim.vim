@@ -54,7 +54,7 @@ set cursorline
 set nowrap
 
 set pumheight=20
-set pumblend=16
+" set pumblend=15
 set nohlsearch
 
 "  Neovim Keymap
