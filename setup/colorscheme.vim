@@ -9,5 +9,5 @@ hi DiagnosticError ctermfg=168 guifg=#E17899
 hi DiagnosticSignError ctermfg=168 guifg=#E17899
 
 hi CursorLine guibg=#444444 guifg=NONE
-hi LineNr guibg=#333333 guifg=#777777
+" hi LineNr guibg=#333333 guifg=#777777
 hi GitGutterAdd ctermfg=108 ctermbg=236 guibg=#333333

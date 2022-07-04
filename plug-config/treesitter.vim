@@ -76,7 +76,7 @@ highlight TSConditional guifg=#C586C0
 highlight TSRepeat guifg=#C586C0
 highlight TSLabel guifg=#FF99CC
 " Does not work for yield and return they should be diff then class and def
-highlight TSKeyword guifg=#DFBC72
+highlight TSKeyword guifg=#FF99CC
 highlight TSKeywordFunction guifg=#FF99CC
 " highlight TSKeywordOperator guifg=#569CD6
 highlight TSOperator guifg=#ABB2BF
