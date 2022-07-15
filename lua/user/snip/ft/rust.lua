@@ -61,7 +61,7 @@ return {
         {}
     }}{}
     ]],
-    { i(1, "name"), i(2), i(3), ,i(4, "unimplemented!()"), i(0) }
+    { i(1, "name"), i(2), i(3), i(4, "unimplemented!()"), i(0) }
     )),
 
     s("struct", fmt(
