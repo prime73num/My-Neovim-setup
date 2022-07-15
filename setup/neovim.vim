@@ -85,7 +85,6 @@ nnoremap u %
 nnoremap U u
 nnoremap <leader>j :cnext!<cr>
 nnoremap <leader>k :cNext!<cr>
-nnoremap '' m'<c-o>
 nnoremap p p=`]
 nnoremap . :exec g:mycmd<cr>
 
