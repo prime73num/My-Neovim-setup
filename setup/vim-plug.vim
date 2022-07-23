@@ -61,7 +61,6 @@ Plug 'tpope/vim-surround'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'karb94/neoscroll.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'windwp/nvim-autopairs'
 

@@ -93,7 +93,7 @@ vnoremap K 3k
 vnoremap [[ %
 vnoremap <leader>j J
 
-cnoremap jj <esc>q:
+" cnoremap jj <esc>q:
 
 
 autocmd BufReadPost * 

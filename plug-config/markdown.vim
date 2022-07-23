@@ -84,7 +84,7 @@ let g:mkdp_preview_options = {
     \ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
-let g:mkdp_port = ''
+let g:mkdp_port = '12345'
 let g:mkdp_page_title = '「${name}」'
 let g:mkdp_filetypes = ['markdown']
 let g:mkdp_theme = 'dark'

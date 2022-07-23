@@ -30,3 +30,9 @@ require('renamer').setup {
     -- the LSP 'textDocument/rename' raw response as its parameter.
     handler = nil,
 }
+
+vim.cmd([[
+hi default link RenamerNormal Normal
+hi default link RenamerBorder RenamerNormal
+hi default link RenamerTitle Identifier
+]])

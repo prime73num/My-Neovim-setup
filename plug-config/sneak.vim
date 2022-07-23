@@ -1,3 +1,3 @@
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
+nmap f <Plug>Sneak_s
+nmap F <Plug>Sneak_S
 let g:sneak#prompt = '  '

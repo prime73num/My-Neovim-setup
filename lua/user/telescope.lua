@@ -4,6 +4,7 @@ local action_layout = require("telescope.actions.layout")
 local fb_actions = require "telescope".extensions.file_browser.actions
 local action_state = require "telescope.actions.state"
 local fb_utils = require "telescope._extensions.file_browser.utils"
+local previewers = require("telescope.previewers")
 
 local Floaterm = function(prompt_bufnr)
     local selection = require("telescope.actions.state").get_selected_entry()
@@ -23,8 +24,23 @@ local ChangeDir = function(prompt_bufnr)
     }
 end
 
+local new_maker = function(filepath, bufnr, opts)
+  opts = opts or {}
+
+  filepath = vim.fn.expand(filepath)
+  vim.loop.fs_stat(filepath, function(_, stat)
+    if not stat then return end
+    if stat.size > 100000 then
+      return
+    else
+      previewers.buffer_previewer_maker(filepath, bufnr, opts)
+    end
+  end)
+end
+
 telescope.setup {
     defaults = {
+        buffer_previewer_maker = new_maker,
         prompt_prefix="  ",
         selection_caret = " ",
         initial_mode = "normal",
