@@ -14,6 +14,13 @@ local allItem = {
         end,
     },
     {
+        label = "Search in this file",
+        _funref = function()
+            local word = vim.fn.expand('<cword>')
+            require('telescope.builtin').current_buffer_fuzzy_find()
+        end,
+    },
+    {
         label = "String Grep Under Cursor in file root",
         _funref = function()
             local word = vim.fn.expand('<cword>')

@@ -27,24 +27,24 @@ local lspkind_comparator = function(entry1, entry2)
         kind_priority = {
             Variable = 14,
             Field = 12,
+            Method = 12,
             -- Property = 11,
 
             Enum = 10,
             Function = 10,
-            Method = 10,
             Reference = 10,
             EnumMember = 10,
             Event = 10,
             Operator = 10,
+            Keyword = 10,
             Module = 10,
             Struct = 8,
 
-            Keyword = 7,
+            Class = 7,
             -- Snippet = 7,
 
             File = 8,
             Folder = 8,
-            Class = 5,
             Color = 5,
             Constant = 1,
             Constructor = 1,
@@ -78,21 +78,21 @@ cmp.setup({
     }
   },
   matching = {
-      disallow_prefix_unmatching = true,
+    disallow_prefix_unmatching = true,
   },
   preselect = cmp.PreselectMode.None,
   sorting = {
       comparators = {
-        lspkind_comparator,
         compare.offset,
-        compare.exact,
-        -- compare.scopes,
-        compare.score,
-        compare.recently_used,
         compare.locality,
+        compare.exact,
+        compare.score,
+        lspkind_comparator,
         compare.kind,
-        compare.sort_text,
         compare.length,
+        compare.recently_used,
+        -- compare.scopes,
+        -- compare.sort_text,
         compare.order,
       },
   },
@@ -143,7 +143,7 @@ cmp.setup({
   },
   sources = {
     { name = "luasnip" , priority = 8},
-    { name = "nvim_lsp" , priority = 5},
+    { name = "nvim_lsp" , priority = 5, max_item_count=12},
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 3 }
@@ -152,6 +152,7 @@ cmp.setup({
   formatting = {
     format = lspkind.cmp_format {
       with_text = true,
+      maxwidth = 30,
       menu = {
         buffer = "[buf]",
         nvim_lsp = "[LSP]",
@@ -159,10 +160,10 @@ cmp.setup({
         path = "[path]",
         luasnip = "[Snip]",
         tn = "[TabNine]",
-		calc = "[Calc]",
-		dictionary = "[Dic]",
-		latex_symbols = "[LaTex]",
-		cmd = "[Cmd]",
+        calc = "[Calc]",
+        dictionary = "[Dic]",
+        latex_symbols = "[LaTex]",
+        cmd = "[Cmd]",
         omni = '[Omni]'
       },
     },

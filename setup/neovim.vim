@@ -33,8 +33,8 @@ set nuw=3
 set showmode
 set cmdheight=1
 set ignorecase
-set sw=4
-set ts=4
+set sw=2
+set ts=2
 set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor

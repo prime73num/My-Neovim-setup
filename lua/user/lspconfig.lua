@@ -22,20 +22,23 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers = { 'pyright', 'clangd', 'tsserver','rust_analyzer' }
+local lsp_flag = {
+  debounce_text_changes = 150,
+}
+local lsp_handlers = {
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false
+  }),
+}
+
+local servers = { 'pyright', 'tsserver','rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-    handlers = {
-        ["textDocument/publishDiagnostics"] = vim.lsp.with(
-        vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false
-        }),
-    },
-    flags = {
-      debounce_text_changes = 150,
-    }
+    handlers = lsp_handlers,
+    flags = lsp_flag
   }
 end
 
@@ -50,4 +53,18 @@ require'lspconfig'.jdtls.setup{
    root_dir = function(fname)
       return require'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
    end
+}
+require'lspconfig'.clangd.setup{
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flag,
+  handlers = lsp_handlers,
+  cmd = { 
+    'clangd',
+    '--all-scopes-completion=false',
+    '--clang-tidy',
+    '--header-insertion=never',
+    '--header-insertion-decorators',
+    '--completion-style=detailed'
+  },
 }
