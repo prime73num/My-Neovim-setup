@@ -61,10 +61,9 @@ require'lspconfig'.clangd.setup{
   handlers = lsp_handlers,
   cmd = { 
     'clangd',
+    '--background-index',
     '--all-scopes-completion=false',
     '--clang-tidy',
-    '--header-insertion=never',
-    '--header-insertion-decorators',
-    '--completion-style=detailed'
+    '--header-insertion=never'
   },
 }

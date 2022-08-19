@@ -38,7 +38,7 @@ set ts=2
 set expandtab
 set smartindent
 set guicursor=n-v:block-Cursor,i:ver90-Cursor
-set scrolloff=20
+set scrolloff=10
 set backspace=indent,eol,start
 set splitright
 set splitbelow
@@ -74,7 +74,7 @@ nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
 nnoremap J 3j
 nnoremap K 3k
-nnoremap ee :e #<cr>
+nnoremap <leader>e :e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 " nnoremap I hea
@@ -92,8 +92,6 @@ vnoremap J 3j
 vnoremap K 3k
 vnoremap [[ %
 vnoremap <leader>j J
-
-" cnoremap jj <esc>q:
 
 
 autocmd BufReadPost * 
@@ -116,3 +114,17 @@ function s:Myfold()
     endif
 endfunction
 
+function! <SID>GotoPattern(pattern, dir) range
+    let g:_saved_search_reg = @/
+    let l:flags = "We"
+    if a:dir == "b"
+        let l:flags .= "b"
+    endif
+    for i in range(v:count1)
+      call search(a:pattern, l:flags, line("."))
+    endfor
+    let @/ = g:_saved_search_reg
+endfunction
+" nnoremap <silent> w :<C-U>call <SID>GotoPattern('\(^\\|\<\)[A-Za-z0-9_]', 'f')<CR>
+nnoremap <silent> e :<C-U>call <SID>GotoPattern('\(^\\|\<\)[A-Za-z0-9_]', 'b')<CR>
+nnoremap <silent> w :call <SID>GotoPattern('[A-Za-z0-9_]\(\>\\|$\)', 'f')<CR>

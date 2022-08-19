@@ -35,7 +35,7 @@ local settings = {
             { " Find File", "lua require('user.telescope').find_files()", "a" },
             { " Quit", "q", "q" },
             { " New File", "lua require'startup'.new_file()", "n" },
-            { " Recent Files", "Telescope oldfiles", "<leader>bo" },
+            { " Recent Files", "Telescope oldfiles", "s" },
             -- { " Colorschemes", "Telescope colorscheme", "<leader>cs" },
         },
         highlight = "String",
@@ -89,17 +89,17 @@ local settings = {
         oldfiles_amount = 10,
     },
     mappings = {
-        -- execute_command = "<CR>",
-        open_file = "o",
-        open_file_split = "<c-o>",
-        open_section = "<cr>",
+        execute_command = "<CR>",
+        -- open_file = "o",
+        -- open_file_split = "<c-o>",
+        -- open_section = "<cr>",
         open_help = "?",
     },
 
     options = {
-        after = function()
+        -- after = function()
             -- require("startup.utils").oldfiles_mappings()
-        end,
+        -- end,
         -- mapping_keys = true,
         cursor_column = 0.2,
         empty_lines_between_mappings = false,

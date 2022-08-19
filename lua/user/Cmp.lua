@@ -48,8 +48,8 @@ local lspkind_comparator = function(entry1, entry2)
             Color = 5,
             Constant = 1,
             Constructor = 1,
-            Interface = 1,
-            Text = 1,
+            Interface = 0,
+            Text = 0,
             TypeParameter = 1,
             Unit = 1,
             Value = 1,
@@ -143,7 +143,7 @@ cmp.setup({
   },
   sources = {
     { name = "luasnip" , priority = 8},
-    { name = "nvim_lsp" , priority = 5, max_item_count=12},
+    { name = "nvim_lsp" , priority = 5},
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 3 }

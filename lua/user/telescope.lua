@@ -268,7 +268,7 @@ end
 
 map("n", "<Leader>bb", ":Telescope buffers<CR>")
 map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
-map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
+-- map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
 map("n", "<Leader>f", ':lua require("user.telescope").find_files()<cr>')
 
 local M = {}
@@ -292,114 +292,6 @@ M.find_files = function()
         },
         mycount = 1,
     })
-end
-local fd_Myvim = function()
-    require 'telescope'.extensions.file_browser.file_browser({
-    previewer = false,
-		cwd = "~/.config/nvim",
-		prompt_title = "~MyNeovim~",
-    })
-end
-local fd_Repo = function()
-    require 'telescope'.extensions.file_browser.file_browser{
-    previewer = false,
-		cwd = "~/TMD",
-		prompt_title = "~MyRepo~",
-	}
-end
-
-local fd_MyBlog = function()
-    require 'telescope'.extensions.file_browser.file_browser{
-    previewer = false,
-		cwd = "~/WorkSpace/Blog/source/_posts",
-		prompt_title = "~MyBlogm~",
-	}
-end
-local fd_cwd = function()
-    require 'telescope'.extensions.file_browser.file_browser({
-    previewer = false,
-		cwd = ".",
-		prompt_title = "~ CWD ~",
-    })
-end
-local buf = function()
-	require("telescope.builtin").buffers{}
-end
-local built = function()
-	require("telescope.builtin").builtin{}
-end
-local oldf = function()
-	require("telescope.builtin").oldfiles{}
-end
-local git_status = function()
-	require("telescope.builtin").git_status{}
-end
-local live_grep = function()
-    require('telescope.builtin').grep_string({
-        search = "",
-        initial_mode = "insert",
-    })
-end
-local outline = function()
-    require('telescope').extensions.ctags_outline.outline()
-end
-local hexo = function()
-    vim.cmd("FloatermNew! cd ~/WorkSpace/Blog && hexo clean && hexo g")
-end
-local ReloadVim = function()
-    vim.cmd("w")
-    vim.cmd("so %")
-    vim.cmd("source ~/.config/nvim/init.vim")
-    print("Reload Vim!")
-end
-local loadsnip = function()
-    vim.cmd("w")
-    require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/user/snip/ft"})
-    require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/lua/user/snip/vsSnip"})
-    print("Reload Snip!")
-end
-
--- our picker function: colors
-M.MyPicker = function(opts)
-    opts = opts or {}
-    opts.initial_mode = "normal"
-    opts.layout_config = {
-      width = 0.3,
-      height = 0.3,
-    }
-    pickers.new(opts, {
-        prompt_title = " MyPicker ",
-        finder = finders.new_table {
-            results = {
-                { "華CWD", fd_cwd },
-                { "勇MyNeovim", fd_Myvim },
-                { " MyRepo", fd_Repo },
-                { " Grep String in CWD", live_grep },
-                { " Outline", outline },
-                { " Git_status", git_status },
-                { " BuiltIn", built },
-                { " Reload Vim", ReloadVim },
-                { " Reload Snip", loadsnip },
-            },
-            entry_maker = function(entry)
-                return {
-                    value = entry,
-                    display = entry[1],
-                    ordinal = entry[1],
-                    MyFunc = entry[2],
-                }
-            end
-        },
-        sorter = conf.generic_sorter(opts),
-        attach_mappings = function(prompt_bufnr, map)
-            actions.select_default:replace(function()
-                actions.close(prompt_bufnr)
-                local selection = action_state.get_selected_entry()
-                selection.MyFunc()
-            end)
-            return true
-        end,
-    }):find()
 end
 
 -- hi TelescopeNormal guibg=#3c3836

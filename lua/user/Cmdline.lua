@@ -8,20 +8,53 @@ local action_state = require "telescope.actions.state"
 
 local allItem = {
     {
-        label = "Open Terminal",
-        _funref = function()
-          vim.cmd(string.format("FloatermToggle First"))
-        end,
+      label = "F - Current Working Directory",
+      _funref = function()
+        require 'telescope'.extensions.file_browser.file_browser({
+          previewer = false,
+          cwd = ".",
+          prompt_title = "~ CWD ~",
+        })
+      end
     },
     {
-        label = "Search in this file",
+      label = "F - Neovim Directory",
+      _funref = function()
+        require 'telescope'.extensions.file_browser.file_browser({
+          previewer = false,
+          cwd = "~/.config/nvim",
+          prompt_title = "~MyNeovim~",
+        })
+      end
+    },
+    {
+      label = "F - Repo directory",
+      _funref = function()
+        require 'telescope'.extensions.file_browser.file_browser{
+          previewer = false,
+          cwd = "~/TMD",
+          prompt_title = "~MyRepo~",
+        }
+      end
+    },
+    {
+      label = "S - Search in CWD",
+      _funref = function()
+        require('telescope.builtin').grep_string({
+          search = "",
+          initial_mode = "insert",
+        })
+      end
+    },
+    {
+        label = "S - Search in this file",
         _funref = function()
             local word = vim.fn.expand('<cword>')
             require('telescope.builtin').current_buffer_fuzzy_find()
         end,
     },
     {
-        label = "String Grep Under Cursor in file root",
+        label = "S - Search Under Cursor in file root",
         _funref = function()
             local word = vim.fn.expand('<cword>')
             local root = require'lspconfig'.util.root_pattern('.git')() or vim.fn.expand("%:p:h")
@@ -33,24 +66,68 @@ local allItem = {
         end,
     },
     {
-        label = "Git Reset hunk",
+        label = "G - Gitsign Reset hunk",
         _funref = function()
             vim.cmd("Gitsigns reset_hunk")
         end,
     },
     {
-        label = "Git preview hunk",
+        label = "G - Gitsign preview hunk",
         _funref = function()
             vim.cmd("Gitsigns preview_hunk")
         end,
     },
     {
-        label = "Cargo Run",
-        _funref = function()
-            vim.cmd("w")
-            local root = require'lspconfig'.util.root_pattern('Cargo.toml')() or vim.fn.getcwd()
-            vim.cmd(string.format("FloatermNew!  cd %s && cargo run", root))
-        end,
+      label = "G - Gitsign quickfix list",
+      _funref = function()
+        vim.cmd("Gitsigns setqflist")
+        print("Git quickfix list")
+      end,
+    },
+    {
+      label = "G - Git status",
+      _funref = function()
+        require("telescope.builtin").git_status{}
+      end
+    },
+    {
+      label = "R - Reload vim",
+      _funref = function()
+        vim.cmd("w")
+        vim.cmd("so %")
+        vim.cmd("source ~/.config/nvim/init.vim")
+        print("Reload Vim!")
+      end
+
+    },
+    {
+      label = "R - Reload Snip",
+      _funref = function()
+        vim.cmd("w")
+        require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/user/snip/ft"})
+        require("luasnip.loaders.from_vscode").lazy_load({paths = "~/.config/nvim/lua/user/snip/vsSnip"})
+        print("Reload Snip!")
+      end
+    },
+    {
+      label = "Delete buffer.",
+      _funref = function()
+        vim.cmd("BufferLineCyclePrev")
+        vim.cmd("bdelete #")
+        print("Delete this buffer!")
+      end,
+    },
+    {
+      label = "Outline",
+      _funref = function()
+        require('telescope').extensions.ctags_outline.outline()
+      end
+    },
+    {
+      label = "Telescope Builtin",
+      _funref = function()
+        require("telescope.builtin").builtin{}
+      end
     },
     {
         label = "Split args",
@@ -63,21 +140,6 @@ local allItem = {
           normal v``="
           nohlsearch
           ]])
-        end,
-    },
-    {
-        label = "Delete buffer.",
-        _funref = function()
-          vim.cmd("BufferLineCyclePrev")
-          vim.cmd("bdelete #")
-          print("Delete this buffer!")
-        end,
-    },
-    {
-        label = "Gitsign quickfix list",
-        _funref = function()
-          vim.cmd("Gitsigns setqflist")
-          print("Git quickfix list")
         end,
     },
     {
@@ -109,11 +171,11 @@ M.Cmdline = function(opts)
         initial_mode = "normal",
         scroll_strategy = "limit",
         previewer = false,
-        sorting_strategy = "ascending",
-        layout_strategy = "cursor",
+        -- sorting_strategy = "ascending",
+        -- layout_strategy = "cursor",
         layout_config = {
             width = 0.3,
-            height = 12,
+            height = 18,
         },
     }
     pickers.new(opts, {
@@ -149,6 +211,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<leader>'", ":lua require('user.Cmdline').Cmdline()<cr>")
+map("n", "<leader>/", ":lua require('user.Cmdline').Cmdline()<cr>")
 
 return M
