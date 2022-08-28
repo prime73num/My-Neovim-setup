@@ -87,6 +87,7 @@ nnoremap <leader>j :cnext!<cr>
 nnoremap <leader>k :cNext!<cr>
 nnoremap p p=`]
 nnoremap . :exec g:mycmd<cr>
+nnoremap <leader>. .
 
 vnoremap J 3j
 vnoremap K 3k
