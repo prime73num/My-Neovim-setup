@@ -36,7 +36,16 @@ require('bufferline').setup {
             {
                 filetype = "neo-tree",
                 text = function()
-                    return "File Explore NeoTree"
+                  local cwd = vim.fn.getcwd()
+                  local name = vim.fn.expand("%:p:h")
+                  local start = string.sub(name, 1, #cwd)
+                  if start==cwd then 
+                    vim.cmd([[hi NeotreeTitle guifg=#4EC9B0 guibg=#444444]])
+                  else
+                    vim.cmd([[hi NeotreeTitle guifg=#ffffff guibg=#444444]])
+                    return name
+                  end
+                  return "File Explore NeoTree"
                 end,
                 highlight = "NeotreeTitle",
                 text_align = "center"
@@ -54,7 +63,7 @@ require('bufferline').setup {
                     -- icon = "", -- Optional
                     matcher = function(buf) -- Mandatory
                         local cwd = vim.fn.getcwd()
-                        local name = vim.fn.expand("#"..buf.id..":p")
+                        local name = buf.path
                         local start = string.sub(name, 1, #cwd)
                         return start==cwd
                     end,

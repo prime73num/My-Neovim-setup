@@ -50,7 +50,6 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'uga-rosa/cmp-dictionary'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/nvim-cmp'
-Plug 'Badhi/nvim-treesitter-cpp-tools'
 
 Plug 'preservim/tagbar'
 Plug 'lvht/tagbar-markdown'
