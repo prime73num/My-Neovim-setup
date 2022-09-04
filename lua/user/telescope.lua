@@ -266,7 +266,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<Leader>bb", ":Telescope buffers<CR>")
 map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
 -- map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
 map("n", "<Leader>f", ':lua require("user.telescope").find_files()<cr>')

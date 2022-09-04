@@ -1,5 +1,19 @@
-vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
+
+
+
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+-- vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
 vim.cmd([[hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
+vim.cmd([[hi NeoTreeFloatBorder guifg=#666666 guibg=#333333]])
+map("n", "<Leader>bb", ":Neotree buffers float<CR>")
+map("n", "<Leader>t", ":Neotree<CR>")
 
 local config = {
   sources = {
@@ -37,77 +51,7 @@ local config = {
   sort_function = nil , -- uses a custom function for sorting files and directories in the tree
   use_popups_for_input = true, -- If false, inputs will use vim.ui.input() instead of custom floats.
   use_default_mappings = false,
-  -- event_handlers = {
-  --  {
-  --    event = "before_render",
-  --    handler = function (state)
-  --      -- add something to the state that can be used by custom components
-  --    end
-  --  },
-  --  {
-  --    event = "file_opened",
-  --    handler = function(file_path)
-  --      --auto close
-  --      require("neo-tree").close_all()
-  --    end
-  --  },
-  --  {
-  --    event = "file_opened",
-  --    handler = function(file_path)
-  --      --clear search after opening a file
-  --      require("neo-tree.sources.filesystem").reset_search()
-  --    end
-  --  },
-  --  {
-  --    event = "file_renamed",
-  --    handler = function(args)
-  --      -- fix references to file
-  --      print(args.source, " renamed to ", args.destination)
-  --    end
-  --  },
-  --  {
-  --    event = "file_moved",
-  --    handler = function(args)
-  --      -- fix references to file
-  --      print(args.source, " moved to ", args.destination)
-  --    end
-  --  },
-   -- {
-     -- event = "neo_tree_buffer_enter",
-     -- handler = function()
-     -- end
-   -- },
-  --  {
-  --    event = "neo_tree_buffer_leave",
-  --    handler = function()
-  --      vim.cmd 'highlight! Cursor guibg=#5f87af blend=0'
-  --    end
-  --  },
-  -- {
-  --   event = "neo_tree_window_before_open",
-  --   handler = function(args)
-  --     print("neo_tree_window_before_open", vim.inspect(args))
-  --   end
-  -- },
-  -- {
-  --   event = "neo_tree_window_after_open",
-  --   handler = function(args)
-  --     vim.cmd("wincmd =")
-  --   end
-  -- },
-  -- {
-  --   event = "neo_tree_window_before_close",
-  --   handler = function(args)
-  --     print("neo_tree_window_before_close", vim.inspect(args))
-  --   end
-  -- },
-  -- {
-  --   event = "neo_tree_window_after_close",
-  --   handler = function(args)
-  --     vim.cmd("wincmd =")
-  --   end
-  -- }
-  -- },
+
   default_component_configs = {
     container = {
       enable_character_fade = true,
@@ -234,7 +178,7 @@ local config = {
       ["s"] = "open_vsplit",
       -- ["s"] = "vsplit_with_window_picker",
       ["t"] = "open_tabnew",
-      ["w"] = "open_with_window_picker",
+      -- ["w"] = "open_with_window_picker",
       --["P"] = "toggle_preview",
       ["C"] = "close_node",
       ["z"] = "close_all_nodes",
@@ -247,7 +191,7 @@ local config = {
           show_path = "none" -- "none", "relative", "absolute"
         }
       },
-      ["y"] = "copy_to_clipboard",
+      -- ["y"] = "copy_to_clipboard",
       ["q"] = "close_window",
       ["?"] = "show_help",
     },
@@ -256,15 +200,15 @@ local config = {
     window = {
       mappings = {
         ["H"] = "toggle_hidden",
-        ["/"] = "fuzzy_finder",
-        ["D"] = "fuzzy_finder_directory",
+        -- ["/"] = "fuzzy_finder",
+        -- ["D"] = "fuzzy_finder_directory",
         --["/"] = "filter_as_you_type", -- this was the default until v1.28
-        ["f"] = "filter_on_submit",
-        ["<C-x>"] = "clear_filter",
+        -- ["f"] = "filter_on_submit",
+        -- ["<C-x>"] = "clear_filter",
         ["u"] = "navigate_up",
         ["."] = "set_root",
-        ["[g"] = "prev_git_modified",
-        ["]g"] = "next_git_modified",
+        -- ["[g"] = "prev_git_modified",
+        -- ["]g"] = "next_git_modified",
       }
     },
     async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
@@ -275,18 +219,13 @@ local config = {
       sidebar = "tab",   -- sidebar is when position = left or right
       current = "window" -- current is when position = current
     },
-    -- The renderer section provides the renderers that will be used to render the tree.
-    --   The first level is the node type.
-    --   For each node type, you can specify a list of components to render.
-    --       Components are rendered in the order they are specified.
-    --         The first field in each component is the name of the function to call.
-    --         The rest of the fields are passed to the function as the "config" argument.
+
     filtered_items = {
       visible = false, -- when true, they will just be displayed differently than normal items
       force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
       show_hidden_count = true, -- when true, the number of hidden items in each folder will be shown as the last entry
       hide_dotfiles = true,
-      hide_gitignored = true,
+      hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
       hide_by_name = {
         ".DS_Store",
@@ -294,61 +233,45 @@ local config = {
         --"node_modules",
       },
       hide_by_pattern = { -- uses glob style patterns
-        --"*.meta",
-        --"*/src/*/tsconfig.json"
       },
       always_show = { -- remains visible even if other settings would normally hide it
-        --".gitignored",
+        ".gitignore",
       },
       never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-        --".DS_Store",
-        --"thumbs.db"
       },
     },
     find_by_full_path_words = false,  -- `false` means it only searches the tail of a path.
-                                      -- `true` will change the filter into a full path
-                                      -- search with space as an implicit ".*", so
-                                      -- `fi init`
-                                      -- will match: `./sources/filesystem/init.lua
-    --find_command = "fd", -- this is determined automatically, you probably don't need to set it
-    --find_args = {  -- you can specify extra args to pass to the find command.
-    --  fd = {
-      --  "--exclude", ".git",
-      --  "--exclude",  "node_modules"
-    --  }
-    --},
-    ---- or use a function instead of list of strings
-    --find_args = function(cmd, path, search_term, args)
-    --  if cmd ~= "fd" then
-    --    return args
-    --  end
-    --  --maybe you want to force the filter to always include hidden files:
-    --  table.insert(args, "--hidden")
-    --  -- but no one ever wants to see .git files
-    --  table.insert(args, "--exclude")
-    --  table.insert(args, ".git")
-    --  -- or node_modules
-    --  table.insert(args, "--exclude")
-    --  table.insert(args, "node_modules")
-    --  --here is where it pays to use the function, you can exclude more for
-    --  --short search terms, or vary based on the directory
-    --  if string.len(search_term) < 4 and path == "/home/cseickel" then
-    --    table.insert(args, "--exclude")
-    --    table.insert(args, "Library")
-    --  end
-    --  return args
-    --end,
+
     group_empty_dirs = false, -- when true, empty folders will be grouped together
     search_limit = 50, -- max number of search results when using filters
     follow_current_file = true, -- This will find and focus the file in the active buffer every time
                                  -- the current file is changed while the tree is open.
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                            -- in whatever position is specified in window.position
-                          -- "open_current",-- netrw disabled, opening a directory opens within the
-                                            -- window like netrw would, regardless of window.position
-                          -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
     use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
-                                    -- instead of relying on nvim autocmd events.
+  },
+  buffers = {
+    follow_current_file = true, -- This will find and focus the file in the active buffer every
+    -- time the current file is changed while the tree is open.
+    group_empty_dirs = false, -- when true, empty folders will be grouped together
+    show_unloaded = true,
+    window = {
+      popup = {
+        position = { col = "10%", row = "30%" },
+        size = function(state)
+          local root_name = vim.fn.fnamemodify(state.path, ":~")
+          local root_len = string.len(root_name) + 4
+          return {
+            width = math.max(root_len, 50),
+            height = 30
+          }
+        end
+      },
+      mappings = {
+        ["bd"] = "buffer_delete",
+        ["u"] = "navigate_up",
+        ["."] = "set_root",
+      }
+    },
   },
   example = {
     renderers = {
