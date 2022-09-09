@@ -31,31 +31,6 @@ let g:vimtex_compiler_latexmk = {
                 \   '-interaction=nonstopmode',
                 \ ],
                 \}
-let g:vimtex#re#neocomplete =
-      \ '\v\\%('
-      \ .  '%(\a*cite|Cite)\a*\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|%(\a*cites|Cites)%(\s*\([^)]*\)){0,2}'
-      \     . '%(%(\s*\[[^]]*\]){0,2}\s*\{[^}]*\})*'
-      \     . '%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|bibentry\s*\{[^}]*'
-      \ . '|%(text|block)cquote\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|%(for|hy)\w*cquote\*?\{[^}]*}%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|defbibentryset\{[^}]*}\{[^}]*'
-      \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
-      \ . '|hyperref\s*\[[^]]*'
-      \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
-      \ . '|%(include%(only)?|input|subfile)\s*\{[^}]*'
-      \ . '|([cpdr]?(gls|Gls|GLS)|acr|Acr|ACR)\a*\s*\{[^}]*'
-      \ . '|(ac|Ac|AC)\s*\{[^}]*'
-      \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|%(usepackage|RequirePackage|PassOptionsToPackage)%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|documentclass%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|begin%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|end%(\s*\[[^]]*\])?\s*\{[^}]*'
-      \ . '|\a*'
-      \ . ')'
-
 
 " Latex Keymap
 nmap <buffer><leader><leader>l :w<cr>:VimtexCompile<cr>

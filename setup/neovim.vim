@@ -52,6 +52,7 @@ set foldenable
 set viewoptions-=curdir
 set cursorline
 set nowrap
+set mouse=a
 
 set pumheight=20
 " set pumblend=15
