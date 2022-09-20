@@ -12,8 +12,9 @@ end
 -- vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
 vim.cmd([[hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
 vim.cmd([[hi NeoTreeFloatBorder guifg=#666666 guibg=#333333]])
-map("n", "<Leader>bb", ":Neotree buffers float<CR>")
+map("n", "<Leader>bb", ":Neotree buffers float <CR>")
 map("n", "<Leader>t", ":Neotree<CR>")
+
 
 local config = {
   sources = {
@@ -227,6 +228,7 @@ local config = {
       hide_dotfiles = true,
       hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
+
       hide_by_name = {
         ".DS_Store",
         "thumbs.db"
@@ -253,7 +255,6 @@ local config = {
     follow_current_file = true, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = false, -- when true, empty folders will be grouped together
-    show_unloaded = true,
     window = {
       popup = {
         position = { col = "10%", row = "30%" },

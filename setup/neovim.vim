@@ -8,13 +8,29 @@
 "                                    
 
 if !exists("g:mycount")
+
   let g:mycmd = "FloatermToggle"
   let g:mycount = 1
   syntax on
-  set background=dark
-  let g:seoul256_background = 235
-  colorscheme seoul256
-  let g:seoul256_srgb = 1
+
+  " set background=dark
+  " let g:seoul256_background = 235
+  " colorscheme seoul256
+  " let g:seoul256_srgb = 1
+ 
+  " Important!!
+  if has('termguicolors')
+    set termguicolors
+  endif
+
+  " The configuration options should be placed before `colorscheme edge`.
+
+  let g:sonokai_style = 'maia'
+  let g:sonokai_better_performance = 1
+  let g:sonokai_transparent_background = 2
+
+  colorscheme sonokai
+
 endif
 
 " SIGNNATURE
@@ -51,11 +67,13 @@ set foldclose=all
 set foldenable 
 set viewoptions-=curdir
 set cursorline
+
 set nowrap
 set mouse=a
+set clipboard=unnamed
 
 set pumheight=20
-" set pumblend=15
+set pumblend=5
 set nohlsearch
 
 "  Neovim Keymap

@@ -25,6 +25,8 @@ Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'norcalli/nvim-colorizer.lua'
+Plug 'sainnhe/edge'
+Plug 'sainnhe/sonokai'
 
 " Telescope and plugin
 Plug 'voldikss/vim-floaterm'
