@@ -18,6 +18,16 @@ local allItem = {
       end
     },
     {
+      label = "F - Current file Directory",
+      _funref = function()
+        require 'telescope'.extensions.file_browser.file_browser({
+          previewer = false,
+          cwd = vim.fn.expand("%:p:h"),
+          prompt_title = "~ CWD ~",
+        })
+      end
+    },
+    {
       label = "F - Neovim Directory",
       _funref = function()
         require 'telescope'.extensions.file_browser.file_browser({
@@ -64,6 +74,13 @@ local allItem = {
                 cwd = root
             })
         end,
+    },
+    {
+      label = "S - Search buffer",
+      _funref = function()
+        local word = vim.fn.expand('<cword>')
+        require('telescope.builtin').buffers()
+      end,
     },
     {
         label = "G - Gitsign Reset hunk",

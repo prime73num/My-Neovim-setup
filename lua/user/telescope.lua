@@ -89,6 +89,7 @@ telescope.setup {
     },
     pickers = {
         buffers = {
+            prompt_prefix=" BUFRS: ",
             sort_mru = true,
             theme = "dropdown",
             previewer = false,
@@ -104,10 +105,15 @@ telescope.setup {
             },
         },
         builtin = {
+          layout_config = {
+            width = 0.3,
+            height = 0.5,
+          },
             theme = "dropdown",
             previewer = false,
         },
         grep_string = {
+            prompt_prefix=" STR: ",
             layout_config = {
                 vertical = {
                     mirror = false,
@@ -134,6 +140,7 @@ telescope.setup {
             sorting_strategy = "descending",
         },
         oldfiles = {
+          prompt_prefix=" OLDFILES: ",
             -- theme = "dropdown",
             previewer = false,
             initial_mode = "normal",
@@ -153,6 +160,7 @@ telescope.setup {
 
     extensions = {
         file_browser = {
+          prompt_prefix=" FIND: ",
           layout_strategy = "vertical",
           sorting_strategy = "ascending",
           layout_config = {
