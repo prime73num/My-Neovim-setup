@@ -59,7 +59,7 @@ require'lspconfig'.clangd.setup{
   on_attach = on_attach,
   flags = lsp_flag,
   handlers = lsp_handlers,
-  cmd = { 
+  cmd = {
     'clangd',
     '--background-index',
     '--all-scopes-completion=false',

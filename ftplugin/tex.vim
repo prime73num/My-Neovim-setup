@@ -9,7 +9,7 @@
 let g:tex_flavor = "latex"
 let g:vimtex_enabled = 1
 let g:vimtex_mappings_enabled = 0
-let g:vimtex_quickfix_enabled = 0
+let g:vimtex_quickfix_enabled = 1
 let g:vimtex_view_enabled = 1
 let g:vimtex_view_automatic = 1
 

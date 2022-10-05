@@ -69,7 +69,7 @@ set viewoptions-=curdir
 set cursorline
 
 set nowrap
-set mouse=a
+" set mouse=a
 set clipboard=unnamed
 
 set pumheight=20
