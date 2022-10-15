@@ -12,6 +12,9 @@ nnoremap <buffer><leader>n :FloatermNew<cr>
 tnoremap <buffer><c-j> <c-\><up>
 tnoremap <buffer><c-k> <c-\><down>
 
+tnoremap <buffer><c-j> <C-\><up>
+tnoremap <buffer><c-k> <C-\><down>
+
 function s:Mykill()
     let a = bufnr()
     exe "FloatermPrev"
