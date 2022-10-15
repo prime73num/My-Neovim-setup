@@ -13,3 +13,4 @@ require 'user.autopairs'
 require 'user.lualine'
 require "user.color"
 require "user.startup"
+require "user.lspsaga"

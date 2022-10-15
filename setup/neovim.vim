@@ -86,8 +86,8 @@ nnoremap <leader>; :
 nnoremap <leader>w <C-w>
 nnoremap <leader>q <C-w>c
 nnoremap a $a
-cnoremap <c-n> <down> 
-cnoremap <c-p> <up>
+cnoremap <c-k> <down> 
+cnoremap <c-j> <up>
 nnoremap <leader>r :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><cl>
 nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>

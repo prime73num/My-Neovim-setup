@@ -5,5 +5,5 @@ let g:floaterm_position = 'center'
 let g:floaterm_autoclose = 2
 let g:floaterm_autoinsert=v:false
 
-hi Floaterm guibg=#3c3836
+" hi Floaterm guibg=#3c3836
 hi FloatermBorder guibg=#3c3836

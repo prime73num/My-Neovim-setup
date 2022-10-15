@@ -23,7 +23,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
 Plug 'junegunn/seoul256.vim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
+" Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
@@ -36,6 +36,7 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'fcying/telescope-ctags-outline.nvim'
 
 
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'onsails/lspkind-nvim'
 Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
 
