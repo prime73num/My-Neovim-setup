@@ -77,7 +77,7 @@ set pumblend=5
 set nohlsearch
 
 "  Neovim Keymap
-inoremap jj <esc>
+" inoremap jj <esc>
 inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 
 nnoremap <leader>i ciw
