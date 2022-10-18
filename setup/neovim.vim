@@ -75,6 +75,7 @@ set clipboard=unnamed
 set pumheight=20
 set pumblend=5
 set nohlsearch
+set winbar=%=%m\ %t
 
 "  Neovim Keymap
 " inoremap jj <esc>
