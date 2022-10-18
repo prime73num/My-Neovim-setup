@@ -175,17 +175,17 @@ local config = {
       ["<cr>"] = "open",
       ["o"] = "open",
       ["S"] = "open_split",
-      -- ["S"] = "split_with_window_picker",
       ["s"] = "open_vsplit",
-      -- ["s"] = "vsplit_with_window_picker",
       ["t"] = "open_tabnew",
+      -- ["S"] = "split_with_window_picker",
+      -- ["s"] = "vsplit_with_window_picker",
       -- ["w"] = "open_with_window_picker",
       --["P"] = "toggle_preview",
-      ["C"] = "close_node",
-      ["z"] = "close_all_nodes",
+      ["w"] = "close_node",
+      ["W"] = "close_all_nodes",
       --["Z"] = "expand_all_nodes",
       ["R"] = "refresh",
-      ["a"] = {
+      ["n"] = {
         "add",
         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
         config = {
@@ -200,6 +200,8 @@ local config = {
   filesystem = {
     window = {
       mappings = {
+        ["F"] = "floaterm",
+        ["cd"] = "GotoDir",
         ["H"] = "toggle_hidden",
         -- ["/"] = "fuzzy_finder",
         -- ["D"] = "fuzzy_finder_directory",
@@ -211,6 +213,23 @@ local config = {
         -- ["[g"] = "prev_git_modified",
         -- ["]g"] = "next_git_modified",
       }
+    },
+    commands = {
+      floaterm = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        local dir = vim.fn.fnamemodify(path, ":p:h")
+        vim.cmd(string.format("FloatermNew! cd %s", dir))
+      end,
+      GotoDir = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        local dir = vim.fn.fnamemodify(path, ":p:h")
+        require 'telescope'.extensions.file_browser.file_browser{ 
+          cwd = dir,
+          previewer = false
+        }
+      end,
     },
     async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
                                    -- "always" means directory scans are always async.
@@ -255,6 +274,25 @@ local config = {
     follow_current_file = true, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = false, -- when true, empty folders will be grouped together
+    commands = {
+      floaterm = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        local dir = vim.fn.fnamemodify(path, ":p:h")
+        require("neo-tree.sources.common.commands").close_window(state)
+        vim.cmd(string.format("FloatermNew! cd %s", dir))
+      end,
+      GotoDir = function(state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        local dir = vim.fn.fnamemodify(path, ":p:h")
+        require("neo-tree.sources.common.commands").close_window(state)
+        require 'telescope'.extensions.file_browser.file_browser{ 
+          cwd = dir,
+          previewer = false
+        }
+      end,
+    },
     window = {
       popup = {
         position = { col = "10%", row = "30%" },
@@ -268,6 +306,8 @@ local config = {
         end
       },
       mappings = {
+        ["F"] = "floaterm",
+        ["cd"] = "GotoDir",
         ["bd"] = "buffer_delete",
         ["u"] = "navigate_up",
         ["."] = "set_root",
