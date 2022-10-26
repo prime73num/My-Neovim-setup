@@ -38,7 +38,7 @@ Plug 'fcying/telescope-ctags-outline.nvim'
 
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'onsails/lspkind-nvim'
-Plug 'filipdutescu/renamer.nvim', { 'branch': 'master' }
+Plug 'liuchengxu/vista.vim'
 
 " Completion
 Plug 'neovim/nvim-lspconfig'

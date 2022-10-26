@@ -92,8 +92,8 @@ cnoremap <c-j> <up>
 nnoremap <leader>r :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><cl>
 nnoremap <left> :vertical resize-5<CR>
 nnoremap <right> :vertical resize+5<CR>
-nnoremap J 3j
-nnoremap K 3k
+nnoremap J 3<c-e>3j
+nnoremap K 3<c-y>3k
 nnoremap <leader>e :e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
@@ -109,8 +109,8 @@ nnoremap p p=`]
 nnoremap . :exec g:mycmd<cr>
 nnoremap <leader>. .
 
-vnoremap J 3j
-vnoremap K 3k
+vnoremap J 3<c-e>3j
+vnoremap K 3<c-y>3k
 vnoremap [[ %
 vnoremap <leader>j J
 

@@ -1,5 +1,4 @@
 require 'user.Devicon'
-require 'user.renamer'
 require 'user.telescope'
 require 'user.Cmp'   
 require 'user.lspconfig'
