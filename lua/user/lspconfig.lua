@@ -12,6 +12,7 @@ for type, icon in pairs(signs) do
 end
 
 local opts = { noremap=true, silent=true }
+keymap("n","<leader>oo", "<cmd>Vista<CR>",{ silent = true })
 keymap("n", "[d", function()
   require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
@@ -30,17 +31,15 @@ local on_attach = function(client, bufnr)
 
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', "<cmd>lua require('telescope.builtin').lsp_code_actions(require('telescope.themes').get_dropdown())<CR>", opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
-  keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
-  keymap("n", "<leader>h", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+  -- keymap("n", "<leader>h", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
   keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
   keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
-  keymap("n","<leader>oo", "<cmd>LSoutlineToggle<CR>",{ silent = true })
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
