@@ -7,7 +7,7 @@ local keymap = vim.keymap.set
 
 
 local opts = { noremap=true, silent=true }
-keymap("n","<leader>oo", "<cmd>Vista<CR>",{ silent = true })
+keymap("n","<leader>oo", "<cmd>Vista ctags<CR>",{ silent = true })
 keymap("n", "[d", function()
   require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
@@ -31,8 +31,6 @@ local on_attach = function(client, bufnr)
   keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lsp_flag = {
   debounce_text_changes = 150,
@@ -41,7 +39,6 @@ local lsp_flag = {
 local servers = { 'pyright', 'tsserver','rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
-    capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flag
   }
@@ -49,7 +46,6 @@ end
 
 
 require'lspconfig'.jdtls.setup{
-    capabilities = capabilities,
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
@@ -60,7 +56,6 @@ require'lspconfig'.jdtls.setup{
    end
 }
 require'lspconfig'.clangd.setup{
-  capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flag,
   handlers = lsp_handlers,
@@ -87,16 +82,9 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-local border = {
-      {" ", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
+local border = { '┌', '─','┐', '▕', '┘','─', '└' ,'▏'}
+
+-- To instead override globally
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts = opts or {}
