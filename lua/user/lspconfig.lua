@@ -35,10 +35,12 @@ end
 local lsp_flag = {
   debounce_text_changes = 150,
 }
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = { 'pyright', 'tsserver','rust_analyzer' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flag
   }
@@ -47,6 +49,7 @@ end
 
 require'lspconfig'.jdtls.setup{
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
     },
@@ -56,6 +59,7 @@ require'lspconfig'.jdtls.setup{
    end
 }
 require'lspconfig'.clangd.setup{
+  capabilities = capabilities,
   on_attach = on_attach,
   flags = lsp_flag,
   handlers = lsp_handlers,

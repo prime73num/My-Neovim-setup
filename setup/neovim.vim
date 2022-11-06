@@ -79,7 +79,12 @@ set winbar=%=%m\ %t
 
 "  Neovim Keymap
 " inoremap jj <esc>
-inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
+" inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
+inoremap <c-i> <esc>:call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
+inoremap <c-h> <c-o>h
+inoremap <c-l> <c-o>l
+inoremap <c-p> <c-o>p
+
 
 nnoremap <leader>i ciw
 nnoremap cia ?[(,]<cr>lc/[,)]<cr> 
@@ -108,6 +113,7 @@ nnoremap <leader>k :cNext!<cr>
 nnoremap p p=`]
 nnoremap . :exec g:mycmd<cr>
 nnoremap <leader>. .
+nnoremap ' `
 
 vnoremap J 3<c-e>3j
 vnoremap K 3<c-y>3k
