@@ -163,6 +163,8 @@ telescope.setup {
           prompt_prefix=" FIND: ",
           layout_strategy = "vertical",
           sorting_strategy = "ascending",
+          hide_parent_dir = true,
+          dir_icon_hl = "Directory",
           layout_config = {
             prompt_position = "top",
             width = 0.4,
