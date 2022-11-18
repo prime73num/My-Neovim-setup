@@ -7,8 +7,7 @@
 "        |___/_____|                
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'kshenoy/vim-signature' 
-
+Plug 'kshenoy/vim-signature'
 
 " latex and markdown
 Plug 'lervag/vimtex'
@@ -32,7 +31,7 @@ Plug 'sainnhe/sonokai'
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'prime73num/telescope-file-browser.nvim'
 Plug 'fcying/telescope-ctags-outline.nvim'
 
 
@@ -56,15 +55,15 @@ Plug 'uga-rosa/cmp-dictionary'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/nvim-cmp'
 
-Plug 'preservim/tagbar'
-Plug 'lvht/tagbar-markdown'
+" Plug 'preservim/tagbar'
+" Plug 'lvht/tagbar-markdown'
 
 " Useful Plugin
 Plug 'Yggdroot/indentLine'
 Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-surround'
 Plug 'MunifTanjim/nui.nvim'
-Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'prime73num/neo-tree.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'windwp/nvim-autopairs'

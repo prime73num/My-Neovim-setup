@@ -34,8 +34,9 @@ if !exists("g:mycount")
 endif
 
 " SIGNNATURE
-let g:SignatureMarkOrder="\m"
-let g:SignatureMarkTextHL="TagbarKind"
+let g:SignatureMarkOrder="⏾\m"
+let g:SignatureMarkTextHL="Constant"
+autocmd BufReadPost * call signature#sign#Refresh() | call signature#mark#Purge("all")
 
 let mapleader=" "
 set nocompatible
@@ -69,7 +70,7 @@ set viewoptions-=curdir
 set cursorline
 
 set nowrap
-" set mouse=a
+set mouse=
 set clipboard=unnamed
 
 set pumheight=20
