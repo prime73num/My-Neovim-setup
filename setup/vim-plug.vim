@@ -32,7 +32,9 @@ Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'prime73num/telescope-file-browser.nvim'
+" Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'fcying/telescope-ctags-outline.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
 
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }

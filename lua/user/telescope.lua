@@ -159,114 +159,19 @@ telescope.setup {
     },
 
     extensions = {
-        file_browser = {
-          prompt_prefix=" FIND: ",
-          layout_strategy = "vertical",
-          sorting_strategy = "ascending",
-          hide_parent_dir = true,
-          dir_icon_hl = "Directory",
-          layout_config = {
-            prompt_position = "top",
-            width = 0.4,
-            height = 0.6,
-          },
-            mappings = {
-                ["n"] = {
-                    ["I"] = function(prompt_bufnr)
-                        local current_picker = action_state.get_current_picker(prompt_bufnr)
-                        local finder = current_picker.finder
-
-                        local selections = fb_utils.get_selected_files(prompt_bufnr, false)
-                        if vim.tbl_isempty(selections) then
-                            print "[telescope] Nothing currently selected to be moved"
-                            return
-                        end
-                        require("telescope.actions").close(prompt_bufnr)
-
-                        for _, selection in ipairs(selections) do
-                            local filename = selection.filename
-                            print(filename)
-                            local dir = string.sub(filename,33)
-                            local back = "[Name]: http://106.55.101.249/Mysite/Blog/"..dir
-                            print("Import link -- "..back)
-                            vim.call('cursor',8,1)
-                            vim.call('append',8,back)
-                        end
-                    end,
-                    ["S"] = function(prompt_bufnr)
-                        local current_picker = action_state.get_current_picker(prompt_bufnr)
-                        local finder = current_picker.finder
-                        local dir = finder.path
-                        require("telescope.actions").close(prompt_bufnr)
-                        require('telescope.builtin').grep_string({
-                            search = "",
-                            cwd = dir,
-                        })
-                    end,
-                    ["."] = function(prompt_bufnr)
-                        local current_picker = action_state.get_current_picker(prompt_bufnr)
-                        local finder = current_picker.finder
-                        finder.cwd = finder.path
-                        vim.cmd("cd " .. finder.path)
-
-                        fb_utils.redraw_border_title(current_picker)
-                        current_picker:refresh(finder, { reset_prompt = true, multi = current_picker._multi })
-                        print("Change CWD to "..finder.path)
-                    end,
-                    ["F"] = function(prompt_bufnr)
-                        local current_picker = action_state.get_current_picker(prompt_bufnr)
-                        local finder = current_picker.finder
-                        local dir = finder.path
-                        print("Open shell at: "..dir)
-                        require("telescope.actions").close(prompt_bufnr)
-                        vim.cmd(string.format("FloatermNew! cd %s", dir))
-                    end,
-                },
-            },
-        },
-        ctags_outline = {
-            layout_config = {
-                vertical = {
-                    mirror = false,
-                    preview_height = 28,
-                },
-                width = 0.6,
-                height = 0.9,
-                preview_cutoff = 10,
-            },
-            ctags = {'ctags'},
-            ft_opt = {
-                aspvbs = '--asp-kinds=f',
-                awk = '--awk-kinds=f',
-                c = '--c-kinds=fp',
-                cpp = '--c++-kinds=fp --language-force=C++',
-                cs = '--c#-kinds=m',
-                erlang = '--erlang-kinds=f',
-                fortran = '--fortran-kinds=f',
-                java = '--java-kinds=m',
-                javascript = '--javascript-kinds=f',
-                lisp = '--lisp-kinds=f',
-                lua = '--lua-kinds=f',
-                matla = '--matlab-kinds=f',
-                pascal = '--pascal-kinds=f',
-                php = '--php-kinds=f',
-                python = '--python-kinds=fm --language-force=Python',
-                ruby = '--ruby-kinds=fF',
-                scheme = '--scheme-kinds=f',
-                sh = '--sh-kinds=f',
-                sql = '--sql-kinds=f',
-                tcl = '--tcl-kinds=m',
-                verilog = '--verilog-kinds=f',
-                vim = '--vim-kinds=f',
-                go = '--go-kinds=f',
-                rust = '--rust-kinds=fPM',
-                ocaml = '--ocaml-kinds=mf',
-            },
+        file_browser = require "user.tele_exten.file_brower",
+        ctags_outline = require "user.tele_exten.ctags_outline",
+        fzf = {
+          fuzzy = true,                    -- false will only do exact matching
+          override_generic_sorter = true,  -- override the generic sorter
+          override_file_sorter = true,     -- override the file sorter
+          case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
         },
     },
 }
 
 require('telescope').load_extension('ctags_outline')
+require('telescope').load_extension('fzf')
 require("telescope").load_extension "file_browser"
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true }
@@ -277,16 +182,9 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
--- map("n", "<Leader>/", ":lua require('user.telescope').MyPicker(require('telescope.themes').get_dropdown{})<cr>")
 map("n", "<Leader>f", ':lua require("user.telescope").find_files()<cr>')
 
 local M = {}
-local pickers = require "telescope.pickers"
-local finders = require "telescope.finders"
-local conf = require("telescope.config").values
-local make_entry = require "telescope.make_entry"
-local fb_picker = require "telescope._extensions.file_browser.picker"
-
 M.find_files = function()
     require 'telescope'.extensions.file_browser.file_browser({
         prompt_title = "~Find file in CWD~",
@@ -299,12 +197,15 @@ M.find_files = function()
                preview_width=0.6
             }
         },
-        mycount = 1,
+        fd_args = {
+          depth = 5,
+          type = "file",
+          show_hide = false,
+          show_gitignore = false,
+        },
     })
 end
 
--- hi TelescopeNormal guibg=#3c3836
--- hi TelescopeBorder guifg=#777777 guibg=#3c3836
 vim.cmd([[
 hi TelescopePreviewTitle ctermbg=110 guibg=#98BEDE guifg=#333333
 hi TelescopePromptTitle ctermbg=108 guibg=#98BC99 guifg=#333333

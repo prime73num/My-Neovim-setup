@@ -12,7 +12,6 @@ local allItem = {
       _funref = function()
         require 'telescope'.extensions.file_browser.file_browser({
           previewer = false,
-          cwd = ".",
           prompt_title = "~ CWD ~",
         })
       end
@@ -35,16 +34,6 @@ local allItem = {
           cwd = "~/.config/nvim",
           prompt_title = "~MyNeovim~",
         })
-      end
-    },
-    {
-      label = "F - Repo directory",
-      _funref = function()
-        require 'telescope'.extensions.file_browser.file_browser{
-          previewer = false,
-          cwd = "~/TMD",
-          prompt_title = "~MyRepo~",
-        }
       end
     },
     {
@@ -127,14 +116,6 @@ local allItem = {
       end
     },
     {
-      label = "Delete buffer.",
-      _funref = function()
-        vim.cmd("BufferLineCyclePrev")
-        vim.cmd("bdelete #")
-        print("Delete this buffer!")
-      end,
-    },
-    {
       label = "Outline",
       _funref = function()
         require('telescope').extensions.ctags_outline.outline()
@@ -157,13 +138,6 @@ local allItem = {
           normal v``="
           nohlsearch
           ]])
-        end,
-    },
-    {
-        label = "Tagbar",
-        _funref = function()
-          vim.cmd("TagbarToggle")
-          print("Tagbar")
         end,
     },
     {

@@ -45,7 +45,7 @@ cmp.setup({
       -- i = cmp.mapping.abort(),
       -- c = cmp.mapping.close(),
     -- }),
-    ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i', 'c' }),
+    ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i' }),
 	["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item({behavior = "select"})
@@ -131,13 +131,13 @@ cmp.setup.cmdline('/', {
 })
 
 cmp.setup.cmdline(':', {
-  completion = {
-     autocomplete = false,
-  },
-  sources = {
-    { name = 'path' },
-    { name = 'cmdline' }
-  }
+    mapping = cmp.mapping.preset.cmdline(),
+    completion = { autocomplete = false },
+    sources = cmp.config.sources({
+        { name = 'path' }
+        }, {
+        { name = 'cmdline' }
+    })
 })
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({

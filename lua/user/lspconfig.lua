@@ -24,17 +24,14 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lf', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
   keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
   keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 end
 
-
-local lsp_flag = {
-  debounce_text_changes = 150,
-}
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local servers = { 'pyright', 'tsserver','rust_analyzer' }
@@ -42,14 +39,24 @@ for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
-    flags = lsp_flag
   }
 end
+
+require'lspconfig'.sumneko_lua.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Both",
+      }
+    }
+  }
+}
 
 require('lspconfig')['rust_analyzer'].setup{
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = lsp_flag,
   settings = {
     ["rust-analyzer"] = {
       completion = {
@@ -61,22 +68,9 @@ require('lspconfig')['rust_analyzer'].setup{
   }
 }
 
-require'lspconfig'.jdtls.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-   cmd = { 'jdtls' },
-   root_dir = function(fname)
-      return require'lspconfig'.util.root_pattern('pom.xml', 'gradle.build', '.git')(fname) or vim.fn.getcwd()
-   end
-}
 require'lspconfig'.clangd.setup{
   capabilities = capabilities,
   on_attach = on_attach,
-  flags = lsp_flag,
-  handlers = lsp_handlers,
   cmd = {
     'clangd',
     '--background-index',
