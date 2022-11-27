@@ -10,10 +10,11 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
-vim.cmd([[hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
-vim.cmd([[hi NeoTreeFloatBorder guifg=#666666 guibg=#333333]])
 map("n", "<Leader>bb", ":Neotree buffers float <CR>")
 map("n", "<Leader>t", ":Neotree<CR>")
+vim.cmd([[ hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
+vim.cmd([[ hi NeoTreeFloatBorder guifg=#666666 guibg=#333333]])
+vim.cmd([[ hi link NeoTreeDotfile NeoTreeDirectoryName]])
 
 
 local config = {
@@ -245,7 +246,7 @@ local config = {
       force_visible_in_empty_folder = false, -- when true, hidden files will be shown if the root folder is otherwise empty
       show_hidden_count = true, -- when true, the number of hidden items in each folder will be shown as the last entry
       hide_dotfiles = true,
-      hide_gitignored = true,
+      hide_gitignored = false,
       hide_hidden = true, -- only works on Windows for hidden files/directories
 
       hide_by_name = {
@@ -257,6 +258,8 @@ local config = {
       },
       always_show = { -- remains visible even if other settings would normally hide it
         ".gitignore",
+        ".zshrc",
+        ".zshenv"
       },
       never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
       },

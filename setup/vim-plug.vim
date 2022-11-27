@@ -17,8 +17,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 
-" Sytex themes startup
+ " Nvim Tree-Sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
+Plug 'andymass/vim-matchup'
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
+
+
+" Sytex themes startup
 Plug 'junegunn/seoul256.vim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'

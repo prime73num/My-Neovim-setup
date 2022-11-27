@@ -107,7 +107,7 @@ nnoremap N Nzz
 nnoremap 0 ^
 nnoremap <cr> $
 nnoremap <leader>z :call <SID>Myfold()<cr>
-nnoremap u %
+" nmap u %
 nnoremap U u
 nnoremap <leader>j :cnext!<cr>
 nnoremap <leader>k :cNext!<cr>
