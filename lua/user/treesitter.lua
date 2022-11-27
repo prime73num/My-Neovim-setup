@@ -15,6 +15,8 @@ require'nvim-treesitter.configs'.setup {
       keymaps = {
         ["ap"] = "@parameter.outer",
         ["ip"] = "@parameter.inner",
+        ["ia"] = "@class.inner",
+        ["aa"] = "@class.outer",
       },
       include_surrounding_whitespace = true,
     },
