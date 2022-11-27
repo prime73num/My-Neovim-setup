@@ -57,14 +57,14 @@ telescope.setup {
 
         mappings = {
             i = {
-                ["<C-n>"] = actions.cycle_history_next,
-                ["<C-p>"] = actions.cycle_history_prev,
+                ["<C-j>"] = actions.cycle_history_next,
+                ["<C-k>"] = actions.cycle_history_prev,
                 -- ["<esc>"] = actions.close,
-                ["<Down>"] = actions.move_selection_next,
-                ["<Up>"] = actions.move_selection_previous,
+                -- ["<Down>"] = actions.move_selection_next,
+                -- ["<Up>"] = actions.move_selection_previous,
                 ["<CR>"] = actions.select_default,
-                ["<PageUp>"] = actions.results_scrolling_up,
-                ["<PageDown>"] = actions.results_scrolling_down,
+                -- ["<PageUp>"] = actions.results_scrolling_up,
+                -- ["<PageDown>"] = actions.results_scrolling_down,
                 ["<Tab>"] = actions.move_selection_next,
                 ["<S-Tab>"] = actions.move_selection_previous,
                 -- ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
@@ -73,7 +73,7 @@ telescope.setup {
                 -- ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
             },
             n = {
-                ["<esc>"] = actions.close,
+                -- ["<esc>"] = actions.close,
                 ["q"] = actions.close,
                 ["<CR>"] = actions.select_default,
                 ["o"] = actions.select_default,
@@ -81,8 +81,8 @@ telescope.setup {
                 ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
                 ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
                 ["<C-s>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                ["<Down>"] = actions.move_selection_next,
-                ["<Up>"] = actions.move_selection_previous,
+                -- ["<Down>"] = actions.move_selection_next,
+                -- ["<Up>"] = actions.move_selection_previous,
                 ["P"] = action_layout.toggle_preview,
             },
         },

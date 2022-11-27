@@ -175,8 +175,8 @@ local config = {
     mappings = {
       ["<cr>"] = "open",
       ["o"] = "open",
-      ["S"] = "open_split",
-      ["s"] = "open_vsplit",
+      -- ["S"] = "open_split",
+      -- ["s"] = "open_vsplit",
       ["t"] = "open_tabnew",
       -- ["S"] = "split_with_window_picker",
       -- ["s"] = "vsplit_with_window_picker",
@@ -201,6 +201,7 @@ local config = {
   filesystem = {
     window = {
       mappings = {
+        ["S"] = "search",
         ["F"] = "floaterm",
         ["cd"] = "GotoDir",
         ["H"] = "toggle_hidden",
@@ -216,6 +217,16 @@ local config = {
       }
     },
     commands = {
+      search = function (state)
+        local node = state.tree:get_node()
+        local path = node:get_id()
+        local dir = vim.fn.fnamemodify(path, ":p:h")
+        require('telescope.builtin').grep_string({
+          search = "",
+          initial_mode = "insert",
+          cwd = dir,
+        })
+      end,
       floaterm = function(state)
         local node = state.tree:get_node()
         local path = node:get_id()
