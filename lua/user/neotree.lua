@@ -288,6 +288,7 @@ local config = {
     follow_current_file = true, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = false, -- when true, empty folders will be grouped together
+    show_unloaded = false,
     commands = {
       floaterm = function(state)
         local node = state.tree:get_node()
