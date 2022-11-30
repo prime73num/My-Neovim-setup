@@ -1,6 +1,6 @@
 require 'user.Devicon'
 require 'user.telescope'
-require 'user.Cmp'   
+require 'user.Cmp'
 require 'user.lspconfig'
 require 'user.snip.init'
 require 'user.comment'
@@ -15,3 +15,4 @@ require "user.startup"
 require "user.lspsaga"
 require "user.mason"
 require "user.treesitter"
+require "user.remoteyank"

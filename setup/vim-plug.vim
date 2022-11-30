@@ -76,5 +76,8 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'windwp/nvim-autopairs'
 
+" Remote copy from ssh
+Plug 'ojroques/nvim-osc52'
+
 call plug#end()
 
