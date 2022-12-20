@@ -72,6 +72,13 @@ local allItem = {
       end,
     },
     {
+      label = "Y - Remote yank through SSH",
+      _funref = function()
+        require("osc52").copy_register('""')
+        print("Yank Done!")
+      end
+    },
+    {
         label = "G - Gitsign Reset hunk",
         _funref = function()
             vim.cmd("Gitsigns reset_hunk")

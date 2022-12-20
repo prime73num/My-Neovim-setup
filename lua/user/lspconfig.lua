@@ -60,6 +60,13 @@ require('lspconfig')['rust_analyzer'].setup{
   settings = {
     ["rust-analyzer"] = {
       completion = {
+        callable = {
+          snippets = "fill_arguments"
+        },
+        autoimport = {
+          enable = false
+        },
+        addCallParenthesis = true,
         postfix = {
           enable = false,
         }

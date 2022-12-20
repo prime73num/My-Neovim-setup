@@ -74,21 +74,17 @@ set mouse=
 set clipboard=unnamed
 
 set pumheight=20
-set pumblend=5
+set pumblend=7
 set nohlsearch
 set winbar=%=%m\ %t
 
-"  Neovim Keymap
-" inoremap jj <esc>
-" inoremap // <esc>/\%<c-r>=line('.')<cr>l['"})\]]<cr>:nohlsearch<cr>a
 inoremap <c-i> <esc>:call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
-inoremap <c-h> <c-o>h
-inoremap <c-l> <c-o>l
+inoremap <c-h> <left>
+inoremap <c-l> <right>
 inoremap <c-p> <c-o>p
 
 
 nnoremap <leader>i ciw
-" nnoremap cia ?[(,]<cr>lc/[,)]<cr> 
 nnoremap <leader>; :
 nnoremap <leader>w <C-w>
 nnoremap <leader>q <C-w>c
@@ -103,11 +99,9 @@ nnoremap K 3<c-y>3k
 nnoremap <leader>e :e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
-" nnoremap I hea
 nnoremap 0 ^
 nnoremap <cr> $
 nnoremap <leader>z :call <SID>Myfold()<cr>
-" nmap u %
 nnoremap U u
 nnoremap <leader>j :cnext!<cr>
 nnoremap <leader>k :cNext!<cr>

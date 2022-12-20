@@ -109,8 +109,8 @@ telescope.setup {
             width = 0.3,
             height = 0.5,
           },
-            theme = "dropdown",
-            previewer = false,
+          theme = "dropdown",
+          previewer = false,
         },
         grep_string = {
             prompt_prefix=" STR: ",
