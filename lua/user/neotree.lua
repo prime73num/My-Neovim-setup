@@ -1,12 +1,9 @@
-
-
-
 local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 -- vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
@@ -35,22 +32,22 @@ local config = {
   -- These options are for people with VERY large git repos
   git_status_async_options = {
     batch_size = 1000, -- how many lines of git status results to process at a time
-    batch_delay = 10,  -- delay in ms between batches. Spreads out the workload to let other processes run.
+    batch_delay = 10, -- delay in ms between batches. Spreads out the workload to let other processes run.
     max_lines = 10000, -- How many lines of git status results to process. Anything after this will be dropped.
-                       -- Anything before this will be used. The last items to be processed are the untracked files.
+    -- Anything before this will be used. The last items to be processed are the untracked files.
   },
   hide_root_node = false, -- Hide the root node.
-  retain_hidden_root_indent = false, -- IF the root node is hidden, keep the indentation anyhow. 
-                                     -- This is needed if you use expanders because they render in the indent.
+  retain_hidden_root_indent = false, -- IF the root node is hidden, keep the indentation anyhow.
+  -- This is needed if you use expanders because they render in the indent.
   log_level = "info", -- "trace", "debug", "info", "warn", "error", "fatal"
   log_to_file = false, -- true, false, "/path/to/file.log", use :NeoTreeLogs to show the file
   open_files_in_last_window = true, -- false = open files in top left window
   popup_border_style = "NC", -- "double", "none", "rounded", "shadow", "single" or "solid"
   resize_timer_interval = 500, -- in ms, needed for containers to redraw right aligned and faded content
-                               -- set to -1 to disable the resize timer entirely
+  -- set to -1 to disable the resize timer entirely
   --                           -- NOTE: this will speed up to 50 ms for 1 second following a resize
   sort_case_insensitive = false, -- used when sorting files and directories in the tree
-  sort_function = nil , -- uses a custom function for sorting files and directories in the tree
+  sort_function = nil, -- uses a custom function for sorting files and directories in the tree
   use_popups_for_input = true, -- If false, inputs will use vim.ui.input() instead of custom floats.
   use_default_mappings = false,
 
@@ -146,7 +143,7 @@ local config = {
           { "clipboard", zindex = 10 },
           { "bufnr", zindex = 10 },
           { "modified", zindex = 20, align = "right" },
-          { "diagnostics",  zindex = 20, align = "right" },
+          { "diagnostics", errors_only = true, zindex = 20, align = "right" },
           { "git_status", zindex = 20, align = "right" },
         },
       },
@@ -164,7 +161,7 @@ local config = {
   },
   nesting_rules = {},
   window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
-             -- possible options. These can also be functions that return these options.
+    -- possible options. These can also be functions that return these options.
     position = "left", -- left, right, top, bottom, float, current
     width = 40, -- applies to left and right positions
     height = 15, -- applies to top and bottom positions
@@ -217,7 +214,7 @@ local config = {
       }
     },
     commands = {
-      search = function (state)
+      search = function(state)
         local node = state.tree:get_node()
         local path = node:get_id()
         local dir = vim.fn.fnamemodify(path, ":p:h")
@@ -237,18 +234,18 @@ local config = {
         local node = state.tree:get_node()
         local path = node:get_id()
         local dir = vim.fn.fnamemodify(path, ":p:h")
-        require 'telescope'.extensions.file_browser.file_browser{ 
+        require 'telescope'.extensions.file_browser.file_browser {
           cwd = dir,
           previewer = false
         }
       end,
     },
     async_directory_scan = "auto", -- "auto"   means refreshes are async, but it's synchronous when called from the Neotree commands.
-                                   -- "always" means directory scans are always async.
-                                   -- "never"  means directory scans are never async.
+    -- "always" means directory scans are always async.
+    -- "never"  means directory scans are never async.
     bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
     cwd_target = {
-      sidebar = "tab",   -- sidebar is when position = left or right
+      sidebar = "tab", -- sidebar is when position = left or right
       current = "window" -- current is when position = current
     },
 
@@ -275,12 +272,12 @@ local config = {
       never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
       },
     },
-    find_by_full_path_words = false,  -- `false` means it only searches the tail of a path.
+    find_by_full_path_words = false, -- `false` means it only searches the tail of a path.
 
     group_empty_dirs = false, -- when true, empty folders will be grouped together
     search_limit = 50, -- max number of search results when using filters
     follow_current_file = true, -- This will find and focus the file in the active buffer every time
-                                 -- the current file is changed while the tree is open.
+    -- the current file is changed while the tree is open.
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
     use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
   },
@@ -302,7 +299,7 @@ local config = {
         local path = node:get_id()
         local dir = vim.fn.fnamemodify(path, ":p:h")
         require("neo-tree.sources.common.commands").close_window(state)
-        require 'telescope'.extensions.file_browser.file_browser{ 
+        require 'telescope'.extensions.file_browser.file_browser {
           cwd = dir,
           previewer = false
         }
@@ -332,10 +329,10 @@ local config = {
   example = {
     renderers = {
       custom = {
-        {"indent"},
-        {"icon", default="C" },
-        {"custom"},
-        {"name"}
+        { "indent" },
+        { "icon", default = "C" },
+        { "custom" },
+        { "name" }
       }
     },
     window = {

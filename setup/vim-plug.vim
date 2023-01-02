@@ -50,7 +50,6 @@ Plug 'liuchengxu/vista.vim'
 " Completion
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'neovim/nvim-lspconfig'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-omni'
@@ -62,6 +61,10 @@ Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'uga-rosa/cmp-dictionary'
 Plug 'hrsh7th/cmp-calc'
 Plug 'hrsh7th/nvim-cmp'
+
+" Lsp Config
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
 
 " Plug 'preservim/tagbar'
 " Plug 'lvht/tagbar-markdown'

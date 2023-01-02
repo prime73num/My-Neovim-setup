@@ -1,26 +1,26 @@
 require("cmp_dictionary").setup({
-    dic = {
-        ["*"] = { "/usr/share/dict/words", "/usr/share/dict/american-english" },
-    },
-    -- The following are default values, so you don't need to write them if you don't want to change them
-    exact = 2,
-    first_case_insensitive = true,
-    document = false,
-    document_command = "wn %s -over",
-    async = false, 
-    capacity = 5,
-    debug = false,
+  dic = {
+    ["*"] = { "/usr/share/dict/words", "/usr/share/dict/american-english" },
+  },
+  -- The following are default values, so you don't need to write them if you don't want to change them
+  exact = 2,
+  first_case_insensitive = true,
+  document = false,
+  document_command = "wn %s -over",
+  async = false,
+  capacity = 5,
+  debug = false,
 })
 
 local ls = require "luasnip"
 local lspkind = require "lspkind"
 lspkind.init()
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   window = {
     documentation = {
-        winhighlight = 'Normal:Pmenu',
+      winhighlight = 'Normal:Pmenu',
     },
     completion = {
       col_offset = -3,
@@ -42,43 +42,38 @@ cmp.setup({
     -- ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- ['<C-y>'] = cmp.config.disable, -- Specify `mp.config.disable` if you want to remove the default `<C-y>` mapping.
     -- ['<C-e>'] = cmp.mapping({
-      -- i = cmp.mapping.abort(),
-      -- c = cmp.mapping.close(),
+    -- i = cmp.mapping.abort(),
+    -- c = cmp.mapping.close(),
     -- }),
     ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), { 'i' }),
-	["<Tab>"] = cmp.mapping(function(fallback)
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_next_item({behavior = "select"})
+        cmp.select_next_item({ behavior = "select" })
       else
         fallback()
       end
-    end,{'i'}),
+    end, { 'i' }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
-        cmp.select_prev_item({behavior = "select"})
+        cmp.select_prev_item({ behavior = "select" })
       else
         fallback()
       end
-    end,{'i'}),
-	["<c-k>"] = cmp.mapping(function()
-		if ls.jumpable(-1) then
-			ls.jump(-1)
-		end
-	end,{'i','s'}),
-	["<c-j>"] = cmp.mapping(function()
-		if ls.jumpable(1) then
-			ls.jump(1)
-		end
-	end,{'i','s'}),
-	-- ["<c-l>"] = cmp.mapping(function()
-		-- if ls.choice_active() then
-			-- ls.change_choice(1)
-		-- end
-	-- end,{'i','s'}),
+    end, { 'i' }),
+    ["<c-k>"] = cmp.mapping(function()
+      if ls.jumpable(-1) then
+        ls.jump(-1)
+      end
+    end, { 'i', 's' }),
+    ["<c-j>"] = cmp.mapping(function()
+      if ls.jumpable(1) then
+        ls.jump(1)
+      end
+    end, { 'i', 's' }),
   },
   sources = {
-    { name = "luasnip" , priority = 8},
-    { name = "nvim_lsp" , priority = 5},
+    { name = "luasnip", priority = 8 },
+    { name = "nvim_lsp", priority = 5 },
     { name = "nvim_lua" },
     { name = "path" },
     { name = "buffer", keyword_length = 3 }
@@ -87,7 +82,7 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      local kind = lspkind.cmp_format({ 
+      local kind = lspkind.cmp_format({
         with_text = true,
         maxwidth = 30,
         menu = {
@@ -105,25 +100,23 @@ cmp.setup({
         },
       })(entry, vim_item)
       local strings = vim.split(kind.kind, "%s", { trimempty = true })
-      print(strings[2])
-      local f = string.sub(strings[2], 1,1)
+      local f = string.sub(strings[2], 1, 1)
       kind.kind = strings[1] .. " " .. f
       return kind
     end,
   },
-
   experimental = {
-      ghost_text = false,
-      native_menu = false
+    ghost_text = false,
+    native_menu = false
   },
-  view = {           
-      entries = "custom" -- can be "custom", "wildmenu" or "native"
+  view = {
+    entries = "custom" -- can be "custom", "wildmenu" or "native"
   },
 })
 
 cmp.setup.cmdline('/', {
   completion = {
-     autocomplete = false,
+    autocomplete = false,
   },
   sources = {
     { name = 'buffer' }
@@ -131,24 +124,24 @@ cmp.setup.cmdline('/', {
 })
 
 cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    completion = { autocomplete = false },
-    sources = cmp.config.sources({
-        { name = 'path' }
-        }, {
-        { name = 'cmdline' }
-    })
+  mapping = cmp.mapping.preset.cmdline(),
+  completion = { autocomplete = false },
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
 cmp.setup.filetype('tex', {
   sources = cmp.config.sources({
     { name = "luasnip" },
-    { 
-        name = 'omni',
+    {
+      name = 'omni',
     },
     {
       name = "dictionary",
       keyword_length = 5,
-	  max_item_count = 20,
+      max_item_count = 20,
     },
     { name = 'buffer' },
   })
@@ -159,7 +152,7 @@ cmp.setup.filetype('markdown', {
     {
       name = "dictionary",
       keyword_length = 4,
-	  max_item_count = 20,
+      max_item_count = 20,
     },
     { name = 'buffer' },
     { name = 'path' },
@@ -171,7 +164,7 @@ cmp.setup.filetype('text', {
     {
       name = "dictionary",
       keyword_length = 4,
-	  max_item_count = 20,
+      max_item_count = 20,
     },
     { name = 'buffer' },
     { name = 'path' },

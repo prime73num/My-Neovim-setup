@@ -13,10 +13,6 @@ if !exists("g:mycount")
   let g:mycount = 1
   syntax on
 
-  " set background=dark
-  " let g:seoul256_background = 235
-  " colorscheme seoul256
-  " let g:seoul256_srgb = 1
  
   " Important!!
   if has('termguicolors')
@@ -78,11 +74,10 @@ set pumblend=7
 set nohlsearch
 set winbar=%=%m\ %t
 
-inoremap <c-i> <esc>:call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
+inoremap <c-a> <esc>:call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 inoremap <c-p> <c-o>p
-
 
 nnoremap <leader>i ciw
 nnoremap <leader>; :

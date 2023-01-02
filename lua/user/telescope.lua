@@ -73,7 +73,7 @@ telescope.setup {
                 -- ["<C-_>"] = actions.which_key, -- keys from pressing <C-/>
             },
             n = {
-                -- ["<esc>"] = actions.close,
+                ["<esc>"] = false,
                 ["q"] = actions.close,
                 ["<CR>"] = actions.select_default,
                 ["o"] = actions.select_default,

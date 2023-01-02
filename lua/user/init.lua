@@ -1,7 +1,7 @@
 require 'user.Devicon'
 require 'user.telescope'
 require 'user.Cmp'
-require 'user.lspconfig'
+require 'user.lsp.lspconfig'
 require 'user.snip.init'
 require 'user.comment'
 require 'user.nui'

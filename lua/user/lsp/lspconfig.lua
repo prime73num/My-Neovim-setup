@@ -1,5 +1,31 @@
 local keymap = vim.keymap.set
 
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = false,
+})
+local _border = "single"
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+  border = _border
+}
+)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+  border = _border
+}
+)
+vim.diagnostic.config {
+  float = { border = _border }
+}
 
 local opts = { noremap = true, silent = true }
 keymap("n", "<leader>oo", "<cmd>Vista ctags<CR>", { silent = true })
@@ -29,88 +55,13 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local servers = { 'pyright', 'tsserver', 'rust_analyzer' }
+require("user.lsp.clangd").setup(capabilities, on_attach)
+require("user.lsp.rust").setup(capabilities, on_attach)
+require("user.lsp.sumneko_lua").setup(capabilities, on_attach)
+local servers = { 'pyright', 'tsserver' }
 for _, lsp in pairs(servers) do
   require('lspconfig')[lsp].setup {
     capabilities = capabilities,
     on_attach = on_attach,
   }
 end
-
-require 'lspconfig'.sumneko_lua.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      completion = {
-        callSnippet = "Both",
-      }
-    }
-  }
-}
-
-require('lspconfig')['rust_analyzer'].setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    ["rust-analyzer"] = {
-      completion = {
-        callable = {
-          snippets = "fill_arguments"
-        },
-        autoimport = {
-          enable = false
-        },
-        -- addCallParenthesis = true,
-        postfix = {
-          enable = false,
-        }
-      }
-    }
-  }
-}
-
-require 'lspconfig'.clangd.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-  cmd = {
-    'clangd',
-    '--background-index',
-    '--all-scopes-completion=false',
-    '--clang-tidy',
-    '--header-insertion=never'
-  },
-}
-
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  underline = false,
-  update_in_insert = false,
-  severity_sort = false,
-})
-
-local _border = "single"
-
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover, {
-    border = _border
-  }
-)
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help, {
-    border = _border
-  }
-)
-
-vim.diagnostic.config{
-  float={border=_border}
-}
-
