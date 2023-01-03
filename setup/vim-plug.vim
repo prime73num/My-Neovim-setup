@@ -35,6 +35,7 @@ Plug 'sainnhe/sonokai'
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 
 " Telescope and plugin
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'voldikss/vim-floaterm'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'

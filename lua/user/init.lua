@@ -1,3 +1,4 @@
+require 'user.setup'
 require 'user.Devicon'
 require 'user.telescope'
 require 'user.Cmp'
@@ -17,3 +18,4 @@ require "user.mason"
 require "user.treesitter"
 require "user.remoteyank"
 require "user.onenord"
+require "user.toggleterm"

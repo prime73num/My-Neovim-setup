@@ -7,32 +7,15 @@
 "|_| \_|\___|\___/ \_/  |_|_| |_| |_|
 "                                    
 
-if !exists("g:mycount")
-
-  let g:mycmd = "FloatermToggle"
-  let g:mycount = 1
-  syntax on
-
- 
-  " Important!!
-  if has('termguicolors')
-    set termguicolors
-  endif
-
-  " The configuration options should be placed before `colorscheme edge`.
-
-  let g:sonokai_style = 'maia'
-  let g:sonokai_better_performance = 1
-  let g:sonokai_transparent_background = 2
-
-  colorscheme onenord
-
+syntax on
+if has('termguicolors')
+  set termguicolors
 endif
 
 " SIGNNATURE
 let g:SignatureMarkOrder="⏾\m"
 let g:SignatureMarkTextHL="Constant"
-autocmd BufReadPost * call signature#sign#Refresh() | call signature#mark#Purge("all")
+" autocmd BufReadPost * call signature#sign#Refresh() | call signature#mark#Purge("all")
 
 let mapleader=" "
 set nocompatible
@@ -72,9 +55,9 @@ set clipboard=unnamed
 set pumheight=20
 set pumblend=7
 set nohlsearch
-set winbar=%=%m\ %t
+" set winbar=%=%m\ %t
 
-inoremap <c-a> <esc>:call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
+inoremap <c-a> <esc><Cmd>call search('}\\|)\\|]\\|"\\|>\\|\%x27', "ez", line("."))<cr>a
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 inoremap <c-p> <c-o>p
@@ -101,7 +84,6 @@ nnoremap U u
 nnoremap <leader>j :cnext!<cr>
 nnoremap <leader>k :cNext!<cr>
 nnoremap p p=`]
-nnoremap . :exec g:mycmd<cr>
 nnoremap <leader>. .
 nnoremap ' `
 
@@ -115,13 +97,6 @@ autocmd BufReadPost *
 	\ if line("'\"") > 1 && line("'\"") <= line("$") | 
 	\ exe "normal! g`\"zz0" |
 	\ endif
-" autocmd BufWinLeave *.* mkview
-" autocmd BufWinEnter *.* silent loadview
-
-" augroup Terminal
-"   autocmd TermOpen * setlocal statusline=%{b:term_title}
-"   autocmd TermOpen * setlocal nonu nornu scl=no
-" augroup END
 
 function s:Myfold()
     if foldlevel(line("."))==0

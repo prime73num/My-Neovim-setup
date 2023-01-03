@@ -1,6 +1,4 @@
 local keymap = vim.keymap.set
-
-
 local opts = { noremap = true, silent = true }
 keymap("n", "<leader>oo", "<cmd>Vista ctags<CR>", { silent = true })
 keymap("n", "[d", function()
