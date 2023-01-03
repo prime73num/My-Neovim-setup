@@ -25,7 +25,7 @@ if !exists("g:mycount")
   let g:sonokai_better_performance = 1
   let g:sonokai_transparent_background = 2
 
-  colorscheme sonokai
+  colorscheme onenord
 
 endif
 

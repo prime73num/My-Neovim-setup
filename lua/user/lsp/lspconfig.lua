@@ -51,6 +51,32 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
   keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
   keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
+
+  if client.server_capabilities.documentHighlightProvider then
+    vim.opt.updatetime=500
+    vim.cmd [[
+    hi! LspReferenceRead cterm=bold gui=bold guibg=#565656
+    hi! LspReferenceText cterm=bold gui=bold guibg=#565656
+    hi! LspReferenceWrite cterm=bold gui=bold guibg=#565656
+  ]]
+    vim.api.nvim_create_augroup('lsp_document_highlight', {
+      clear = false
+    })
+    vim.api.nvim_clear_autocmds({
+      buffer = bufnr,
+      group = 'lsp_document_highlight',
+    })
+    vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+      group = 'lsp_document_highlight',
+      buffer = bufnr,
+      callback = vim.lsp.buf.document_highlight,
+    })
+    vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+      group = 'lsp_document_highlight',
+      buffer = bufnr,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()

@@ -32,6 +32,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
+Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 
 " Telescope and plugin
 Plug 'voldikss/vim-floaterm'
