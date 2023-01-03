@@ -66,7 +66,6 @@ Plug 'hrsh7th/nvim-cmp'
 
 " Lsp Config
 Plug 'neovim/nvim-lspconfig'
-Plug 'simrat39/rust-tools.nvim'
 
 " Plug 'preservim/tagbar'
 " Plug 'lvht/tagbar-markdown'

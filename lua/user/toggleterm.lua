@@ -46,11 +46,13 @@ require("toggleterm").setup{
     end
   },
 }
+local M = {}
 local terminfo = {
   next_id = 1,
   last_tem = 0,
   ids = {}
 }
+M.terminfo = terminfo
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -70,11 +72,14 @@ function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
   keymap('t', '<esc>', [[<C-\><C-n>]], opts)
   keymap('n', 'q', [[<Cmd>close<CR>]], opts)
+  keymap('t', '<c-j>', [[<down>]], opts)
+  keymap('t', '<c-k>', [[<up>]], opts)
   keymap('n', 'x',function ()
     local id = terminfo.ids[terminfo.last_tem]
     local term = terminal.get(id)
     term:shutdown()
     table.remove(terminfo.ids, terminfo.last_tem)
+    vim.notify("Kill a terminal")
     local size = table.getn(terminfo.ids)
     if size < terminfo.last_tem then
       terminfo.last_tem = size
@@ -108,3 +113,4 @@ function _G.set_terminal_keymaps()
   end, opts)
 end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+return M
