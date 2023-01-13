@@ -47,25 +47,30 @@ require("toggleterm").setup{
   },
 }
 local M = {}
+local toggleterm = require("toggleterm")
+local terminal = require("toggleterm.terminal")
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
 local terminfo = {
   next_id = 1,
   last_tem = 0,
   ids = {}
 }
+
 M.terminfo = terminfo
-
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
-
-local toggleterm = require("toggleterm")
-local terminal = require("toggleterm.terminal")
-keymap("n", ".", function ()
+M.open_terminal = function ()
   if next(terminfo.ids)==nil then
     table.insert(terminfo.ids, terminfo.next_id)
     terminfo.next_id = terminfo.next_id + 1
     terminfo.last_tem = 1
   end
-  toggleterm.toggle(terminfo.ids[terminfo.last_tem])
+  local term = terminal.get_or_create_term(terminfo.ids[terminfo.last_tem])
+  return term
+end
+
+keymap("n", ".", function ()
+  local term = M.open_terminal()
+  term:toggle()
 end, opts)
 
 function _G.set_terminal_keymaps()

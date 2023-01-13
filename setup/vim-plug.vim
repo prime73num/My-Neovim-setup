@@ -67,6 +67,7 @@ Plug 'hrsh7th/nvim-cmp'
 " Lsp Config
 Plug 'neovim/nvim-lspconfig'
 Plug 'maralla/gomod.vim'
+Plug 'prime73num/nvim-test'
 
 " Plug 'preservim/tagbar'
 " Plug 'lvht/tagbar-markdown'
