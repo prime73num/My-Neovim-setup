@@ -81,6 +81,7 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+require("user.lsp.go").setup(capabilities, on_attach)
 require("user.lsp.clangd").setup(capabilities, on_attach)
 require("user.lsp.rust").setup(capabilities, on_attach)
 require("user.lsp.sumneko_lua").setup(capabilities, on_attach)
