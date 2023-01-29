@@ -35,15 +35,6 @@ return {
         )
     })),
 
-    s("debug", fmt(
-    [[println!("{{}}", {});]],
-    { i(1, "target") }
-    )),
-    s("message", fmt(
-    [[println!("{}");]],
-    { i(1, "message") }
-    )),
-
     s("modtest", fmt(
     [[
     #[cfg(test)]
@@ -59,6 +50,7 @@ return {
     [[
     fn {}({}){} {{
         {}
+        todo!()
     }}{}
     ]],
     { i(1, "name"), i(2), i(3), i(4, "unimplemented!()"), i(0) }
