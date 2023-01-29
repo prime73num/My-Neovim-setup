@@ -1,9 +1,6 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
 local action_layout = require("telescope.actions.layout")
-local fb_actions = require "telescope".extensions.file_browser.actions
-local action_state = require "telescope.actions.state"
-local fb_utils = require "telescope._extensions.file_browser.utils"
 local previewers = require("telescope.previewers")
 
 local Floaterm = function(prompt_bufnr)

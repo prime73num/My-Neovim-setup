@@ -41,6 +41,7 @@ local allItem = {
       _funref = function()
         require('telescope.builtin').grep_string({
           search = "",
+          only_sort_text = true,
           initial_mode = "insert",
         })
       end
@@ -59,6 +60,7 @@ local allItem = {
             local root = require'lspconfig'.util.root_pattern('.git')() or vim.fn.expand("%:p:h")
             print(root)
             require('telescope.builtin').grep_string({
+                only_sort_text = true,
                 search = word,
                 cwd = root
             })
@@ -67,7 +69,6 @@ local allItem = {
     {
       label = "S - Search buffer",
       _funref = function()
-        local word = vim.fn.expand('<cword>')
         require('telescope.builtin').buffers()
       end,
     },

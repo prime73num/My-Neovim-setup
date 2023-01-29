@@ -8,9 +8,9 @@ end
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
-  underline = false,
+  underline = true,
   update_in_insert = false,
-  severity_sort = false,
+  severity_sort = true,
 })
 local _border = "single"
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(

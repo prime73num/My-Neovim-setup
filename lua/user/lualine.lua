@@ -78,7 +78,19 @@ require('lualine').setup {
           if dir == cwd then
             return ""
           end
-          return " > You Are In: "..path
+          return " > You Are In: "
+        end,
+        color = { fg = '#eeeeee' }
+      },
+      {
+        function()
+          local path = vim.fn.expand("%:p:h")
+          local cwd = vim.fn.getcwd()
+          local dir = string.sub(path, 1, string.len(cwd))
+          if dir == cwd then
+            return ""
+          end
+          return path
         end,
         color = { bg = '#81A1C1', fg = "#000000" }
       }
