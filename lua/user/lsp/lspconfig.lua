@@ -53,7 +53,7 @@ local on_attach = function(client, bufnr)
   keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", { silent = true })
 
   if client.server_capabilities.documentHighlightProvider then
-    vim.opt.updatetime=500
+    vim.opt.updatetime = 500
     vim.cmd [[
     hi! LspReferenceRead cterm=bold gui=bold guibg=#565656
     hi! LspReferenceText cterm=bold gui=bold guibg=#565656

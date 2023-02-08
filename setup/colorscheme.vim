@@ -18,4 +18,5 @@ hi CursorLineNr ctermfg=131 gui=bold guifg=#BE7572
 hi MatchWordCur guibg=#565656 cterm=bold gui=bold
 hi MatchWord guibg=#565656 cterm=bold gui=bold
 hi FloatBorder guifg=#dddddd guibg=#353f46
+hi NeoTreeCursorLine guibg=#555555
 

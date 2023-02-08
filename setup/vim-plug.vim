@@ -73,7 +73,7 @@ Plug 'prime73num/nvim-test'
 " Plug 'lvht/tagbar-markdown'
 
 " Useful Plugin
-Plug 'Yggdroot/indentLine'
+" Plug 'Yggdroot/indentLine'
 Plug 'numToStr/Comment.nvim'
 Plug 'tpope/vim-surround'
 Plug 'MunifTanjim/nui.nvim'
@@ -81,6 +81,10 @@ Plug 'prime73num/neo-tree.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'windwp/nvim-autopairs'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
 
 " Remote copy from ssh
 Plug 'ojroques/nvim-osc52'

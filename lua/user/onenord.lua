@@ -14,10 +14,11 @@ require('onenord').setup({
     match_paren = false,
   },
   custom_highlights = {
-    ["@variable"] = { fg = colors.cyan , style = config.styles.variables },
+    -- ["@variable"] = { fg = colors.cyan , style = config.styles.variables },
     ["@punctuation.bracket"] = { fg = colors.fg },
     ["@function"] = { fg = colors.light_green, style = config.styles.functions },
     ["@function.call"] = { fg = colors.light_green },
+    ["@method"] = { fg = colors.light_green, style = config.styles.functions },
   },
   custom_colors = {}, -- Overwrite default colors
 })

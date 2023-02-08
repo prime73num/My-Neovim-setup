@@ -178,8 +178,8 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<Leader>bo", ":Telescope oldfiles<CR>")
-map("n", "<Leader>f", ':lua require("user.telescope").find_files()<cr>')
+map("n", "<Leader>bo", "<cmd>Telescope oldfiles<CR>")
+map("n", "<Leader>f", '<cmd>lua require("user.telescope").find_files()<cr>')
 
 local M = {}
 M.find_files = function()

@@ -7,8 +7,8 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- vim.cmd([[nnoremap <leader>t :Neotree<cr>]])
-map("n", "<Leader>bb", ":Neotree buffers float <CR>")
-map("n", "<Leader>t", ":Neotree<CR>")
+map("n", "<Leader>bb", "<cmd>Neotree buffers float <CR>")
+map("n", "<Leader>t", "<cmd>Neotree<CR>")
 vim.cmd([[ hi NeotreeTitle ctermfg=68 guifg=#4EC9B0 guibg=#444444]])
 vim.cmd([[ hi NeoTreeFloatBorder guifg=#666666 guibg=#333333]])
 vim.cmd([[ hi link NeoTreeDotfile NeoTreeDirectoryName]])

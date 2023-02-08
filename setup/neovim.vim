@@ -67,25 +67,26 @@ nnoremap <leader>; :
 nnoremap <leader>w <C-w>
 nnoremap <leader>q <C-w>c
 nnoremap a $a
-cnoremap <c-k> <down> 
-cnoremap <c-j> <up>
-nnoremap <leader>r :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><cl>
-nnoremap <left> :vertical resize-5<CR>
-nnoremap <right> :vertical resize+5<CR>
+" nnoremap <leader>r <cmd>nohlsearch<cr> | diffupdate<cr> | syntax sync fromstart<cr><cl>
+nnoremap <left> <cmd>vertical resize-5<CR>
+nnoremap <right> <cmd>vertical resize+5<CR>
 nnoremap J 3<c-e>3j
 nnoremap K 3<c-y>3k
-nnoremap <leader>e :e #<cr>
+nnoremap <leader>e <cmd>e #<cr>
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap 0 ^
 nnoremap <cr> $
-nnoremap <leader>z :call <SID>Myfold()<cr>
+nnoremap <leader>z <cmd>call <SID>Myfold()<cr>
 nnoremap U u
-nnoremap <leader>j :cnext!<cr>
-nnoremap <leader>k :cNext!<cr>
+nnoremap <leader>j <cmd>cnext!<cr>
+nnoremap <leader>k <cmd>cNext!<cr>
 nnoremap p p=`]
 nnoremap <leader>. .
 nnoremap ' `
+
+cnoremap <c-j> <down> 
+cnoremap <c-k> <up>
 
 vnoremap J 3<c-e>3j
 vnoremap K 3<c-y>3k
@@ -119,4 +120,4 @@ function! <SID>GotoPattern(pattern, dir) range
 endfunction
 " nnoremap <silent> w :<C-U>call <SID>GotoPattern('\(^\\|\<\)[A-Za-z0-9_]', 'f')<CR>
 nnoremap <silent> e :<C-U>call <SID>GotoPattern('\(^\\|\<\)[A-Za-z0-9_]', 'b')<CR>
-nnoremap <silent> w :call <SID>GotoPattern('[A-Za-z0-9_]\(\>\\|$\)', 'f')<CR>
+nnoremap <silent> w <cmd>call <SID>GotoPattern('[A-Za-z0-9_]\(\>\\|$\)', 'f')<CR>

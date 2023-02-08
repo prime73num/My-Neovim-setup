@@ -210,6 +210,6 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-map("n", "<leader>/", ":lua require('user.Cmdline').Cmdline()<cr>")
+map("n", "<leader>/", "<cmd>lua require('user.Cmdline').Cmdline()<cr>")
 
 return M
