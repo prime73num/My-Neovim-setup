@@ -80,30 +80,21 @@ cmp.setup({
   },
 
   formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      local kind = lspkind.cmp_format({
-        with_text = true,
-        maxwidth = 30,
-        menu = {
-          buffer = "[buf]",
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[api]",
-          path = "[path]",
-          luasnip = "[Snip]",
-          tn = "[TabNine]",
-          calc = "[Calc]",
-          dictionary = "[Dic]",
-          latex_symbols = "[LaTex]",
-          cmd = "[Cmd]",
-          omni = '[Omni]'
-        },
-      })(entry, vim_item)
-      local strings = vim.split(kind.kind, "%s", { trimempty = true })
-      local f = string.sub(strings[2], 1, 1)
-      kind.kind = strings[1] .. " " .. f
-      return kind
-    end,
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[Snip]",
+        tn = "[TabNine]",
+        calc = "[Calc]",
+        dictionary = "[Dic]",
+        latex_symbols = "[LaTex]",
+        cmd = "[Cmd]",
+      },
+    },
   },
   experimental = {
     ghost_text = false,

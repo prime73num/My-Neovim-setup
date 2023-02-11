@@ -6,7 +6,7 @@ local settings = {
         fold_section = false,
         title = "Header",
         margin = 5,
-        content = require("startup.headers").hydra_header,
+        content = require("startup.headers").neovim_banner_header ,
         highlight = "Statement",
         default_color = "",
         oldfiles_amount = 0,
@@ -103,7 +103,7 @@ local settings = {
         -- mapping_keys = true,
         cursor_column = 0.2,
         empty_lines_between_mappings = false,
-        disable_statuslines = true,
+        disable_statuslines = false,
         paddings = { 12, 1, 2, 2, 2, 2 },
     },
     colors = {
