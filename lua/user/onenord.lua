@@ -1,5 +1,12 @@
 local colors = require("onenord.colors").load()
 local config = require("onenord.config").options
+local my_color = {
+  pink = "#d0a39f",
+  purple = "#C586C0",
+  deeep_blue = "#9CDCFE",
+  deep_green = "#4EC9B0",
+  highlight = "#347474",
+}
 require('onenord').setup({
   theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders
@@ -19,6 +26,18 @@ require('onenord').setup({
     ["@function"] = { fg = colors.light_green, style = config.styles.functions },
     ["@function.call"] = { fg = colors.light_green },
     ["@method"] = { fg = colors.light_green, style = config.styles.functions },
+    ["@parameter"] = { fg = my_color.pink },
+    ["@repeat"] = { fg = my_color.purple, style = config.styles.keywords },
+    -- ["@field"] = { fg = colors.light_green },
+    CmpItemAbbrMatch = { fg = my_color.deeep_blue, style = "bold" },
+    CmpItemAbbrMatchFuzzy = { fg = my_color.deeep_blue, underline = true },
+    CmpItemMenu = { fg = colors.fg_light },
+
+    PmenuSel = { bg = my_color.highlight },
+    Visual = { fg = colors.none, bg = my_color.highlight },
   },
-  custom_colors = {}, -- Overwrite default colors
+  custom_colors = {
+    blue = "#98BEDE",
+  }, -- Overwrite default colors
 })
+

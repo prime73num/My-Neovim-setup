@@ -21,11 +21,12 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " W
 Plug 'andymass/vim-matchup'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+Plug 'nvim-treesitter/playground'
 
 
 
 " Sytex themes startup
-Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/seoul256.vim'
 Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
