@@ -16,25 +16,6 @@ local fmt = require("luasnip.extras.fmt").fmt
 
 return {
 
-    s("mma", c(1, {
-        fmt(
-        [[{} => {}]],
-        { i(1), i(2) }
-        ),
-        fmt(
-        [[Some({}) => {}]],
-        { i(1,"x"), i(2) }
-        ),
-        fmt(
-        [[None => {}]],
-        { i(1) }
-        ),
-        fmt(
-        [[_ => {}]],
-        { i(1) }
-        )
-    })),
-
     s("modtest", fmt(
     [[
     #[cfg(test)]
@@ -50,10 +31,9 @@ return {
     [[
     fn {}({}){} {{
         {}
-        todo!()
     }}{}
     ]],
-    { i(1, "name"), i(2), i(3), i(4, "Your code here ..."), i(0) }
+    { i(1, "name"), i(2), i(3), i(4, "todo!()"), i(0) }
     )),
 
     s("struct", fmt(
@@ -69,6 +49,14 @@ return {
     }
     )),
 
+    s("dbg", fmt(
+    [[
+    dbg!({});
+    ]],
+    {
+      i(1, "Text"),
+    }
+    )),
     s("impl", fmt(
     [[
     impl {} {{

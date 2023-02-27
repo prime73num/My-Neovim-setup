@@ -82,9 +82,9 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'justinmk/vim-sneak'
 Plug 'windwp/nvim-autopairs'
 Plug 'lukas-reineke/indent-blankline.nvim'
-Plug 'folke/noice.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'rcarriga/nvim-notify'
+" Plug 'folke/noice.nvim'
+" Plug 'MunifTanjim/nui.nvim'
+" Plug 'rcarriga/nvim-notify'
 
 " Remote copy from ssh
 Plug 'ojroques/nvim-osc52'
