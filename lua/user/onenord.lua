@@ -6,9 +6,11 @@ local my_color = {
   deeep_blue = "#9CDCFE",
   deep_green = "#4EC9B0",
   highlight = "#347474",
+  comment = "#678568",
+  light_grey = "#444444",
 }
 require('onenord').setup({
-  theme = nil, -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
+  theme = "dark", -- "dark" or "light". Alternatively, remove the option and set vim.o.background instead
   borders = true, -- Split window borders
   fade_nc = false, -- Fade non-current windows, making them more distinguishable
   -- Style that is applied to various groups: see `highlight-args` for options
@@ -27,7 +29,10 @@ require('onenord').setup({
     ["@function.call"] = { fg = colors.light_green },
     ["@method"] = { fg = colors.light_green, style = config.styles.functions },
     ["@parameter"] = { fg = my_color.pink },
-    ["@repeat"] = { fg = my_color.purple, style = config.styles.keywords },
+    ["@operator"] = { fg = colors.yellow },
+    ["@punctuation.delimiter"] = { fg = colors.yellow },
+    ["@comment"] = { fg = my_color.comment, style = config.styles.comments },
+    CursorLine = { fg = colors.none, bg = my_color.light_grey },
     -- ["@field"] = { fg = colors.light_green },
     CmpItemAbbrMatch = { fg = my_color.deeep_blue, style = "bold" },
     CmpItemAbbrMatchFuzzy = { fg = my_color.deeep_blue, underline = true },
@@ -38,6 +43,8 @@ require('onenord').setup({
   },
   custom_colors = {
     blue = "#98BEDE",
+    bg = "#333333",
+    diff_change = "#4EC9B0",
   }, -- Overwrite default colors
 })
 
